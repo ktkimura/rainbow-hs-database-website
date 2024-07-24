@@ -10,24 +10,35 @@
       * this function sets one visible the others not
       */
       if (dowhat == 'insert') {
+        document.getElementById('search').style.display = 'none';
         document.getElementById('browse').style.display = 'none';
         document.getElementById('insert').style.display = 'block';
         document.getElementById('update').style.display = 'none';
         document.getElementById('delete').style.display = 'none';
       }
+      else if (dowhat == 'search') {
+        document.getElementById('search').style.display = 'block';
+        document.getElementById('browse').style.display = 'none';
+        document.getElementById('insert').style.display = 'none';
+        document.getElementById('update').style.display = 'none';
+        document.getElementById('delete').style.display = 'none';
+      }
       else if (dowhat == 'update') {
+        document.getElementById('search').style.display = 'none';
         document.getElementById('browse').style.display = 'none';
         document.getElementById('insert').style.display = 'none';
         document.getElementById('update').style.display = 'block';
         document.getElementById('delete').style.display = 'none';
       }
       else if (dowhat == 'delete') {
+        document.getElementById('search').style.display = 'none';
         document.getElementById('browse').style.display = 'none';
         document.getElementById('insert').style.display = 'none';
         document.getElementById('update').style.display = 'none';
         document.getElementById('delete').style.display = 'block';
       }
       else if (dowhat == 'all') {
+        document.getElementById('search').style.display = 'block';
         document.getElementById('browse').style.display = 'block';
         document.getElementById('insert').style.display = 'block';
         document.getElementById('update').style.display = 'block';
@@ -35,6 +46,7 @@
       }
       else { //by default display browse
         document.getElementById('browse').style.display = 'block';
+        document.getElementById('search').style.display = 'none';
         document.getElementById('insert').style.display = 'none';
         document.getElementById('update').style.display = 'none';
         document.getElementById('delete').style.display = 'none';
@@ -53,7 +65,7 @@
 
 
 <body onload="browseStudents()">
-  <h1>People</h1>
+  <h1>Students</h1>
 
   [ <a href="planets.html">Planets</a> | <a href="people.html">People</a> | Certifications | People Certified ]
 
@@ -110,6 +122,22 @@
       </tr>
     </table>
     <p>&nbsp;</p>
+  </div> <!-- search -->
+  <div id="search">
+    <form method="POST" id="searchStudent">
+      <legend><strong>Search for an event</strong></legend>
+      <h5>Must fill out all fields.</h5>
+      <fieldset class="fields">
+        <label> First name </label> <input type="text" name="fname">
+        <label> Last name </label> <input type="text" name="lname">
+        <label> Grad Class </label> <input type="text" name="gradclass">
+      </fieldset>
+      <input class="btn" type="submit" id="addEvent" value="Search Event">
+      <input class="btn" type="button" value="cancel" onClick="browseEvents()">
+    </form>
+  </div>
+  </div>
+
   </div> <!-- browse -->
   <div id="insert">
     <form method="POST" id="addStudent">
