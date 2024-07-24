@@ -60,7 +60,15 @@
     <form id="addEventMembership">
         <legend><strong>Add Event Membership</strong></legend>
           <fieldset class="fields">
-            <label> Student ID </label> <input type="text" name="studentID">
+            <label> Student ID </label>
+              <select name="studentID">
+                <option value="" selected disabled>Select</option>
+                <option value="1">1700000001 Kevin Kim</option>
+                <option value="2">1700000002 Daniel Liu</option>
+                <option value="3">1700000003 Scarlet Sun</option>
+                <option value="3">1700000004 Cameron Roberts</option>
+                <option value="3">1700000005 Andy Wong</option>
+            </select>
             <label> Event ID </label>  
                 <select name="EventID">
                     <option value="" selected disabled>Select</option>
@@ -88,8 +96,14 @@
       <legend><strong>Update Event Membership</strong></legend>
           <fieldset class="fields">
           <label>ID:</label> 1
-            <label> Student ID </label> <input type="text" name="studentID" value="1700000005" >
-            <label> Event ID </label> 
+          <select name="studentID">
+            <option value="" disabled>Select</option>
+            <option value="1" selected>1700000001 Kevin Kim</option>
+            <option value="2">1700000002 Daniel Liu</option>
+            <option value="3">1700000003 Scarlet Sun</option>
+            <option value="3">1700000004 Cameron Roberts</option>
+            <option value="3">1700000005 Andy Wong</option>
+        </select>            <label> Event ID </label> 
                 <select name="eventID">
                     <option value="" disabled>Select</option>
                     <option value="1"selected>1</option>
