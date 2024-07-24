@@ -1,149 +1,156 @@
+<!DOCTYPE html>
+
 <html>
-<head>
-<title>Club Memberships</title>
-<link href="style.css" rel="stylesheet" type="text/css" />
+  <head>
+  <title>Club Memberships</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
 
-</head>
+  </head>
 
-<body>
-<h1>Club Memberships</h1>
-
-[ <a href="students.html">Students</a> | <a href="gradclass.html">Grad Classes</a> | <a href="clubs.html">Clubs</a> | <a href="sports.html">Sports</a> | <a href="events.html">Events</a> | <a href="club-membership.html">Club Memberships</a> | <a href="sport-membership.html">Sport Memberships</a> | <a href="event-membership.html">Event Memberships</a>]
-<div id="browse" style="display: block">
-
-    <p><strong>Club Memberships</strong></p>
-<table border="1" cellpadding="5">
-  <tr>
-    <th><a href="#">New</a></th>
-    <th></th>
-    <th>Student ID</th>
-    <th>Club ID</th>
-    <th>Club Role</th>
-    <th>Page Num.</th>
-  </tr>
-  <tr>
-    <td><a href="#">Edit</a></td>
-    <td><a href="#">Delete</a></td>
-    <td align="right" >1700000004</td>
-    <td align="right">2</td>
-    <td align="left" >Member</td>
-    <td align="right" >2580</td>
-  </tr>
-  <tr>
-    <td><a href="#">Edit</a></td>
-    <td><a href="#">Delete</a></td>
-    <td align="right" >1700000002</td>
-    <td align="right">3</td>
-    <td align="left" >President</td>
-    <td align="right" >3000</td>
-  </tr>
-  <tr>
-    <td><a href="#">Edit</a></td>
-    <td><a href="#">Delete</a></td>
-    <td align="right" >1700000001</td>
-    <td align="right">3</td>
-    <td align="left" >Member</td>
-    <td align="right" >3001</td>
-  </tr>
-  <tr>
-    <td><a href="#">Edit</a></td>
-    <td><a href="#">Delete</a></td>
-    <td align="right" >1700000001</td>
-    <td align="right">1</td>
-    <td align="left" >President</td>
-    <td align="right" >3017</td>
-  </tr>
-</table>
-<p>&nbsp;</p>
-</div> <!-- browse -->
-<div id="insert" style="display: block">
-    <form id="addClubMembership">
-        <legend><strong>Add Club Membership</strong></legend>
-          <fieldset class="fields">
-            <label> Student ID </label>
-                <select name="studentID">
-                  <option value="" selected disabled>Select</option>
-                  <option value="1">1700000001 Kevin Kim</option>
-                  <option value="2">1700000002 Daniel Liu</option>
-                  <option value="3">1700000003 Scarlet Sun</option>
-                  <option value="3">1700000004 Cameron Roberts</option>
-                  <option value="3">1700000005 Andy Wong</option>
-              </select>            
-            <label> Club ID </label>  
-                <select name="clubID">
-                    <option value="" selected disabled>Select</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-            <label> Club Role </label> 
-                <select name="clubRole">
-                    <option value="" selected disabled>Select</option>
-                    <option value="President">President</option>
-                    <option value="Vice President">Vice President</option>
-                    <option value="Secretary">Secretary</option>
-                    <option value="Treasurer">Treasurer</option>
-                    <option value="Historian">Historian</option>
-                    <option value="Member">Member</option>
-                </select>
-            <label> Page Start </label> <input type="text" name="pageStart">
-          </fieldset>
-          <input class="btn" type="submit" id="addClubMembership" value="Add Club Membership">
-          <input class="btn" type="button" value="cancel">
-	</form> <!--add new grad class-->
-</div><!-- insert -->
-
-<p>&nbsp;</p>
-<div id="update" style="display: block">
-  <form id="updateClubMembership">
-      <legend><strong>Update Club Membership</strong></legend>
-          <fieldset class="fields">
-          <label>ID:</label> 1
-          <label> Student ID </label>
-                <select name="studentID">
-                  <option value="" disabled>Select</option>
-                  <option value="1">1700000001 Kevin Kim</option>
-                  <option value="2">1700000002 Daniel Liu</option>
-                  <option value="3">1700000003 Scarlet Sun</option>
-                  <option value="3"selected>1700000004 Cameron Roberts</option>
-                  <option value="3">1700000005 Andy Wong</option>
-                </select>              
-          <label> Club ID </label> 
-                <select name="clubID">
-                    <option value="" disabled>Select</option>
-                    <option value="1">1</option>
-                    <option value="2" selected>2</option>
-                    <option value="3">3</option>
-                </select>
-            <label> Club Role </label> 
-                <select name="clubRole">
-                    <option value="" disabled>Select</option>
-                    <option value="President">President</option>
-                    <option value="Vice President">Vice President</option>
-                    <option value="Secretary">Secretary</option>
-                    <option value="Treasurer">Treasurer</option>
-                    <option value="Historian">Historian</option>
-                    <option value="Member" selected>Member</option>
-                </select>
-            <label> Page Num </label> <input type="text" name="pageStart" value="2580">
-    </fieldset>
-    <input class="btn" type="submit" id="updateClubMembership" value="Save Update">
-          <input class="btn" type="button" value="cancel" >
-  </form> 
-</div><!-- update -->
-<p>&nbsp;</p>
-<div id="delete" style="display: block">
-  <form id="deleteClubMembership">
-      <legend><strong>Delete Club Membership</strong></legend>
-          <fieldset class="fields">
-          <p>Are you sure you wish to delete the following club membership for this student?</p>
-          <label>ID:</label> 1
-            <label> Student ID: 1700000004 </label> Club ID: 2
-            
-    </fieldset>
-    <input class="btn" type="submit" id="DeleteClubMembership" value="Delete Club Membership">
-          <input class="btn" type="button" value="cancel" >
-  </form> 
-</div><!-- delete -->
-</body>
+  <body>
+    <nav>
+      <a href="students.html">Students</a> | 
+      <a href="gradclass.html">Grad Classes</a> | 
+      <a href="clubs.html">Clubs</a> | 
+      <a href="sports.html">Sports</a> | 
+      <a href="events.html">Events</a> | 
+      <a href="club-membership.html">Club Memberships</a>  | 
+      <a href="sport-membership.html">Sport Memberships</a> | 
+      <a href="event-membership.html">Event Memberships</a>
+    </nav>
+    <h1>Club Memberships</h1>
+    <table border="1" cellpadding="5">
+      <tr>
+        <th><a href="#">New</a></th>
+        <th></th>
+        <th>Student ID</th>
+        <th>Club ID</th>
+        <th>Club Role</th>
+        <th>Page Num.</th>
+      </tr>
+      <tr>
+        <td><a href="#">Edit</a></td>
+        <td><a href="#">Delete</a></td>
+        <td align="right" >1700000004</td>
+        <td align="right">2</td>
+        <td align="left" >Member</td>
+        <td align="right" >2580</td>
+      </tr>
+      <tr>
+        <td><a href="#">Edit</a></td>
+        <td><a href="#">Delete</a></td>
+        <td align="right" >1700000002</td>
+        <td align="right">3</td>
+        <td align="left" >President</td>
+        <td align="right" >3000</td>
+      </tr>
+      <tr>
+        <td><a href="#">Edit</a></td>
+        <td><a href="#">Delete</a></td>
+        <td align="right" >1700000001</td>
+        <td align="right">3</td>
+        <td align="left" >Member</td>
+        <td align="right" >3001</td>
+      </tr>
+      <tr>
+        <td><a href="#">Edit</a></td>
+        <td><a href="#">Delete</a></td>
+        <td align="right" >1700000001</td>
+        <td align="right">1</td>
+        <td align="left" >President</td>
+        <td align="right" >3017</td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+    </div> <!-- browse -->
+    <div id="insert" style="display: block">
+        <form id="addClubMembership">
+            <legend><strong>Add Club Membership</strong></legend>
+              <fieldset class="fields">
+                <label> Student ID </label>
+                    <select name="studentID">
+                      <option value="" selected disabled>Select</option>
+                      <option value="1">1700000001 Kevin Kim</option>
+                      <option value="2">1700000002 Daniel Liu</option>
+                      <option value="3">1700000003 Scarlet Sun</option>
+                      <option value="3">1700000004 Cameron Roberts</option>
+                      <option value="3">1700000005 Andy Wong</option>
+                  </select>            
+                <label> Club ID </label>  
+                    <select name="clubID">
+                        <option value="" selected disabled>Select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                <label> Club Role </label> 
+                    <select name="clubRole">
+                        <option value="" selected disabled>Select</option>
+                        <option value="President">President</option>
+                        <option value="Vice President">Vice President</option>
+                        <option value="Secretary">Secretary</option>
+                        <option value="Treasurer">Treasurer</option>
+                        <option value="Historian">Historian</option>
+                        <option value="Member">Member</option>
+                    </select>
+                <label> Page Start </label> <input type="text" name="pageStart">
+              </fieldset>
+              <input class="btn" type="submit" id="addClubMembership" value="Add Club Membership">
+              <input class="btn" type="button" value="cancel">
+      </form> <!--add new grad class-->
+    </div><!-- insert -->
+    <p>&nbsp;</p>
+    <div id="update" style="display: block">
+      <form id="updateClubMembership">
+          <legend><strong>Update Club Membership</strong></legend>
+              <fieldset class="fields">
+              <label>ID:</label> 1
+              <label> Student ID </label>
+                    <select name="studentID">
+                      <option value="" disabled>Select</option>
+                      <option value="1">1700000001 Kevin Kim</option>
+                      <option value="2">1700000002 Daniel Liu</option>
+                      <option value="3">1700000003 Scarlet Sun</option>
+                      <option value="3"selected>1700000004 Cameron Roberts</option>
+                      <option value="3">1700000005 Andy Wong</option>
+                    </select>              
+              <label> Club ID </label> 
+                    <select name="clubID">
+                        <option value="" disabled>Select</option>
+                        <option value="1">1</option>
+                        <option value="2" selected>2</option>
+                        <option value="3">3</option>
+                    </select>
+                <label> Club Role </label> 
+                    <select name="clubRole">
+                        <option value="" disabled>Select</option>
+                        <option value="President">President</option>
+                        <option value="Vice President">Vice President</option>
+                        <option value="Secretary">Secretary</option>
+                        <option value="Treasurer">Treasurer</option>
+                        <option value="Historian">Historian</option>
+                        <option value="Member" selected>Member</option>
+                    </select>
+                <label> Page Num </label> <input type="text" name="pageStart" value="2580">
+        </fieldset>
+        <input class="btn" type="submit" id="updateClubMembership" value="Save Update">
+              <input class="btn" type="button" value="cancel" >
+      </form> 
+    </div><!-- update -->
+    <p>&nbsp;</p>
+    <div id="delete" style="display: block">
+      <form id="deleteClubMembership">
+          <legend><strong>Delete Club Membership</strong></legend>
+              <fieldset class="fields">
+              <p>Are you sure you wish to delete the following club membership for this student?</p>
+              <label>ID:</label> 1
+                <label> Student ID: 1700000004 </label> Club ID: 2
+                
+        </fieldset>
+        <input class="btn" type="submit" id="DeleteClubMembership" value="Delete Club Membership">
+              <input class="btn" type="button" value="cancel" >
+      </form> 
+    </div><!-- delete -->
+    <p>&nbsp;</p>
+  </body>
 </html>

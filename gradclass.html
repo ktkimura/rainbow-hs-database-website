@@ -1,89 +1,96 @@
+<!DOCTYPE html>
+
 <html>
-<head>
-<title>Grad Classes</title>
-<link href="style.css" rel="stylesheet" type="text/css" />
+  <head>
+  <title>Grad Classes</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
 
-</head>
+  </head>
 
-<body>
-<h1>Grad Classes</h1>
+  <body>
+    <nav>
+      <a href="students.html">Students</a> | 
+      <a href="gradclass.html">Grad Classes</a> | 
+      <a href="clubs.html">Clubs</a> | 
+      <a href="sports.html">Sports</a> | 
+      <a href="events.html">Events</a> | 
+      <a href="club-membership.html">Club Memberships</a>  | 
+      <a href="sport-membership.html">Sport Memberships</a> | 
+      <a href="event-membership.html">Event Memberships</a>
+    </nav>
+    <h1>Graduating Classes</h1>
 
-[ <a href="students.html">Students</a> | <a href="gradclass.html">Grad Classes</a> | <a href="clubs.html">Clubs</a> | <a href="sports.html">Sports</a> | <a href="events.html">Events</a> | <a href="club-membership.html">Club Memberships</a> | <a href="sport-membership.html">Sport Memberships</a> | <a href="event-membership.html">Event Memberships</a>]
-<div id="browse" style="display: block">
+    <table border="1" cellpadding="5">
+      <tr>
+        <th><a href="#">New</a></th>
+        <th></th>
+        <th>Grad Class Year</th>
+        <th>Start Page</th>
+        <th>End Page</th>
+      </tr>
+      <tr>
+        <td><a href="#">Edit</a></td>
+        <td><a href="#">Delete</a></td>
+        <td align="right" >2025</td>
+        <td align="right">531</td>
+        <td align="right" >1031</td>
+      </tr>
+      <tr>
+        <td><a href="#">Edit</a></td>
+        <td><a href="#">Delete</a></td>
+        <td align="right" >2026</td>
+        <td align="right">1032</td>
+        <td align="right" >1532</td>
+      </tr>
+      <tr>
+        <td><a href="#">Edit</a></td>
+        <td><a href="#">Delete</a></td>
+        <td align="right" >2027</td>
+        <td align="right">1533</td>
+        <td align="right" >2033</td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+    <div id="insert" style="display: block">
+        <form id="addGradClass">
+            <legend><strong>Add Grad Class</strong></legend>
+              <fieldset class="fields">
+                <label> Grad Class Year </label> <input type="text" name="gradclass">
+                <label> Start Page </label> <input type="text" name="startpage"> 
+                <label> End Page </label> <input type="text" name="endpage">
+              </fieldset>
+              <input class="btn" type="submit" id="addGradClass" value="Add Grad Class">
+              <input class="btn" type="button" value="cancel">
+        </form> <!--add new grad class-->
+    </div><!-- insert -->
+    <p>&nbsp;</p>
+    <div id="update" style="display: block">
+      <form id="updateGradClass">
+          <legend><strong>Update Grad Class</strong></legend>
+              <fieldset class="fields">
+              <label>ID:</label> 1
+                <label> Grad Class Year </label> <input type="text" value="2025" name="gradclass">
+                <label> Start Page </label> <input type="text"  name="startpage" value="531">
+                <label> End Page </label> <input type="text" name="endpage" value="1031">
+        </fieldset>
+        <input class="btn" type="submit" id="UpdateGradClass" value="Save Update">
+              <input class="btn" type="button" value="cancel" >
+      </form> 
+    </div><!-- update -->
+    <p>&nbsp;</p>
+    <div id="delete" style="display: block">
+      <form id="deleteGradClass">
+          <legend><strong>Delete Grad Class</strong></legend>
+              <fieldset class="fields">
+              <p>Are you sure you wish to delete the following?</p>
+              <label>ID:</label> 1
+                <label> Year </label> 2025
+        </fieldset>
+        <input class="btn" type="submit" id="DeleteGradClass" value="Delete Grad Class">
+              <input class="btn" type="button" value="cancel" >
+      </form> 
+    </div><!-- delete -->
+    <p>&nbsp;</p>
 
-    <p><strong>Grad Classes</strong></p>
-<table border="1" cellpadding="5">
-  <tr>
-    <th><a href="#">New</a></th>
-    <th></th>
-    <th>Grad Class Year</th>
-    <th>Start Page</th>
-    <th>End Page</th>
-  </tr>
-  <tr>
-    <td><a href="#">Edit</a></td>
-    <td><a href="#">Delete</a></td>
-    <td align="right" >2025</td>
-    <td align="right">531</td>
-    <td align="right" >1031</td>
-  </tr>
-  <tr>
-    <td><a href="#">Edit</a></td>
-    <td><a href="#">Delete</a></td>
-    <td align="right" >2026</td>
-    <td align="right">1032</td>
-    <td align="right" >1532</td>
-  </tr>
-  <tr>
-    <td><a href="#">Edit</a></td>
-    <td><a href="#">Delete</a></td>
-    <td align="right" >2027</td>
-    <td align="right">1533</td>
-    <td align="right" >2033</td>
-  </tr>
-</table>
-<p>&nbsp;</p>
-</div> <!-- browse -->
-<div id="insert" style="display: block">
-    <form id="addGradClass">
-        <legend><strong>Add Grad Class</strong></legend>
-          <fieldset class="fields">
-            <label> Grad Class Year </label> <input type="text" name="gradclass">
-            <label> Start Page </label> <input type="text" name="startpage"> 
-            <label> End Page </label> <input type="text" name="endpage">
-          </fieldset>
-          <input class="btn" type="submit" id="addGradClass" value="Add Grad Class">
-          <input class="btn" type="button" value="cancel">
-	</form> <!--add new grad class-->
-</div><!-- insert -->
-
-<p>&nbsp;</p>
-<div id="update" style="display: block">
-  <form id="updateGradClass">
-      <legend><strong>Update Grad Class</strong></legend>
-          <fieldset class="fields">
-          <label>ID:</label> 1
-            <label> Grad Class Year </label> <input type="text" value="2025" name="gradclass">
-            <label> Start Page </label> <input type="text"  name="startpage" value="531">
-            <label> End Page </label> <input type="text" name="endpage" value="1031">
-    </fieldset>
-    <input class="btn" type="submit" id="UpdateGradClass" value="Save Update">
-          <input class="btn" type="button" value="cancel" >
-  </form> 
-</div><!-- update -->
-<p>&nbsp;</p>
-<div id="delete" style="display: block">
-  <form id="deleteGradClass">
-      <legend><strong>Delete Grad Class</strong></legend>
-          <fieldset class="fields">
-          <p>Are you sure you wish to delete the following?</p>
-          <label>ID:</label> 1
-            <label> Year </label> 2025
-            
-    </fieldset>
-    <input class="btn" type="submit" id="DeleteGradClass" value="Delete Grad Class">
-          <input class="btn" type="button" value="cancel" >
-  </form> 
-</div><!-- delete -->
-</body>
+  </body>
 </html>

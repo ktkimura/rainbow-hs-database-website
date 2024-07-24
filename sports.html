@@ -1,113 +1,119 @@
+<!DOCTYPE html>
+
 <html>
-<head>
-<title>Sports</title>
-<link href="style.css" rel="stylesheet" type="text/css" />
+  <head>
+  <title>Sports</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
 
-</head>
+  </head>
 
-<body>
-<h1>Sports</h1>
-
-[ <a href="students.html">Students</a> | <a href="gradclass.html">Grad Classes</a> | <a href="clubs.html">Clubs</a> | <a href="sports.html">Sports</a> | <a href="events.html">Events</a> | <a href="club-membership.html">Club Memberships</a> | <a href="sport-membership.html">Sport Memberships</a> | <a href="event-membership.html">Event Memberships</a>]
-<div id="browse" style="display: block">
-
-    <p><strong>Sports</strong></p>
-<table border="1" cellpadding="5">
-  <tr>
-    <th><a href="#">New</a></th>
-    <th></th>
-    <th>Sport</th>
-    <th>Season</th>
-    <th>Varsity Level</th>
-  </tr>
-  <tr>
-    <td><a href="#">Edit</a></td>
-    <td><a href="#">Delete</a></td>
-    <td align="left" >Basketball</td>
-    <td align="left">Winter</td>
-    <td align="left" >Varsity</td>
-  </tr>
-  <tr>
-    <td><a href="#">Edit</a></td>
-    <td><a href="#">Delete</a></td>
-    <td align="left" >Tennis</td>
-    <td align="left">Spring</td>
-    <td align="left" >Varsity</td>
-  </tr>
-  <tr>
-    <td><a href="#">Edit</a></td>
-    <td><a href="#">Delete</a></td>
-    <td align="left" >Football</td>
-    <td align="left">Fall</td>
-    <td align="left" >Junior Varsity</td>
-  </tr>
-</table>
-<p>&nbsp;</p>
-</div> <!-- browse -->
-<div id="insert" style="display: block">
-    <form id="addSport">
-        <legend><strong>Add Sport</strong></legend>
-          <fieldset class="fields">
-            <label> Sport </label> <input type="text" name="sport">
-            <label> Season </label>
-              <select name="season">
-                <option value="" selected disabled>Select</option>
-                <option value="fall">Fall</option>
-                <option value="winter">Winter</option>
-                <option value="spring">Spring</option>
-              </select>
-            <label> Varstiy Level </label>
-              <select name="varsityLevel">
-                <option value="" selected disabled>Select</option>
-                <option value="varsity">Varstiy</option>
-                <option value="jv">Junior Varsity</option>
-                <option value="intramural">Intramural</option>
-              </select>
-          </fieldset>
-          <input class="btn" type="submit" id="addSport" value="Add Sport">
-          <input class="btn" type="button" value="cancel">
-	</form> <!--add new grad class-->
-</div><!-- insert -->
-
-<p>&nbsp;</p>
-<div id="update" style="display: block">
-  <form id="updateSport">
-      <legend><strong>Update Sport</strong></legend>
-          <fieldset class="fields">
-          <label>ID:</label> 1
-            <label> Sport </label> <input type="text" name="sport" value="Basketball" >
-            <label> Season </label>
-              <select name="season">
-                <option value="" disabled>Select</option>
-                <option value="fall">Fall</option>
-                <option value="winter" selected>Winter</option>
-                <option value="spring">Spring</option>
-              </select>
-            <label> Varsity Level </label>
-              <select name="varsityLevel">
-                <option value="" disabled>Select</option>
-                <option value="varsity"selected>Varstiy</option>
-                <option value="jv">Junior Varsity</option>
-                <option value="intramural">Intramural</option>
-              </select>
-    </fieldset>
-    <input class="btn" type="submit" id="UpdateSport" value="Save Update">
-          <input class="btn" type="button" value="cancel" >
-  </form> 
-</div><!-- update -->
-<p>&nbsp;</p>
-<div id="delete" style="display: block">
-  <form id="deleteSport">
-      <legend><strong>Delete Sport</strong></legend>
-          <fieldset class="fields">
-          <p>Are you sure you wish to delete the following?</p>
-          <label>ID:</label> 1
-            <label> Basketball </label>
-            
-    </fieldset>
-    <input class="btn" type="submit" id="DeleteSport" value="Delete Sport">
-          <input class="btn" type="button" value="cancel" >
-  </form> 
-</div><!-- delete -->
-</body>
+  <body>
+    <nav>
+      <a href="students.html">Students</a> | 
+      <a href="gradclass.html">Grad Classes</a> | 
+      <a href="clubs.html">Clubs</a> | 
+      <a href="sports.html">Sports</a> | 
+      <a href="events.html">Events</a> | 
+      <a href="club-membership.html">Club Memberships</a>  | 
+      <a href="sport-membership.html">Sport Memberships</a> | 
+      <a href="event-membership.html">Event Memberships</a>
+    </nav>
+    <h1>Sports</h1>
+    <table border="1" cellpadding="5">
+      <tr>
+        <th><a href="#">New</a></th>
+        <th></th>
+        <th>Sport</th>
+        <th>Season</th>
+        <th>Varsity Level</th>
+      </tr>
+      <tr>
+        <td><a href="#">Edit</a></td>
+        <td><a href="#">Delete</a></td>
+        <td align="left" >Basketball</td>
+        <td align="left">Winter</td>
+        <td align="left" >Varsity</td>
+      </tr>
+      <tr>
+        <td><a href="#">Edit</a></td>
+        <td><a href="#">Delete</a></td>
+        <td align="left" >Tennis</td>
+        <td align="left">Spring</td>
+        <td align="left" >Varsity</td>
+      </tr>
+      <tr>
+        <td><a href="#">Edit</a></td>
+        <td><a href="#">Delete</a></td>
+        <td align="left" >Football</td>
+        <td align="left">Fall</td>
+        <td align="left" >Junior Varsity</td>
+      </tr>
+    </table>
+    <p>&nbsp;</p>
+    <div id="insert" style="display: block">
+        <form id="addSport">
+            <legend><strong>Add Sport</strong></legend>
+              <fieldset class="fields">
+                <label> Sport </label> <input type="text" name="sport">
+                <label> Season </label>
+                  <select name="season">
+                    <option value="" selected disabled>Select</option>
+                    <option value="fall">Fall</option>
+                    <option value="winter">Winter</option>
+                    <option value="spring">Spring</option>
+                  </select>
+                <label> Varstiy Level </label>
+                  <select name="varsityLevel">
+                    <option value="" selected disabled>Select</option>
+                    <option value="varsity">Varstiy</option>
+                    <option value="jv">Junior Varsity</option>
+                    <option value="intramural">Intramural</option>
+                  </select>
+              </fieldset>
+              <input class="btn" type="submit" id="addSport" value="Add Sport">
+              <input class="btn" type="button" value="cancel">
+      </form> <!--add new grad class-->
+    </div><!-- insert -->
+    <p>&nbsp;</p>
+    <div id="update" style="display: block">
+      <form id="updateSport">
+          <legend><strong>Update Sport</strong></legend>
+              <fieldset class="fields">
+              <label>ID:</label> 1
+                <label> Sport </label> <input type="text" name="sport" value="Basketball" >
+                <label> Season </label>
+                  <select name="season">
+                    <option value="" disabled>Select</option>
+                    <option value="fall">Fall</option>
+                    <option value="winter" selected>Winter</option>
+                    <option value="spring">Spring</option>
+                  </select>
+                <label> Varsity Level </label>
+                  <select name="varsityLevel">
+                    <option value="" disabled>Select</option>
+                    <option value="varsity"selected>Varstiy</option>
+                    <option value="jv">Junior Varsity</option>
+                    <option value="intramural">Intramural</option>
+                  </select>
+        </fieldset>
+        <input class="btn" type="submit" id="UpdateSport" value="Save Update">
+              <input class="btn" type="button" value="cancel" >
+      </form> 
+    </div><!-- update -->
+    <p>&nbsp;</p>
+    <div id="delete" style="display: block">
+      <form id="deleteSport">
+          <legend><strong>Delete Sport</strong></legend>
+              <fieldset class="fields">
+              <p>Are you sure you wish to delete the following?</p>
+              <label>ID:</label> 1
+                <label> Basketball </label>
+                
+        </fieldset>
+        <input class="btn" type="submit" id="DeleteSport" value="Delete Sport">
+              <input class="btn" type="button" value="cancel" >
+      </form> 
+    </div><!-- delete -->
+    <p>&nbsp;</p>
+  </body>
 </html>
