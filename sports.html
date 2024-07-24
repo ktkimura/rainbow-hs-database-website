@@ -1,95 +1,111 @@
 <html>
 <head>
-<title>Planets</title>
+<title>Sports</title>
 <link href="style.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body>
-<h1>Planets</h1>
+<h1>Sports</h1>
 
-[ <a href="planets.html">Planets</a> | <a href="people.html">People</a> | Certifications | People Certified ]
+[ <a href="students.html">Students</a> | <a href="gradclass.html">Grad Classes</a> | <a href="clubs.html">Clubs</a> | <a href="sports.html">Sports</a> | <a href="events.html">Events</a> | <a href="club-membership.html">Club Memberships</a> | <a href="sport-membership.html">Sport Memberships</a> | <a href="event-membership.html">Event Memberships</a>]
 <div id="browse" style="display: block">
-<p><strong>Browse Planets</strong></p>
+
+    <p><strong>Sports</strong></p>
 <table border="1" cellpadding="5">
   <tr>
     <th><a href="#">New</a></th>
     <th></th>
-    <th>ID</th>
-    <th>name</th>
-    <th>population</th>
-    <th>language</th>
-    <th>capital</th>
+    <th>Sport</th>
+    <th>Season</th>
+    <th>Varsity Level</th>
   </tr>
   <tr>
     <td><a href="#">Edit</a></td>
     <td><a href="#">Delete</a></td>
-    <td align="right" >1</td>
-    <td >Gemenon</td>
-    <td align="right" >2800000000</td>
-    <td>Old Gemenese</td>
-    <td>Oranu</td>
+    <td align="left" >Basketball</td>
+    <td align="left">Winter</td>
+    <td align="left" >Varsity</td>
   </tr>
   <tr>
     <td><a href="#">Edit</a></td>
     <td><a href="#">Delete</a></td>
-    <td align="right" >2</td>
-    <td>Leonis</td>
-    <td align="right" >2600000000</td>
-    <td >Leonese</td>
-    <td>Luminere</td>
+    <td align="left" >Tennis</td>
+    <td align="left">Spring</td>
+    <td align="left" >Varsity</td>
   </tr>
   <tr>
     <td><a href="#">Edit</a></td>
     <td><a href="#">Delete</a></td>
-    <td>3</td>
-    <td>Caprica</td>
-    <td align="right" >4900000000</td>
-    <td>Caprican</td>
-    <td>Caprica City</td>
+    <td align="left" >Football</td>
+    <td align="left">Fall</td>
+    <td align="left" >Junior Varsity</td>
   </tr>
 </table>
 <p>&nbsp;</p>
 </div> <!-- browse -->
 <div id="insert" style="display: block">
-    <form id="addPlanet">
-        <legend><strong>Add Planet</strong></legend>
+    <form id="addSport">
+        <legend><strong>Add Sport</strong></legend>
           <fieldset class="fields">
-            <label> Name </label> <input type="text" name="name">
-            <label> Population </label> <input type="text" name="population">
-            <label> Language </label> <input type="text" name="language">
-            <label> Capital </label> <input type="text" name="language">
+            <label> Sport </label> <input type="text" name="sport">
+            <label> Season </label>
+              <select name="season">
+                <option value="" selected disabled>Select</option>
+                <option value="fall">Fall</option>
+                <option value="winter">Winter</option>
+                <option value="spring">Spring</option>
+              </select>
+            <label> Varstiy Level </label>
+              <select name="varsityLevel">
+                <option value="" selected disabled>Select</option>
+                <option value="varsity">Varstiy</option>
+                <option value="jv">Junior Varsity</option>
+                <option value="intramural">Intramural</option>
+              </select>
           </fieldset>
-          <input class="btn" type="submit" id="addPlanet" value="Add a Planet">
+          <input class="btn" type="submit" id="addSport" value="Add Sport">
           <input class="btn" type="button" value="cancel">
-	</form> <!--add new planet-->
+	</form> <!--add new grad class-->
 </div><!-- insert -->
 
 <p>&nbsp;</p>
 <div id="update" style="display: block">
-  <form id="updatePlanet">
-      <legend><strong>Update Planet</strong></legend>
+  <form id="updateSport">
+      <legend><strong>Update Sport</strong></legend>
           <fieldset class="fields">
           <label>ID:</label> 1
-            <label> Name </label> <input type="text" value="Gemenon" name="name">
-            <label> Population </label> <input type="text"  name="population" value="2800000000">
-            <label> Language </label> <input type="text" name="language" value="Old Gemenese">
-            <label> Capital </label> <input type="text" name="language" value="Oranu">
+            <label> Sport </label> <input type="text" name="sport" value="Basketball" >
+            <label> Season </label>
+              <select name="season">
+                <option value="" disabled>Select</option>
+                <option value="fall">Fall</option>
+                <option value="winter" selected>Winter</option>
+                <option value="spring">Spring</option>
+              </select>
+            <label> Varsity Level </label>
+              <select name="varsityLevel">
+                <option value="" disabled>Select</option>
+                <option value="varsity"selected>Varstiy</option>
+                <option value="jv">Junior Varsity</option>
+                <option value="intramural">Intramural</option>
+              </select>
     </fieldset>
-    <input class="btn" type="submit" id="UpdateSavePlanet" value="Save Update Planet">
+    <input class="btn" type="submit" id="UpdateSport" value="Save Update">
           <input class="btn" type="button" value="cancel" >
   </form> 
 </div><!-- update -->
 <p>&nbsp;</p>
 <div id="delete" style="display: block">
-  <form id="deletePlanet">
-      <legend><strong>Delete Planet</strong></legend>
+  <form id="deleteSport">
+      <legend><strong>Delete Sport</strong></legend>
           <fieldset class="fields">
           <p>Are you sure you wish to delete the following?</p>
           <label>ID:</label> 1
-            <label> Name </label> Gemenon
+            <label> Basketball </label>
             
     </fieldset>
-    <input class="btn" type="submit" id="DeletePlanet" value="Delete Planet">
+    <input class="btn" type="submit" id="DeleteSport" value="Delete Sport">
           <input class="btn" type="button" value="cancel" >
   </form> 
 </div><!-- delete -->

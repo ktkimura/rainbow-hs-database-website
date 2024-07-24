@@ -1,0 +1,145 @@
+<html>
+<head>
+<title>Sport Memberships</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+<h1>Sport Memberships</h1>
+
+[ <a href="students.html">Students</a> | <a href="gradclass.html">Grad Classes</a> | <a href="clubs.html">Clubs</a> | <a href="sports.html">Sports</a> | <a href="events.html">Events</a> | <a href="club-membership.html">Club Memberships</a> | <a href="sport-membership.html">Sport Memberships</a> | <a href="event-membership.html">Event Memberships</a>]
+<div id="browse" style="display: block">
+
+    <p><strong>Sport Memberships</strong></p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#">New</a></th>
+    <th></th>
+    <th>Student ID</th>
+    <th>Sport ID</th>
+    <th>Sport Role</th>
+    <th>Page Num.</th>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right" >1700000001</td>
+    <td align="right">1</td>
+    <td align="left" >Captain</td>
+    <td align="right" >4070</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right" >1700000001</td>
+    <td align="right">1</td>
+    <td align="left" >Captain</td>
+    <td align="right" >4071</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right" >1700000003</td>
+    <td align="right">2</td>
+    <td align="left" >Player</td>
+    <td align="right" >4076</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right" >1700000004</td>
+    <td align="right">3</td>
+    <td align="left" >Manager</td>
+    <td align="right" >4052</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert" style="display: block">
+    <form id="addSportMembership">
+        <legend><strong>Add Sport Membership</strong></legend>
+          <fieldset class="fields">
+            <label> Student ID </label>
+                <select name="studentID">
+                  <option value="" selected disabled>Select</option>
+                  <option value="1">1700000001 Kevin Kim</option>
+                  <option value="2">1700000002 Daniel Liu</option>
+                  <option value="3">1700000003 Scarlet Sun</option>
+                  <option value="3">1700000004 Cameron Roberts</option>
+                  <option value="3">1700000005 Andy Wong</option>
+                </select>            
+            <label> Sport ID </label>  
+                <select name="sportID">
+                    <option value="" selected disabled>Select</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            <label> Sport Role </label> 
+                <select name="sportRole">
+                    <option value="" selected disabled>Select</option>
+                    <option value="captain">Captain</option>
+                    <option value="co-captain">Co-Captain</option>
+                    <option value="manager">Manager</option>
+                    <option value="player">Player</option>
+                </select>
+            <label> Page Num </label> <input type="text" name="pageStart">
+          </fieldset>
+          <input class="btn" type="submit" id="addSportMembership" value="Add Sport Membership">
+          <input class="btn" type="button" value="cancel">
+	</form> <!--add new grad class-->
+</div><!-- insert -->
+
+<p>&nbsp;</p>
+<div id="update" style="display: block">
+  <form id="updateSportMembership">
+      <legend><strong>Update Sport Membership</strong></legend>
+          <fieldset class="fields">
+          <label>ID:</label> 1
+          <label> Student ID </label>
+                <select name="studentID">
+                  <option value="" disabled>Select</option>
+                  <option value="1"selected>1700000001 Kevin Kim</option>
+                  <option value="2">1700000002 Daniel Liu</option>
+                  <option value="3">1700000003 Scarlet Sun</option>
+                  <option value="3">1700000004 Cameron Roberts</option>
+                  <option value="3">1700000005 Andy Wong</option>
+                </select>            
+          <label> Sport ID </label> 
+                <select name="sportID">
+                    <option value="" disabled>Select</option>
+                    <option value="1"selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            <label> Sport Role </label> 
+                <select name="sportRole">
+                    <option value="" disabled>Select</option>
+                    <option value="captain"selected>Captain</option>
+                    <option value="co-captain">Co-Captain</option>
+                    <option value="manager">Manager</option>
+                    <option value="player">Player</option>
+                </select>
+            <label> Page Num </label> <input type="text" name="pageStart" value="4070">
+    </fieldset>
+    <input class="btn" type="submit" id="updateSportMembership" value="Save Update">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form id="deleteClubMembership">
+      <legend><strong>Delete Sport Membership</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following sport membership for this student?</p>
+          <label>ID:</label> 1
+            <label> Student ID: 1700000001 </label> Sport ID: 1
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeleteSportMembership" value="Delete Sport Membership">
+          <input class="btn" type="button" value="cancel" >
+  </form> 
+</div><!-- delete -->
+</body>
+</html>
