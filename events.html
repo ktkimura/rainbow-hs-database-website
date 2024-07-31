@@ -1,5 +1,12 @@
-<html>
+<!--
+-- Citation for html layout and JavaScript functionalities
+-- Date: 07/24/2024
+-- Adapted from CS340 2024 Summer Term Canvas Assignment "Exploration - Web Application Technology"
+-- Source URL: https://canvas.oregonstate.edu/courses/1967354/pages/exploration-web-application-technology?module_item_id=24460839
+-->
+<!DOCTYPE html>
 
+<html>
 <head>
     <title>Events</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
@@ -59,15 +66,19 @@
         function showAll() { showform('all'); }
     </script>
 </head>
-<a href="students.html">Students</a> | <a href="gradclass.html">Grad Classes</a> | <a href="clubs.html">Clubs</a> | <a
-    href="sports.html">Sports</a> | <a href="events.html">Events</a> | <a href="club-membership.html">Club
-    Memberships</a>
-| <a href="sport-membership.html">Sport Memberships</a> | <a href="event-membership.html">Event Memberships</a>
-
-
 <body onload="browseEvents()">
+    <nav>
+        <a href="index.html">Home</a>  |
+        <a href="students.html">Students</a> | 
+        <a href="gradclass.html">Graduating Classes</a> | 
+        <a href="clubs.html">Clubs</a> | 
+        <a href="sports.html">Sports</a> | 
+        <a href="events.html">Events</a> | 
+        <a href="club-membership.html">Club Memberships</a>  | 
+        <a href="sport-membership.html">Sport Memberships</a> | 
+        <a href="event-membership.html">Event Memberships</a>
+    </nav>
     <h1>Events</h1>
-
     <div id="browse">
         <p><a href="#" onClick="showAll()">Display all forms</a> </p>
         <table border="1" cellpadding="5">
@@ -102,9 +113,9 @@
 
         </table>
         <p>&nbsp;</p>
-
-    </div> <!-- search -->
-        <div id="search">
+    </div> <!-- browse -->
+    <p>&nbsp;</p>
+    <div id="search">
             <form method="POST" id="searchEvent">
                 <legend><strong>Search for an event</strong></legend>
                 <h5>Must fill out all fields.</h5>
@@ -115,8 +126,8 @@
                 <input class="btn" type="submit" id="addEvent" value="Search Event">
                 <input class="btn" type="button" value="cancel" onClick="browseEvents()">
             </form>
-        </div>
-    </div> <!-- browse -->
+    </div> <!-- search -->
+    <p>&nbsp;</p>
     <div id="insert">
         <form method="POST" id="addEvent">
             <legend><strong>Add Event</strong></legend>
@@ -157,7 +168,7 @@
             <input class="btn" type="button" value="cancel" onClick="browseEvents()">
         </form>
     </div><!-- delete -->
-
-</body>
-
+    <p>&nbsp;</p>
+    <p>&copy; CS340 Group 26 (Katie Kimura, Skylar Soon, Annabel Wang) </p>
+    </body>
 </html>

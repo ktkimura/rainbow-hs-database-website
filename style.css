@@ -1,0 +1,23 @@
+/* CSS Document */
+
+
+.aboutBody{
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    outline: solid black;
+    margin-top: 20px;
+}
+
+.navbar{
+    margin: 30px;
+    margin-left: 5px;
+}
+
+#rainbowImage{
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
