@@ -1,11 +1,10 @@
+<!DOCTYPE html>
 <!--
 -- Citation for html layout and JavaScript functionalities
 -- Date: 07/24/2024
 -- Adapted from CS340 2024 Summer Term Canvas Assignment "Exploration - Web Application Technology"
 -- Source URL: https://canvas.oregonstate.edu/courses/1967354/pages/exploration-web-application-technology?module_item_id=24460839
 -->
-
-<!DOCTYPE html>
 
 <html>
 <head>
@@ -87,25 +86,25 @@
                 <th><a href="#" onClick="newClub()">New</a></th>
                 <th></th>
                 <th>Club ID</th>
-                <th>Club</th>
+                <th>Club Name</th>
             </tr>
             <tr>
                 <td><a href="#" onClick="updateClub('this.clubID')">Edit</a></td>
                 <td><a href="#" onclick="deleteClub('this.clubID')">Delete</a></td>
                 <td align="right">1</td>
-                <td align="left" >Guitar Club</td>
+                <td align="left">Guitar Club</td>
             </tr>
             <tr>
                 <td><a href="#" onClick="updateClub('this.clubID')">Edit</a></td>
                 <td><a href="#" onclick="deleteClub('this.clubID')">Delete</a></td>
                 <td align="right">2</td>
-                <td align="left" >Lettuce Eating Club</td>
+                <td align="left">Lettuce Eating Club</td>
             </tr>
             <tr>
                 <td><a href="#" onClick="updateClub('this.clubID')">Edit</a></td>
                 <td><a href="#" onclick="deleteClub('this.clubID')">Delete</a></td>
                 <td align="right">3</td>
-                <td align="left" >National Honor Society</td>
+                <td align="left">National Honor Society</td>
             </tr>
 
         </table>
@@ -119,7 +118,7 @@
                 <fieldset class="fields">
                     <label> Club Name </label> <input type="text" name="clubname">
                 </fieldset>
-                <input class="btn" type="submit" id="addClub" value="Search Club">
+                <input class="btn" type="submit" id="submitSearchClub" value="Search Club">
                 <input class="btn" type="button" value="cancel" onClick="browseClubs()">
             </form>
     </div> <!-- search -->
@@ -130,7 +129,7 @@
             <fieldset class="fields">
                 <label> Club Name </label> <input type="text" name="clubname">
             </fieldset>
-            <input class="btn" type="submit" id="addClub" value="Add Club">
+            <input class="btn" type="submit" id="SubmitAddClub" value="Add Club">
             <input class="btn" type="button" value="cancel" onClick="browseEvents()">
         </form>
     </div><!-- insert -->

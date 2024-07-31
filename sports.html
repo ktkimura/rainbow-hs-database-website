@@ -1,10 +1,10 @@
+<!DOCTYPE html>
 <!--
 -- Citation for html layout and JavaScript functionalities
 -- Date: 07/24/2024
 -- Adapted from CS340 2024 Summer Term Canvas Assignment "Exploration - Web Application Technology"
 -- Source URL: https://canvas.oregonstate.edu/courses/1967354/pages/exploration-web-application-technology?module_item_id=24460839
 -->
-<!DOCTYPE html>
 
 <html>
 <head>
@@ -85,6 +85,7 @@
             <tr>
                 <th><a href="#" onClick="newSport()">New</a></th>
                 <th></th>
+                <th>Sport ID</th>
                 <th>Sport</th>
                 <th>Season</th>
                 <th>Varsity Level</th>
@@ -92,23 +93,26 @@
             <tr>
                 <td><a href="#" onClick="updateSport('this.sportID')">Edit</a></td>
                 <td><a href="#" onclick="deleteSport('this.sportID')">Delete</a></td>
-                <td align="left" >Basketball</td>
+                <td align="right">1</td>
+                <td align="left">Basketball</td>
                 <td align="left">Winter</td>
-                <td align="left" >Varsity</td>
+                <td align="left">Varsity</td>
             </tr>
             <tr>
                 <td><a href="#" onClick="updateSport('this.sportID')">Edit</a></td>
                 <td><a href="#" onclick="deleteSport('this.sportID')">Delete</a></td>
-                <td align="left" >Tennis</td>
+                <td align="right">2</td>
+                <td align="left">Tennis</td>
                 <td align="left">Spring</td>
-                <td align="left" >Varsity</td>
+                <td align="left">Varsity</td>
             </tr>
             <tr>
                 <td><a href="#" onClick="updateSport('this.sportID')">Edit</a></td>
                 <td><a href="#" onclick="deleteSport('this.sportID')">Delete</a></td>
-                <td align="left" >Football</td>
+                <td align="right">3</td>
+                <td align="left">Football</td>
                 <td align="left">Fall</td>
-                <td align="left" >Junior Varsity</td>
+                <td align="left">Junior Varsity</td>
             </tr>
 
         </table>
@@ -118,11 +122,27 @@
     <div id="search">
             <form method="POST" id="searchSport">
                 <legend><strong>Search for a sport</strong></legend>
+                <!-- ALLOW SEARCH FOR SPORTS ONLY TO HAVE 3 FIELDS -->
                 <h5>Must fill out all fields.</h5>
                 <fieldset class="fields">
-                    <label> Sport </label> <input type="text" name="sportname">
+                    <label> Sport </label> 
+                    <input type="text" name="sportname">
+                    <label> Season </label> 
+                    <select name="season">
+                        <option value="" selected disabled>Select</option>
+                        <option value="fall">Fall</option>
+                        <option value="winter">Winter</option>
+                        <option value="spring">Spring</option>
+                      </select>
+                    <label> Varsity Level </label> 
+                    <select>
+                        <option value="" selected disabled>Select</option>
+                        <option value="varsity">Varsity</option>
+                        <option value="jv">Junior Varsity</option>
+                        <option value="intramural">Intramural</option>
+                    </select>
                 </fieldset>
-                <input class="btn" type="submit" id="addSport" value="Search Sport">
+                <input class="btn" type="submit" id="SubmitSearchSport" value="Search Sport">
                 <input class="btn" type="button" value="cancel" onClick="browseSports()">
             </form>
     </div> <!-- search -->
@@ -147,7 +167,7 @@
                     <option value="intramural">Intramural</option>
                   </select>
             </fieldset>
-            <input class="btn" type="submit" id="addSport" value="Add Sport">
+            <input class="btn" type="submit" id="SubmitAddSport" value="Add Sport">
             <input class="btn" type="button" value="cancel" onClick="browseSports()">
         </form>
     </div><!-- insert -->
@@ -168,12 +188,12 @@
                 <label> Varsity Level </label>
                   <select name="varsityLevel">
                     <option value="" disabled>Select</option>
-                    <option value="varsity"selected>Varsity</option>
+                    <option value="varsity" selected>Varsity</option>
                     <option value="jv">Junior Varsity</option>
                     <option value="intramural">Intramural</option>
                   </select>
             </fieldset>
-            <input class="btn" type="submit" id="UpdateSaveSport" value="Save Update">
+            <input class="btn" type="submit" id="SubmitUpdateSport" value="Save Update">
             <input class="btn" type="button" value="cancel" onClick="browseSports()">
         </form>
     </div><!-- update -->
@@ -188,7 +208,7 @@
                 <label> <strong>Sport:</strong> </label> Basketball
 
             </fieldset>
-            <input class="btn" type="submit" id="DeleteSport" value="Delete Sport">
+            <input class="btn" type="submit" id="SubmitDeleteSport" value="Delete Sport">
             <input class="btn" type="button" value="cancel" onClick="browseSports()">
         </form>
     </div><!-- delete -->

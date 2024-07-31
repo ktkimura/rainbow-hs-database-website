@@ -1,10 +1,10 @@
+<!DOCTYPE html>
 <!--
 -- Citation for html layout and JavaScript functionalities
 -- Date: 07/24/2024
 -- Adapted from CS340 2024 Summer Term Canvas Assignment "Exploration - Web Application Technology"
 -- Source URL: https://canvas.oregonstate.edu/courses/1967354/pages/exploration-web-application-technology?module_item_id=24460839
 -->
-<!DOCTYPE html>
 
 <html>
   <head>
@@ -31,7 +31,7 @@
       <tr>
         <th><a href="#">New</a></th>
         <th></th>
-        <th>Grad Class Year</th>
+        <th>Graduating Class Year</th>
         <th>Start Page</th>
         <th>End Page</th>
       </tr>
@@ -60,41 +60,41 @@
     <p>&nbsp;</p>
     <div id="insert" style="display: block">
         <form id="addGradClass">
-            <legend><strong>Add Grad Class</strong></legend>
+            <legend><strong>Add Graduating Class</strong></legend>
               <fieldset class="fields">
-                <label> Grad Class Year </label> <input type="text" name="gradclass">
+                <label> Graduating Class Year </label> <input type="text" name="gradclass">
                 <label> Start Page </label> <input type="text" name="startpage"> 
                 <label> End Page </label> <input type="text" name="endpage">
               </fieldset>
-              <input class="btn" type="submit" id="addGradClass" value="Add Grad Class">
-              <input class="btn" type="button" value="cancel">
+              <input class="btn" type="submit" id="SubmitAddGradClass" value="Add Graduating Class">
+              <input class="btn" type="button" value="Cancel">
         </form> <!--add new grad class-->
     </div><!-- insert -->
     <p>&nbsp;</p>
     <div id="update" style="display: block">
       <form id="updateGradClass">
-          <legend><strong>Update Grad Class</strong></legend>
+          <legend><strong>Update Graduating Class</strong></legend>
               <fieldset class="fields">
               <label>ID:</label> 1
-                <label> Grad Class Year </label> <input type="text" value="2025" name="gradclass">
+                <label> Graduating Class Year </label> <input type="text" value="2025" name="gradclass">
                 <label> Start Page </label> <input type="text"  name="startpage" value="531">
                 <label> End Page </label> <input type="text" name="endpage" value="1031">
         </fieldset>
-        <input class="btn" type="submit" id="UpdateGradClass" value="Save Update">
-              <input class="btn" type="button" value="cancel" >
+        <input class="btn" type="submit" id="SubmitUpdateGradClass" value="Save Update">
+              <input class="btn" type="button" value="Cancel" >
       </form> 
     </div><!-- update -->
     <p>&nbsp;</p>
     <div id="delete" style="display: block">
       <form id="deleteGradClass">
-          <legend><strong>Delete Grad Class</strong></legend>
+          <legend><strong>Delete Graduating Class</strong></legend>
               <fieldset class="fields">
               <p>Are you sure you wish to delete the following?</p>
               <label>ID:</label> 1
                 <label> Year </label> 2025
         </fieldset>
-        <input class="btn" type="submit" id="DeleteGradClass" value="Delete Grad Class">
-              <input class="btn" type="button" value="cancel" >
+        <input class="btn" type="submit" id="SubmitDeleteGradClass" value="Delete Graduating Class">
+              <input class="btn" type="button" value="Cancel" >
       </form> 
     </div><!-- delete -->
     <p>&nbsp;</p>
