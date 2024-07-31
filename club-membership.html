@@ -131,7 +131,6 @@
                 <td align="left" >President</td>
                 <td align="right" >3017</td>
             </tr>
-
         </table>
         <p>&nbsp;</p>
     </div> <!-- browse -->
@@ -141,7 +140,13 @@
                 <legend><strong>Search for a Club Membership</strong></legend>
                 <h5>Must fill out all fields.</h5>
                 <fieldset class="fields">
-                    <label> Club Name </label> <input type="text" name="clubname">
+                    <label> Club Name </label> 
+                        <select name="clubID">
+                            <option value="" selected disabled>Select</option>
+                            <option value="1">1 Guitar Club</option>
+                            <option value="2">2 Lettuce Eating Club</option>
+                            <option value="3">3 National Honor Society</option>
+                        </select>
                     <label> Student </label>
                     <select name="studentID">
                       <option value="" selected disabled>Select</option>
@@ -150,8 +155,9 @@
                       <option value="3">1700000003 Scarlet Sun</option>
                       <option value="3">1700000004 Cameron Roberts</option>
                       <option value="3">1700000005 Andy Wong</option>
+                    </select>
                 </fieldset>
-                <input class="btn" type="submit" id="addClubMembership" value="Search Club Membership">
+                <input class="btn" type="submit" id="SubmitSearchClubMembership" value="Search Club Membership">
                 <input class="btn" type="button" value="cancel" onClick="browseClubMemberships()">
             </form>
     </div> <!-- search -->
@@ -188,7 +194,7 @@
                     </select>
                     <label> Page Start </label> <input type="text" name="pageStart">
             </fieldset>
-            <input class="btn" type="submit" id="addClubMembership" value="Add Club Membership">
+            <input class="btn" type="submit" id="SubmitAddClubMembership" value="Add Club Membership">
             <input class="btn" type="button" value="cancel" onClick="browseClubMemberships()">
         </form>
     </div><!-- insert -->
@@ -205,7 +211,7 @@
                         <option value="1">1700000001 Kevin Kim</option>
                         <option value="2">1700000002 Daniel Liu</option>
                         <option value="3">1700000003 Scarlet Sun</option>
-                        <option value="3"selected>1700000004 Cameron Roberts</option>
+                        <option value="3" selected>1700000004 Cameron Roberts</option>
                         <option value="3">1700000005 Andy Wong</option>
                       </select>              
                 <label> Club ID </label> 
@@ -242,7 +248,7 @@
                 <label> Student ID: 1700000004 </label> Club ID: 2 Lettuce Eating Club
 
             </fieldset>
-            <input class="btn" type="submit" id="deleteClubMembership" value="Delete Club Membership">
+            <input class="btn" type="submit" id="SubmitDeleteClubMembership" value="Delete Club Membership">
             <input class="btn" type="button" value="cancel" onClick="browseClubMemberships()">
         </form>
     </div><!-- delete -->
