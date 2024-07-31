@@ -7,97 +7,179 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-  <title>Grad Classes</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
 
-  </head>
+<head>
+    <title>Graduating Classes</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript">
+        function showform(dowhat) {
+            /*
+            * four DIVS: browse, insert, update, delete
+            * this function sets one visible the others not
+            */
+            if (dowhat == 'insert') {
+                document.getElementById('search').style.display = 'none';
+                document.getElementById('browse').style.display = 'none';
+                document.getElementById('insert').style.display = 'block';
+                document.getElementById('update').style.display = 'none';
+                document.getElementById('delete').style.display = 'none';
+            }
+            else if (dowhat == 'search') {
+                document.getElementById('search').style.display = 'block';
+                document.getElementById('browse').style.display = 'none';
+                document.getElementById('insert').style.display = 'none';
+                document.getElementById('update').style.display = 'none';
+                document.getElementById('delete').style.display = 'none';
+            }
+            else if (dowhat == 'update') {
+                document.getElementById('search').style.display = 'none';
+                document.getElementById('browse').style.display = 'none';
+                document.getElementById('insert').style.display = 'none';
+                document.getElementById('update').style.display = 'block';
+                document.getElementById('delete').style.display = 'none';
+            }
+            else if (dowhat == 'delete') {
+                document.getElementById('search').style.display = 'none';
+                document.getElementById('browse').style.display = 'none';
+                document.getElementById('insert').style.display = 'none';
+                document.getElementById('update').style.display = 'none';
+                document.getElementById('delete').style.display = 'block';
+            }
+            else if (dowhat == 'all') {
+                document.getElementById('search').style.display = 'block';
+                document.getElementById('browse').style.display = 'block';
+                document.getElementById('insert').style.display = 'block';
+                document.getElementById('update').style.display = 'block';
+                document.getElementById('delete').style.display = 'block';
+            }
+            else { //by default display browse
+                document.getElementById('browse').style.display = 'block';
+                document.getElementById('search').style.display = 'none';
+                document.getElementById('insert').style.display = 'none';
+                document.getElementById('update').style.display = 'none';
+                document.getElementById('delete').style.display = 'none';
+            }
+        }
+        function newPerson() { showform('insert'); }
+        function updateGradClass(pid) { showform('update'); }
+        function deleteGradClass(pid) { showform('delete'); }
+        function browseGradClasss() { showform('browse'); }
+        function showAll() { showform('all'); }
+    </script>
+</head>
 
-  <body>
+<body onload="browseGradClasss()">
     <nav>
-      <a href="index.html">Home</a>  |
-      <a href="students.html">Students</a> | 
-      <a href="gradclass.html">Graduating Classes</a> | 
-      <a href="clubs.html">Clubs</a> | 
-      <a href="sports.html">Sports</a> | 
-      <a href="events.html">Events</a> | 
-      <a href="club-membership.html">Club Memberships</a>  | 
-      <a href="sport-membership.html">Sport Memberships</a> | 
-      <a href="event-membership.html">Event Memberships</a>
+        <a href="index.html">Home</a> |
+        <a href="GradClasss.html">GradClasss</a> |
+        <a href="gradclass.html">Graduating Classes</a> |
+        <a href="clubs.html">Clubs</a> |
+        <a href="sports.html">Sports</a> |
+        <a href="events.html">Events</a> |
+        <a href="club-membership.html">Club Memberships</a> |
+        <a href="sport-membership.html">Sport Memberships</a> |
+        <a href="event-membership.html">Event Memberships</a>
     </nav>
     <h1>Graduating Classes</h1>
 
-    <table border="1" cellpadding="5">
-      <tr>
-        <th><a href="#">New</a></th>
-        <th></th>
-        <th>Grad Class Year</th>
-        <th>Start Page</th>
-        <th>End Page</th>
-      </tr>
-      <tr>
-        <td><a href="#">Edit</a></td>
-        <td><a href="#">Delete</a></td>
-        <td align="right" >2025</td>
-        <td align="right">531</td>
-        <td align="right" >1031</td>
-      </tr>
-      <tr>
-        <td><a href="#">Edit</a></td>
-        <td><a href="#">Delete</a></td>
-        <td align="right" >2026</td>
-        <td align="right">1032</td>
-        <td align="right" >1532</td>
-      </tr>
-      <tr>
-        <td><a href="#">Edit</a></td>
-        <td><a href="#">Delete</a></td>
-        <td align="right" >2027</td>
-        <td align="right">1533</td>
-        <td align="right" >2033</td>
-      </tr>
-    </table>
+    <div id="browse">
+        <p><a href="#" onClick="showAll()">Display all forms</a> </p>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th><a href="#" onClick="newPerson()">New</a></th>
+                <th></th>
+                <th>Grad Class ID</th>
+                <th>Starting Page </th>
+                <th>Ending Page </th>
+            </tr>
+            <tr>
+                <td><a href="#" onClick="updateGradClass('this.personID')">Edit</a></td>
+                <td><a href="#" onclick="deleteGradClass('this.personID')">Delete</a></td>
+                <td align="right">2024</td>
+                <td align="right">30</td>
+                <td align="right">530</td>
+            </tr>
+            <tr>
+                <td><a href="#" onClick="updateGradClass('this.personID')">Edit</a></td>
+                <td><a href="#" onclick="deleteGradClass('this.personID')">Delete</a></td>
+                <td align="right">2025</td>
+                <td align="right">531</td>
+                <td align="right">1031</td>
+            </tr>
+            <tr>
+                <td><a href="#" onClick="updateGradClass('this.personID')">Edit</a></td>
+                <td><a href="#" onclick="deleteGradClass('this.personID')">Delete</a></td>
+                <td align="right">2026</td>
+                <td align="right">1032</td>
+                <td align="right">1532</td>
+            </tr>
+            <tr>
+                <td><a href="#" onClick="updateGradClass('this.personID')">Edit</a></td>
+                <td><a href="#" onclick="deleteGradClass('this.personID')">Delete</a></td>
+                <td align="right">2027</td>
+                <td align="right">1533</td>
+                <td align="right">2033</td>
+            </tr>
+
+        </table>
+        <p>&nbsp;</p>
+    </div> <!-- browse -->
     <p>&nbsp;</p>
-    <div id="insert" style="display: block">
-        <form id="addGradClass">
+    <div id="search">
+        <form method="POST" id="searchGradClass">
+            <legend><strong>Search for a Grad Class</strong></legend>
+            <h5>Must fill out all fields.</h5>
+            <fieldset class="fields">
+                <label> Grad Class </label> <input type="text" name="gradClass">
+                <!-- <label> Page Start </label> <input type="text" name="pageStart">
+                <label> Page End </label> <input type="text" name="pageEnd"> -->
+            </fieldset>
+            <input class="btn" type="submit" id="addEvent" value="Search Event">
+            <input class="btn" type="button" value="cancel" onClick="browseEvents()">
+        </form>
+    </div><!-- search -->
+    <p>&nbsp;</p>
+    <div id="insert">
+        <form method="POST" id="addGradClass">
             <legend><strong>Add Grad Class</strong></legend>
-              <fieldset class="fields">
-                <label> Grad Class Year </label> <input type="text" name="gradclass">
-                <label> Start Page </label> <input type="text" name="startpage"> 
-                <label> End Page </label> <input type="text" name="endpage">
-              </fieldset>
-              <input class="btn" type="submit" id="addGradClass" value="Add Grad Class">
-              <input class="btn" type="button" value="cancel">
-        </form> <!--add new grad class-->
+            <fieldset class="fields">
+                <label> Page Start </label> <input type="text" name="lname">
+                <label> Page End </label> <input type="text" name="gradclass">
+            </fieldset>
+            <input class="btn" type="submit" id="addPerson" value="Add GradClass">
+            <input class="btn" type="button" value="cancel" onClick="browseGradClasss()">
+        </form>
     </div><!-- insert -->
     <p>&nbsp;</p>
-    <div id="update" style="display: block">
-      <form id="updateGradClass">
-          <legend><strong>Update Grad Class</strong></legend>
-              <fieldset class="fields">
-              <label>ID:</label> 1
-                <label> Grad Class Year </label> <input type="text" value="2025" name="gradclass">
-                <label> Start Page </label> <input type="text"  name="startpage" value="531">
-                <label> End Page </label> <input type="text" name="endpage" value="1031">
-        </fieldset>
-        <input class="btn" type="submit" id="UpdateGradClass" value="Save Update">
-              <input class="btn" type="button" value="cancel" >
-      </form> 
+    <div id="update">
+        <form method="POST" id="updateGradClass">
+            <legend><strong>Update Grad Class</strong></legend>
+            <fieldset class="fields">
+                <input type="hidden" name="personID" id="updateGradClassID" value="1">
+                <label> gradClassID: </label> 2024
+                <label> pageStart </label> <input type="text" name="pageStart" value="30">
+                <label> pageEnd </label> <input type="text" name="pageEnd" value="530">
+            </fieldset>
+            <input class="btn" type="submit" id="UpdateSaveGradClass" value="Save Update Graduating Class">
+            <input class="btn" type="button" value="cancel" onClick="browseGradClasss()">
+        </form>
     </div><!-- update -->
     <p>&nbsp;</p>
     <div id="delete" style="display: block">
-      <form id="deleteGradClass">
-          <legend><strong>Delete Grad Class</strong></legend>
-              <fieldset class="fields">
-              <p>Are you sure you wish to delete the following?</p>
-              <label>ID:</label> 1
-                <label> Year </label> 2025
-        </fieldset>
-        <input class="btn" type="submit" id="DeleteGradClass" value="Delete Grad Class">
-              <input class="btn" type="button" value="cancel" >
-      </form> 
+        <form method="POST" id="deleteGradClass">
+            <legend><strong>Delete Grad Class</strong></legend>
+            <fieldset class="fields">
+                <p>Are you sure you wish to delete the following?</p>
+                <input type="hidden" name="personID" id="deleteGradClassID" value="2024">
+                <label><strong>gradClassID:</strong></label> 2024
+
+            </fieldset>
+            <input class="btn" type="submit" id="deleteGradClass" value="Delete Grad Class">
+            <input class="btn" type="button" value="cancel" onClick="browseGradClasss()">
+        </form>
     </div><!-- delete -->
     <p>&nbsp;</p>
     <p>&copy; CS340 Group 26 (Katie Kimura, Skylar Soon, Annabel Wang) </p>
-  </body>
+</body>
+
 </html>

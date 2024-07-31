@@ -7,149 +7,253 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
+
+<head>
   <title>Event Memberships</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
+  <script language="JavaScript">
+    function showform(dowhat) {
+      /*
+      * four DIVS: browse, insert, update, delete
+      * this function sets one visible the others not
+      */
+      if (dowhat == 'insert') {
+        document.getElementById('search').style.display = 'none';
+        document.getElementById('browse').style.display = 'none';
+        document.getElementById('insert').style.display = 'block';
+        document.getElementById('update').style.display = 'none';
+        document.getElementById('delete').style.display = 'none';
+      }
+      else if (dowhat == 'search') {
+        document.getElementById('search').style.display = 'block';
+        document.getElementById('browse').style.display = 'none';
+        document.getElementById('insert').style.display = 'none';
+        document.getElementById('update').style.display = 'none';
+        document.getElementById('delete').style.display = 'none';
+      }
+      else if (dowhat == 'update') {
+        document.getElementById('search').style.display = 'none';
+        document.getElementById('browse').style.display = 'none';
+        document.getElementById('insert').style.display = 'none';
+        document.getElementById('update').style.display = 'block';
+        document.getElementById('delete').style.display = 'none';
+      }
+      else if (dowhat == 'delete') {
+        document.getElementById('search').style.display = 'none';
+        document.getElementById('browse').style.display = 'none';
+        document.getElementById('insert').style.display = 'none';
+        document.getElementById('update').style.display = 'none';
+        document.getElementById('delete').style.display = 'block';
+      }
+      else if (dowhat == 'all') {
+        document.getElementById('search').style.display = 'block';
+        document.getElementById('browse').style.display = 'block';
+        document.getElementById('insert').style.display = 'block';
+        document.getElementById('update').style.display = 'block';
+        document.getElementById('delete').style.display = 'block';
+      }
+      else { //by default display browse
+        document.getElementById('browse').style.display = 'block';
+        document.getElementById('search').style.display = 'none';
+        document.getElementById('insert').style.display = 'none';
+        document.getElementById('update').style.display = 'none';
+        document.getElementById('delete').style.display = 'none';
+      }
+    }
+    function newPerson() { showform('insert'); }
+    function updatePerson(pid) { showform('update'); }
+    function deletePerson(pid) { showform('delete'); }
+    function browseStudents() { showform('browse'); }
+    function showAll() { showform('all'); }
+  </script>
+</head>
 
-  </head>
+<body onload="browseStudents()">
+  <nav>
+    <a href="index.html">Home</a> |
+    <a href="students.html">Students</a> |
+    <a href="gradclass.html">Graduating Classes</a> |
+    <a href="clubs.html">Clubs</a> |
+    <a href="sports.html">Sports</a> |
+    <a href="events.html">Events</a> |
+    <a href="club-membership.html">Club Memberships</a> |
+    <a href="sport-membership.html">Sport Memberships</a> |
+    <a href="event-membership.html">Event Memberships</a>
+  </nav>
+  <h1>Event Memberships</h1>
 
-  <body>
-    <nav>
-      <a href="index.html">Home</a>  |
-      <a href="students.html">Students</a> | 
-      <a href="gradclass.html">Graduating Classes</a> | 
-      <a href="clubs.html">Clubs</a> | 
-      <a href="sports.html">Sports</a> | 
-      <a href="events.html">Events</a> | 
-      <a href="club-membership.html">Club Memberships</a>  | 
-      <a href="sport-membership.html">Sport Memberships</a> | 
-      <a href="event-membership.html">Event Memberships</a>
-    </nav>
-    <h1>Event Memberships</h1>
+  <div id="browse">
+    <p><a href="#" onClick="showAll()">Display all forms</a> </p>
     <table border="1" cellpadding="5">
       <tr>
-        <th><a href="#">New</a></th>
+        <th><a href="#" onClick="newPerson()">New</a></th>
         <th></th>
-        <th>Student ID</th>
-        <th>Event ID</th>
-        <th>Event Role</th>
-        <th>Page Num.</th>
+        <th>studentInEventID</th>
+        <th>studentID</th>
+        <th>eventID </th>
+        <th>EventRole</th>
+        <th>pageNum</th>
       </tr>
       <tr>
-        <td><a href="#">Edit</a></td>
-        <td><a href="#">Delete</a></td>
-        <td align="right" >1700000005</td>
+        <td><a href="#" onClick="updatePerson('this.personID')">Edit</a></td>
+        <td><a href="#" onclick="deletePerson('this.personID')">Delete</a></td>
         <td align="right">1</td>
-        <td align="left" >Attendee</td>
-        <td align="right" >5032</td>
-      </tr>
-      <tr>
-        <td><a href="#">Edit</a></td>
-        <td><a href="#">Delete</a></td>
-        <td align="right" >1700000005</td>
+        <td align="right">1700000005</td>
         <td align="right">1</td>
-        <td align="left" >Attendee</td>
-        <td align="right" >5033</td>
+        <td>Attendee</td>
+        <td align="right">5032</td>
       </tr>
       <tr>
-        <td><a href="#">Edit</a></td>
-        <td><a href="#">Delete</a></td>
-        <td align="right" >1700000003</td>
+        <td><a href="#" onClick="updatePerson('this.personID')">Edit</a></td>
+        <td><a href="#" onclick="deletePerson('this.personID')">Delete</a></td>
         <td align="right">2</td>
-        <td align="left" >Chairperson</td>
-        <td align="right" >5061</td>
+        <td align="right">1700000005</td>
+        <td align="right">1</td>
+        <td>Attendee</td>
+        <td align="right">5033</td>
       </tr>
       <tr>
-        <td><a href="#">Edit</a></td>
-        <td><a href="#">Delete</a></td>
-        <td align="right" >1700000002</td>
+        <td><a href="#" onClick="updatePerson('this.personID')">Edit</a></td>
+        <td><a href="#" onclick="deletePerson('this.personID')">Delete</a></td>
         <td align="right">3</td>
-        <td align="left" >Board Member</td>
-        <td align="right" >5122</td>
+        <td align="right">1700000003</td>
+        <td align="right">2</td>
+        <td>Chairperson</td>
+        <td align="right">5061</td>
+      </tr>
+      <tr>
+        <td><a href="#" onClick="updatePerson('this.personID')">Edit</a></td>
+        <td><a href="#" onclick="deletePerson('this.personID')">Delete</a></td>
+        <td align="right">4</td>
+        <td align="right">1700000002</td>
+        <td align="right">3</td>
+        <td>Board Member</td>
+        <td align="right">5122</td>
       </tr>
     </table>
     <p>&nbsp;</p>
-    <div id="insert" style="display: block">
-        <form id="addEventMembership">
-            <legend><strong>Add Event Membership</strong></legend>
-              <fieldset class="fields">
-                <label> Student ID </label>
-                  <select name="studentID">
-                    <option value="" selected disabled>Select</option>
-                    <option value="1">1700000001 Kevin Kim</option>
-                    <option value="2">1700000002 Daniel Liu</option>
-                    <option value="3">1700000003 Scarlet Sun</option>
-                    <option value="3">1700000004 Cameron Roberts</option>
-                    <option value="3">1700000005 Andy Wong</option>
-                </select>
-                <label> Event ID </label>  
-                    <select name="EventID">
-                        <option value="" selected disabled>Select</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                <label> Event Role </label> 
-                    <select name="EventRole">
-                        <option value="" selected disabled>Select</option>
-                        <option value="chairperson">Chairperson</option>
-                        <option value="board-member">Board Member</option>
-                        <option value="attendee">Attendee</option>
-                    </select>
-                <label> Page Start </label> <input type="text" name="pageStart">
-              </fieldset>
-              <input class="btn" type="submit" id="addEventMembership" value="Add Event Membership">
-              <input class="btn" type="button" value="cancel">
-      </form> <!--add new grad class-->
-    </div><!-- insert -->
-    <p>&nbsp;</p>
-    <div id="update" style="display: block">
-      <form id="updateEventMembership">
-          <legend><strong>Update Event Membership</strong></legend>
-              <fieldset class="fields">
-              <label>ID:</label> 1
-              <select name="studentID">
-                <option value="" disabled>Select</option>
-                <option value="1" selected>1700000001 Kevin Kim</option>
-                <option value="2">1700000002 Daniel Liu</option>
-                <option value="3">1700000003 Scarlet Sun</option>
-                <option value="3">1700000004 Cameron Roberts</option>
-                <option value="3">1700000005 Andy Wong</option>
-            </select>            <label> Event ID </label> 
-                    <select name="eventID">
-                        <option value="" disabled>Select</option>
-                        <option value="1"selected>1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                <label> Event Role </label> 
-                    <select name="eventRole">
-                        <option value="" disabled>Select</option>
-                        <option value="chairperson">Chairperson</option>
-                        <option value="board-member">Board Member</option>
-                        <option value="attendee"selected>Attendee</option>
-                    </select>
-                <label> Page Num </label> <input type="text" name="pageStart" value="5032">
-        </fieldset>
-        <input class="btn" type="submit" id="updateEventMembership" value="Save Update">
-              <input class="btn" type="button" value="cancel" >
-      </form> 
-    </div><!-- update -->
-    <p>&nbsp;</p>
-    <div id="delete" style="display: block">
-      <form id="deleteEventMembership">
-          <legend><strong>Delete Event Membership</strong></legend>
-              <fieldset class="fields">
-              <p>Are you sure you wish to delete the following event membership for this student?</p>
-              <label>ID:</label> 1
-                <label> Student ID: 1700000001 </label> Sport ID: 1
-                
-        </fieldset>
-        <input class="btn" type="submit" id="DeleteEventMembership" value="Delete Event Membership">
-              <input class="btn" type="button" value="cancel" >
-      </form> 
-    </div><!-- delete -->
-    <p>&nbsp;</p>
-    <p>&copy; CS340 Group 26 (Katie Kimura, Skylar Soon, Annabel Wang) </p>
-  </body>
+  </div> <!-- browse -->
+  <p>&nbsp;</p>
+  <div id="search">
+    <form method="POST" id="searchStudent">
+      <legend><strong>Search for an event</strong></legend>
+      <h5>Must fill out all fields.</h5>
+      <fieldset class="fields">
+        <label> studentInEventID 
+          <select>
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+          </select>
+        </label> 
+    
+        <label> studentID
+              <select>
+                <option value=1700000001>Kevin Kim 1700000001</option>
+                <option value=1700000002>Daniel Liu 1700000002</option>
+                <option value=1700000003>Scarlet Sun 1700000003</option>
+                <option value=1700000004>Cameron Roberts 1700000004</option>
+                <option value=1700000005>Andy Wong 1700000005</option>
+              </select>
+        </label>
+        <label> eventID 
+          <select>
+            <option value=1>Homecoming Dance 1</option>
+            <option value=2>Winter Ball 2</option>
+            <option value=3>Junior Prom 3</option>
+
+          </select>
+        </label> 
+      </fieldset>
+      <input class="btn" type="submit" id="addEvent" value="Search Event">
+      <input class="btn" type="button" value="cancel" onClick="browseEvents()">
+    </form>
+  </div><!-- search -->
+  <p>&nbsp;</p>
+  <div id="insert">
+    <form method="POST" id="addStudent">
+      <legend><strong>Add Event Membership</strong></legend>
+      <fieldset class="fields">
+        <label> studentID </label>
+          <select>
+            <option value=1700000001>Kevin Kim 1700000001</option>
+            <option value=1700000002>Daniel Liu 1700000002</option>
+            <option value=1700000003>Scarlet Sun 1700000003</option>
+            <option value=1700000004>Cameron Roberts 1700000004</option>
+            <option value=1700000005>Andy Wong 1700000005</option>
+          </select>
+        <label> eventID </label> 
+          <select>
+            <option value=1>Homecoming Dance 1</option>
+            <option value=2>Winter Ball 2</option>
+            <option value=3>Junior Prom 3</option>
+          </select>
+        <label> eventRole </label>
+          <select>
+            <option value="Attendee">Attendee</option>
+            <option value="Chairperson">Chairperson</option>
+            <option value="Board Member">Board Member</option>
+          </select>
+        <label> pageNum </label> <input type="text" name="pageNum">
+      </fieldset>
+      <input class="btn" type="submit" id="addPerson" value="Add Student">
+      <input class="btn" type="button" value="cancel" onClick="browseStudents()">
+    </form>
+  </div><!-- insert -->
+  <p>&nbsp;</p>
+  <div id="update">
+    <form method="POST" id="UpdatePerson">
+      <legend><strong>Update Event Membership</strong></legend>
+      <fieldset class="fields">
+        <input type="hidden" name="personID" id="updatepersonID" value="1">
+        <label> studentInEventID: </label> 1
+        <label> studentID </label>
+          <select>
+            <option value=1700000001>Kevin Kim 1700000001</option>
+            <option value=1700000002>Daniel Liu 1700000002</option>
+            <option value=1700000003>Scarlet Sun 1700000003</option>
+            <option value=1700000004>Cameron Roberts 1700000004</option>
+            <option value=1700000005>Andy Wong 1700000005</option>
+          </select> 
+        <label> eventID </label> 
+          <select>
+            <option value=1>Homecoming Dance 1</option>
+            <option value=2>Winter Ball 2</option>
+            <option value=3>Junior Prom 3</option>
+          </select>
+        <label> eventRole</label>
+          <select>
+            <option value="Attendee">Attendee</option>
+            <option value="Chairperson">Chairperson</option>
+            <option value="Board Member">Board Member</option>
+          </select>
+        <label> pageNum </label> <input type="text" name="age" value="5032">
+      </fieldset>
+      <input class="btn" type="submit" id="UpdateSaveStudent" value="Save Update Student">
+      <input class="btn" type="button" value="cancel" onClick="browseStudents()">
+    </form>
+  </div><!-- update -->
+  <p>&nbsp;</p>
+  <div id="delete" style="display: block">
+    <form method="POST" id="deletePerson">
+      <legend><strong>Delete Person</strong></legend>
+      <fieldset class="fields">
+        <p>Are you sure you wish to delete the following?</p>
+        <input type="hidden" name="personID" id="deletepersonID" value="1">
+        <label><strong>studentInEventID:</strong></label> 1
+        <label> <strong>Student</strong> </label> 1700000005
+        <label> <strong>eventID</strong> </label> 1
+        <label> <strong>EventRole</strong> </label> Attendee
+        <label> <strong>pageNum</strong> </label> 5032
+
+      </fieldset>
+      <input class="btn" type="submit" id="DeletePerson" value="Delete Person">
+      <input class="btn" type="button" value="cancel" onClick="browseStudents()">
+    </form>
+  </div><!-- delete -->
+  <p>&nbsp;</p>
+  <p>&copy; CS340 Group 26 (Katie Kimura, Skylar Soon, Annabel Wang) </p>
+</body>
+
 </html>
