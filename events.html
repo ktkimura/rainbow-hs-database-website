@@ -1,10 +1,10 @@
+<!DOCTYPE html>
 <!--
 -- Citation for html layout and JavaScript functionalities
 -- Date: 07/24/2024
 -- Adapted from CS340 2024 Summer Term Canvas Assignment "Exploration - Web Application Technology"
 -- Source URL: https://canvas.oregonstate.edu/courses/1967354/pages/exploration-web-application-technology?module_item_id=24460839
 -->
-<!DOCTYPE html>
 
 <html>
 <head>
@@ -123,7 +123,7 @@
                     <label> Event Name </label> <input type="text" name="eventname">
                     <label> Date </label> <input type="date" name="eventdate">
                 </fieldset>
-                <input class="btn" type="submit" id="addEvent" value="Search Event">
+                <input class="btn" type="submit" id="SubmitSearchEvent" value="Search Event">
                 <input class="btn" type="button" value="cancel" onClick="browseEvents()">
             </form>
     </div> <!-- search -->
@@ -135,7 +135,7 @@
                 <label> Event Name </label> <input type="text" name="eventname">
                 <label> Date </label> <input type="date" name="eventdate">
             </fieldset>
-            <input class="btn" type="submit" id="addEvent" value="Add Event">
+            <input class="btn" type="submit" id="SubmitAddEvent" value="Add Event">
             <input class="btn" type="button" value="cancel" onClick="browseEvents()">
         </form>
     </div><!-- insert -->
@@ -149,7 +149,7 @@
                 <label> Event Name </label> <input type="text" name="eventname" value="Homecoming Dance">
                 <label> Date </label> <input type="date" name="eventdate" value="2024-09-28">
             </fieldset>
-            <input class="btn" type="submit" id="UpdateSaveEvent" value="Save Update Event">
+            <input class="btn" type="submit" id="SubmitUpdateEvent" value="Save Update Event">
             <input class="btn" type="button" value="cancel" onClick="browseEvents()">
         </form>
     </div><!-- update -->
@@ -164,7 +164,7 @@
                 <label> <strong>Event Name:</strong> </label> Homecoming Dance
 
             </fieldset>
-            <input class="btn" type="submit" id="DeletePerson" value="Delete Person">
+            <input class="btn" type="submit" id="SubmitDeleteEvent" value="Delete Event">
             <input class="btn" type="button" value="cancel" onClick="browseEvents()">
         </form>
     </div><!-- delete -->

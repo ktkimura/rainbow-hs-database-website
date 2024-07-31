@@ -1,10 +1,10 @@
+<!DOCTYPE html>
 <!--
 -- Citation for html layout and JavaScript functionalities
 -- Date: 07/24/2024
 -- Adapted from CS340 2024 Summer Term Canvas Assignment "Exploration - Web Application Technology"
 -- Source URL: https://canvas.oregonstate.edu/courses/1967354/pages/exploration-web-application-technology?module_item_id=24460839
 -->
-<!DOCTYPE html>
 
 <html>
   <head>
@@ -90,7 +90,7 @@
           <th>Student ID</th>
           <th>First Name</th>
           <th>Last Name </th>
-          <th>Grad Class</th>
+          <th>Graduating Class</th>
         </tr>
         <tr>
           <td><a href="#" onClick="updatePerson('this.personID')">Edit</a></td>
@@ -138,15 +138,15 @@
     <p>&nbsp;</p>
     <div id="search">
       <form method="POST" id="searchStudent">
-        <legend><strong>Search for an event</strong></legend>
+        <legend><strong>Search for a student</strong></legend>
         <h5>Must fill out all fields.</h5>
         <fieldset class="fields">
           <label> First name </label> <input type="text" name="fname">
           <label> Last name </label> <input type="text" name="lname">
-          <label> Grad Class </label> <input type="text" name="gradclass">
+          <label> Graduating Class </label> <input type="text" name="gradclass">
         </fieldset>
         <input class="btn" type="submit" id="addEvent" value="Search Event">
-        <input class="btn" type="button" value="cancel" onClick="browseEvents()">
+        <input class="btn" type="button" value="Cancel" onClick="browseEvents()">
       </form>
     </div><!-- search -->
     <p>&nbsp;</p>
@@ -156,10 +156,10 @@
         <fieldset class="fields">
           <label> First name </label> <input type="text" name="fname">
           <label> Last name </label> <input type="text" name="lname">
-          <label> Grad Class </label> <input type="text" name="gradclass">
+          <label> Graduating Class </label> <input type="text" name="gradclass">
         </fieldset>
         <input class="btn" type="submit" id="addPerson" value="Add Student">
-        <input class="btn" type="button" value="cancel" onClick="browseStudents()">
+        <input class="btn" type="button" value="Cancel" onClick="browseStudents()">
       </form>
     </div><!-- insert -->
     <p>&nbsp;</p>
@@ -171,10 +171,10 @@
           <label> ID: </label> 1
           <label> First Name </label> <input type="text" name="fname" value="Kevin">
           <label> Last Name </label> <input type="text" name="lname" value="Kim">
-          <label> Grad Class</label> <input type="text" name="age" value="2027">
+          <label> Graduating Class</label> <input type="text" name="age" value="2027">
         </fieldset>
         <input class="btn" type="submit" id="UpdateSaveStudent" value="Save Update Student">
-        <input class="btn" type="button" value="cancel" onClick="browseStudents()">
+        <input class="btn" type="button" value="Cancel" onClick="browseStudents()">
       </form>
     </div><!-- update -->
     <p>&nbsp;</p>
@@ -189,7 +189,7 @@
 
         </fieldset>
         <input class="btn" type="submit" id="DeletePerson" value="Delete Person">
-        <input class="btn" type="button" value="cancel" onClick="browseStudents()">
+        <input class="btn" type="button" value="Cancel" onClick="browseStudents()">
       </form>
     </div><!-- delete -->
     <p>&nbsp;</p>
