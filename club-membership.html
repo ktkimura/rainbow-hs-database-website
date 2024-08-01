@@ -111,6 +111,7 @@
                 <td align="left">National Honor Society</td>
                 <td align="left" >President</td>
                 <td align="right" >3000</td>
+            </tr>
             <tr>
                 <td><a href="#" onClick="updateClubMembership('this.clubmembershipID')">Edit</a></td>
                 <td><a href="#" onclick="deleteClubMembership('this.clubmembershipID')">Delete</a></td>
@@ -140,25 +141,26 @@
                 <legend><strong>Search for a Club Membership</strong></legend>
                 <h5>Must fill out all fields.</h5>
                 <fieldset class="fields">
-                    <label> Club Name </label> 
-                        <select name="clubID">
-                            <option value="" selected disabled>Select</option>
-                            <option value="1">1 Guitar Club</option>
-                            <option value="2">2 Lettuce Eating Club</option>
-                            <option value="3">3 National Honor Society</option>
-                        </select>
-                    <label> Student </label>
+                    <label> Student ID: </label>
                     <select name="studentID">
                       <option value="" selected disabled>Select</option>
+                      <option value="null">NULL</option>
                       <option value="1">1700000001 Kevin Kim</option>
                       <option value="2">1700000002 Daniel Liu</option>
                       <option value="3">1700000003 Scarlet Sun</option>
                       <option value="3">1700000004 Cameron Roberts</option>
                       <option value="3">1700000005 Andy Wong</option>
                     </select>
+                    <label> Club ID: </label> 
+                        <select name="clubID">
+                            <option value="" selected disabled>Select</option>
+                            <option value="1">1 Guitar Club</option>
+                            <option value="2">2 Lettuce Eating Club</option>
+                            <option value="3">3 National Honor Society</option>
+                        </select>
                 </fieldset>
                 <input class="btn" type="submit" id="SubmitSearchClubMembership" value="Search Club Membership">
-                <input class="btn" type="button" value="cancel" onClick="browseClubMemberships()">
+                <input class="btn" type="button" value="Cancel" onClick="browseClubMemberships()">
             </form>
     </div> <!-- search -->
     <p>&nbsp;</p>
@@ -166,23 +168,24 @@
         <form method="POST" id="addClubMembership">
             <legend><strong>Add Club Membership</strong></legend>
             <fieldset class="fields">
-                <label> Student ID </label>
+                <label> Student ID: </label>
                     <select name="studentID">
                       <option value="" selected disabled>Select</option>
+                      <option value="null">NULL</option>
                       <option value="1">1700000001 Kevin Kim</option>
                       <option value="2">1700000002 Daniel Liu</option>
                       <option value="3">1700000003 Scarlet Sun</option>
                       <option value="3">1700000004 Cameron Roberts</option>
                       <option value="3">1700000005 Andy Wong</option>
                   </select>            
-                <label> Club ID </label>  
+                <label> Club ID: </label>  
                     <select name="clubID">
                         <option value="" selected disabled>Select</option>
                         <option value="1">1 Guitar Club</option>
                         <option value="2">2 Lettuce Eating Club</option>
                         <option value="3">3 National Honor Society</option>
                     </select>
-                <label> Club Role </label> 
+                <label> Club Role: </label> 
                     <select name="clubRole">
                         <option value="" selected disabled>Select</option>
                         <option value="President">President</option>
@@ -192,10 +195,10 @@
                         <option value="Historian">Historian</option>
                         <option value="Member">Member</option>
                     </select>
-                    <label> Page Start </label> <input type="text" name="pageStart">
+                    <label> Page Num: </label> <input type="text" name="pageNum">
             </fieldset>
             <input class="btn" type="submit" id="SubmitAddClubMembership" value="Add Club Membership">
-            <input class="btn" type="button" value="cancel" onClick="browseClubMemberships()">
+            <input class="btn" type="button" value="Cancel" onClick="browseClubMemberships()">
         </form>
     </div><!-- insert -->
     <p>&nbsp;</p>
@@ -203,25 +206,26 @@
         <form method="POST" id="updateClubMembership">
             <legend><strong>Update Club Membership</strong></legend>
             <fieldset class="fields">
-                <input type="hidden" name="clubmembershipID" id="updateClubMembershipID" value="1">
-                <label>ID:</label> 1
-                <label> Student ID </label>
+                <!-- input below maps to intersection table PK that should not be shown to user -->
+                <input type="hidden" name="studentHasClubsID" id="clubMembershipID" value="1">
+                <label> Student ID: </label>
                       <select name="studentID">
                         <option value="" disabled>Select</option>
+                        <option value="null">NULL</option>
                         <option value="1">1700000001 Kevin Kim</option>
                         <option value="2">1700000002 Daniel Liu</option>
                         <option value="3">1700000003 Scarlet Sun</option>
                         <option value="3" selected>1700000004 Cameron Roberts</option>
                         <option value="3">1700000005 Andy Wong</option>
                       </select>              
-                <label> Club ID </label> 
+                <label> Club ID: </label> 
                       <select name="clubID">
                           <option value="" disabled>Select</option>
                           <option value="1">1 Guitar Club </option>
                           <option value="2" selected>2 Lettuce Eating Club</option>
                           <option value="3">3 National Honor Society</option>
                       </select>
-                  <label> Club Role </label> 
+                  <label> Club Role: </label> 
                       <select name="clubRole">
                           <option value="" disabled>Select</option>
                           <option value="President">President</option>
@@ -231,10 +235,10 @@
                           <option value="Historian">Historian</option>
                           <option value="Member" selected>Member</option>
                       </select>
-                  <label> Page Num </label> <input type="text" name="pageStart" value="2580">
+                  <label> Page Num: </label> <input type="text" name="pageStart" value="2580">
             </fieldset>
-            <input class="btn" type="submit" id="UpdateSaveClubMembership" value="Save Club Membership">
-            <input class="btn" type="button" value="cancel" onClick="browseClubMemberships()">
+            <input class="btn" type="submit" id="UpdateSaveClubMembership" value="Save Update">
+            <input class="btn" type="button" value="Cancel" onClick="browseClubMemberships()">
         </form>
     </div><!-- update -->
     <p>&nbsp;</p>
@@ -244,12 +248,11 @@
             <fieldset class="fields">
                 <p>Are you sure you wish to delete the following?</p>
                 <input type="hidden" name="clubmembershipID" id="deleteclubmembershipID" value="1">
-                <label><strong>ID:</strong></label> 1
-                <label> Student ID: 1700000004 </label> Club ID: 2 Lettuce Eating Club
+                <label> <strong>Student ID:</strong> 1700000004 Cameron Roberts </label> <strong>Club ID:</strong> 2 Lettuce Eating Club
 
             </fieldset>
             <input class="btn" type="submit" id="SubmitDeleteClubMembership" value="Delete Club Membership">
-            <input class="btn" type="button" value="cancel" onClick="browseClubMemberships()">
+            <input class="btn" type="button" value="Cancel" onClick="browseClubMemberships()">
         </form>
     </div><!-- delete -->
     <p>&nbsp;</p>

@@ -140,25 +140,26 @@
         <legend><strong>Search for a Sport Membership</strong></legend>
         <h5>Must fill out all fields.</h5>
         <fieldset class="fields">
-            <label> Sport Team </label> 
-            <select name="sportID">
-              <option value="" selected disabled>Select</option>
-              <option value="1">1 Varsity Basketball</option>
-              <option value="2">2 Varsity Tennis</option>
-              <option value="3">3 Junior Varsity Football</option>
-            </select>
-            <label> Student </label>
+          <label> Student ID: </label>
             <select name="studentID">
               <option value="" selected disabled>Select</option>
+              <option value="null">NULL</option>
               <option value="1">1700000001 Kevin Kim</option>
               <option value="2">1700000002 Daniel Liu</option>
               <option value="3">1700000003 Scarlet Sun</option>
               <option value="4">1700000004 Cameron Roberts</option>
               <option value="5">1700000005 Andy Wong</option>
             </select>
+          <label> Sport ID: </label> 
+            <select name="sportID">
+              <option value="" selected disabled>Select</option>
+              <option value="1">1 Varsity Basketball</option>
+              <option value="2">2 Varsity Tennis</option>
+              <option value="3">3 Junior Varsity Football</option>
+            </select>
         </fieldset>
         <input class="btn" type="submit" id="SubmitSearchSportMembership" value="Search Sport Membership">
-        <input class="btn" type="button" value="cancel" onClick="browseSportMemberships()">
+        <input class="btn" type="button" value="Cancel" onClick="browseSportMemberships()">
     </form>
     </div> <!-- search -->
     <p>&nbsp;</p>
@@ -166,23 +167,24 @@
         <form id="addSportMembership">
             <legend><strong>Add Sport Membership</strong></legend>
               <fieldset class="fields">
-                <label> Student ID </label>
+                <label> Student ID: </label>
                     <select name="studentID">
                       <option value="" selected disabled>Select</option>
+                      <option value="null">NULL</option>
                       <option value="1">1700000001 Kevin Kim</option>
                       <option value="2">1700000002 Daniel Liu</option>
                       <option value="3">1700000003 Scarlet Sun</option>
-                      <option value="3">1700000004 Cameron Roberts</option>
-                      <option value="3">1700000005 Andy Wong</option>
+                      <option value="4">1700000004 Cameron Roberts</option>
+                      <option value="5">1700000005 Andy Wong</option>
                     </select>            
-                <label> Sport ID </label>  
+                <label> Sport ID: </label>  
                     <select name="sportID">
                         <option value="" selected disabled>Select</option>
                         <option value="1">1 Varsity Basketball</option>
                         <option value="2">2 Varsity Tennis</option>
                         <option value="3">3 Junior Varsity Football</option>
                     </select>
-                <label> Sport Role </label> 
+                <label> Sport Role: </label> 
                     <select name="sportRole">
                         <option value="" selected disabled>Select</option>
                         <option value="captain">Captain</option>
@@ -190,10 +192,10 @@
                         <option value="manager">Manager</option>
                         <option value="player">Player</option>
                     </select>
-                <label> Page Num </label> <input type="text" name="pageStart">
+                <label> Page Num: </label> <input type="text" name="pageNum">
               </fieldset>
               <input class="btn" type="submit" id="SubmitAddSportMembership" value="Add Sport Membership">
-              <input class="btn" type="button" value="cancel">
+              <input class="btn" type="button" value="Cancel">
       </form> <!--add new grad class-->
     </div><!-- insert -->
 
@@ -202,24 +204,26 @@
       <form id="updateSportMembership">
           <legend><strong>Update Sport Membership</strong></legend>
               <fieldset class="fields">
-              <label>ID:</label> 1
-              <label> Student ID </label>
+              <!-- input below maps to intersection table PK that should not be shown to user -->
+              <input type="hidden" name="studentHasSportsID" id="sportMembershipID" value="1">              <label> Student ID: </label>
+              <label> Student ID: </label> 
                 <select name="studentID">
                   <option value="" disabled>Select</option>
+                  <option value="null">NULL</option>
                   <option value="1" selected>1700000001 Kevin Kim</option>
                   <option value="2">1700000002 Daniel Liu</option>
                   <option value="3">1700000003 Scarlet Sun</option>
-                  <option value="3">1700000004 Cameron Roberts</option>
-                  <option value="3">1700000005 Andy Wong</option>
+                  <option value="4">1700000004 Cameron Roberts</option>
+                  <option value="5">1700000005 Andy Wong</option>
                 </select>            
-              <label> Sport ID </label> 
+              <label> Sport ID: </label> 
                   <select name="sportID">
                     <option value="" disabled>Select</option>
                     <option value="1" selected>1 Varsity Basketball</option>
                     <option value="2">2 Varsity Tennis</option>
                     <option value="3">3 Junior Varsity Football</option>
                   </select>
-              <label> Sport Role </label> 
+              <label> Sport Role: </label> 
                     <select name="sportRole">
                         <option value="" disabled>Select</option>
                         <option value="captain" selected>Captain</option>
@@ -227,10 +231,10 @@
                         <option value="manager">Manager</option>
                         <option value="player">Player</option>
                     </select>
-                <label> Page Num </label> <input type="text" name="pageStart" value="4070">
+                <label> Page Num: </label> <input type="text" name="pageNum" value="4070">
         </fieldset>
         <input class="btn" type="submit" id="SubmitUpdateSportMembership" value="Save Update">
-              <input class="btn" type="button" value="cancel" >
+              <input class="btn" type="button" value="Cancel" >
       </form> 
     </div><!-- update -->
     <p>&nbsp;</p>
@@ -240,11 +244,11 @@
               <fieldset class="fields">
               <p>Are you sure you wish to delete the following sport membership for this student?</p>
               <label>ID:</label> 1
-                <label> Student ID: 1700000001 </label> Sport ID: 1 Varsity Basketball
+                <label> <strong>Student ID:</strong> 1700000001 Kevin Kim</label> <strong>Sport ID:</strong> 1 Varsity Basketball
                 
         </fieldset>
         <input class="btn" type="submit" id="SubmitDeleteSportMembership" value="Delete Sport Membership">
-              <input class="btn" type="button" value="cancel" >
+              <input class="btn" type="button" value="Cancel" >
       </form> 
     </div><!-- delete -->
     <p>&nbsp;</p>
