@@ -67,6 +67,7 @@
     </script>
 </head>
 <body onload="browseClubs()">
+    <h1>RAINBOW HIGH SCHOOL: PRIDE OF LIECHTENSTEIN</h1>
     <nav>
         <a href="index.html">Home</a>  |
         <a href="students.html">Students</a> | 
@@ -116,7 +117,7 @@
                 <legend><strong>Search for a club</strong></legend>
                 <h5>Must fill out all fields.</h5>
                 <fieldset class="fields">
-                    <label> Club Name </label> <input type="text" name="clubname">
+                    <label> Club Name: </label> <input type="text" name="clubname">
                 </fieldset>
                 <input class="btn" type="submit" id="submitSearchClub" value="Search Club">
                 <input class="btn" type="button" value="Cancel" onClick="browseClubs()">
@@ -125,9 +126,9 @@
     <p>&nbsp;</p>
     <div id="insert">
         <form method="POST" id="addClub">
-            <legend><strong>Add Event</strong></legend>
+            <legend><strong>Add Club</strong></legend>
             <fieldset class="fields">
-                <label> Club Name </label> <input type="text" name="clubname">
+                <label> Club Name: </label> <input type="text" name="clubname">
             </fieldset>
             <input class="btn" type="submit" id="SubmitAddClub" value="Add Club">
             <input class="btn" type="button" value="Cancel" onClick="browseEvents()">
@@ -139,10 +140,10 @@
             <legend><strong>Update Club</strong></legend>
             <fieldset class="fields">
                 <input type="hidden" name="clubID" id="updateclubID" value="1">
-                <label> Club ID: </label> 1
-                <label> Club Name </label> <input type="text" value="Lettuce Eating Club" name="clubname">
+                <label> Club ID: </label> 2
+                <label> Club Name: </label> <input type="text" value="Lettuce Eating Club" name="clubname">
             </fieldset>
-            <input class="btn" type="submit" id="UpdateSaveClub" value="Save Update">
+            <input class="btn" type="submit" id="SubmitUpdateClub" value="Save Update">
             <input class="btn" type="button" value="Cancel" onClick="browseEvents()">
         </form>
     </div><!-- update -->
@@ -153,8 +154,8 @@
             <fieldset class="fields">
                 <p>Are you sure you wish to delete the following?</p>
                 <input type="hidden" name="clubID" id="deleteclubID" value="1">
-                <label><strong>ID:</strong></label> 1
-                <label> <strong>Event Name:</strong> </label> Lettuce Eating Club
+                <label><strong>ID:</strong></label> 2
+                <label> <strong>Club Name:</strong> </label> Lettuce Eating Club
 
             </fieldset>
             <input class="btn" type="submit" id="DeleteClub" value="Delete Club">

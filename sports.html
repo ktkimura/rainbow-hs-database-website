@@ -67,6 +67,7 @@
     </script>
 </head>
 <body onload="browseSports()">
+    <h1>RAINBOW HIGH SCHOOL: PRIDE OF LIECHTENSTEIN</h1>
     <nav>
         <a href="index.html">Home</a>  |
         <a href="students.html">Students</a> | 
@@ -125,16 +126,16 @@
                 <!-- ALLOW SEARCH FOR SPORTS ONLY TO HAVE 3 FIELDS -->
                 <h5>Must fill out all fields.</h5>
                 <fieldset class="fields">
-                    <label> Sport </label> 
+                    <label> Sport: </label> 
                     <input type="text" name="sportname">
-                    <label> Season </label> 
+                    <label> Season: </label> 
                     <select name="season">
                         <option value="" selected disabled>Select</option>
                         <option value="fall">Fall</option>
                         <option value="winter">Winter</option>
                         <option value="spring">Spring</option>
                       </select>
-                    <label> Varsity Level </label> 
+                    <label> Varsity Level: </label> 
                     <select>
                         <option value="" selected disabled>Select</option>
                         <option value="varsity">Varsity</option>
@@ -151,15 +152,15 @@
         <form method="POST" id="addSport">
             <legend><strong>Add Sport</strong></legend>
             <fieldset class="fields">
-                <label> Sport </label> <input type="text" name="eventname">
-                <label> Season </label>
+                <label> Sport: </label> <input type="text" name="eventname">
+                <label> Season: </label>
                 <select name="season">
                   <option value="" selected disabled>Select</option>
                   <option value="fall">Fall</option>
                   <option value="winter">Winter</option>
                   <option value="spring">Spring</option>
                 </select>
-                <label> Varsity Level </label>
+                <label> Varsity Level: </label>
                   <select name="varsityLevel">
                     <option value="" selected disabled>Select</option>
                     <option value="varsity">Varsity</option>
@@ -177,15 +178,15 @@
             <legend><strong>Update Sport</strong></legend>
             <fieldset class="fields">
                 <input type="hidden" name="sportID" id="updatesportID" value="1">
-                <label> Sport </label> <input type="text" name="sport" value="Basketball" >
-                <label> Season </label>
+                <label> Sport: </label> <input type="text" name="sport" value="Basketball" >
+                <label> Season: </label>
                   <select name="season">
                     <option value="" disabled>Select</option>
                     <option value="fall">Fall</option>
                     <option value="winter" selected>Winter</option>
                     <option value="spring">Spring</option>
                   </select>
-                <label> Varsity Level </label>
+                <label> Varsity Level: </label>
                   <select name="varsityLevel">
                     <option value="" disabled>Select</option>
                     <option value="varsity" selected>Varsity</option>
@@ -206,6 +207,7 @@
                 <input type="hidden" name="sportID" id="deletesportID" value="1">
                 <label><strong>ID:</strong></label> 1
                 <label> <strong>Sport:</strong> </label> Basketball
+                <label> <strong>Varsity Level: </strong></label> Varsity 
 
             </fieldset>
             <input class="btn" type="submit" id="SubmitDeleteSport" value="Delete Sport">

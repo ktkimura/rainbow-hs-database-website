@@ -68,6 +68,7 @@
   </head>
 
   <body onload="browseStudents()">
+    <h1>RAINBOW HIGH SCHOOL: PRIDE OF LIECHTENSTEIN</h1>
     <nav>
       <a href="index.html">Home</a>  |
       <a href="students.html">Students</a> | 
@@ -141,11 +142,18 @@
         <legend><strong>Search for a student</strong></legend>
         <h5>Must fill out all fields.</h5>
         <fieldset class="fields">
-          <label> First name </label> <input type="text" name="fname">
-          <label> Last name </label> <input type="text" name="lname">
-          <label> Graduating Class </label> <input type="text" name="gradclass">
+          <label> First name: </label> <input type="text" name="fname">
+          <label> Last name: </label> <input type="text" name="lname">
+          <label> Graduating Class: </label>
+            <select>
+              <option value="" selected disabled>Select</option>
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+              <option value="2027">2027</option>
+            </select>
         </fieldset>
-        <input class="btn" type="submit" id="addEvent" value="Search Event">
+        <input class="btn" type="submit" id="addEvent" value="Search Student">
         <input class="btn" type="button" value="Cancel" onClick="browseEvents()">
       </form>
     </div><!-- search -->
@@ -154,9 +162,17 @@
       <form method="POST" id="addStudent">
         <legend><strong>Add Student</strong></legend>
         <fieldset class="fields">
-          <label> First name </label> <input type="text" name="fname">
-          <label> Last name </label> <input type="text" name="lname">
-          <label> Graduating Class </label> <input type="text" name="gradclass">
+          <label> ID: </label> <input type="number" min="1700000000" max-length="10" placeholder="17XXXXXXXX" name="studentID">
+          <label> First name: </label> <input type="text" name="fname">
+          <label> Last name: </label> <input type="text" name="lname">
+          <label> Graduating Class: </label>
+            <select>
+              <option value="" selected disabled>Select</option>
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+              <option value="2027">2027</option>
+            </select>
         </fieldset>
         <input class="btn" type="submit" id="addPerson" value="Add Student">
         <input class="btn" type="button" value="Cancel" onClick="browseStudents()">
@@ -165,13 +181,20 @@
     <p>&nbsp;</p>
     <div id="update">
       <form method="POST" id="UpdatePerson">
-        <legend><strong>Update Person</strong></legend>
+        <legend><strong>Update Student</strong></legend>
         <fieldset class="fields">
           <input type="hidden" name="personID" id="updatepersonID" value="1">
-          <label> ID: </label> 1
-          <label> First Name </label> <input type="text" name="fname" value="Kevin">
-          <label> Last Name </label> <input type="text" name="lname" value="Kim">
-          <label> Graduating Class</label> <input type="text" name="age" value="2027">
+          <label> ID: </label> 1700000001
+          <label> First Name: </label> <input type="text" name="fname" value="Kevin">
+          <label> Last Name: </label> <input type="text" name="lname" value="Kim">
+          <label> Graduating Class: </label>
+            <select>
+              <option value="" disabled>Select</option>
+              <option value="2024" selected>2024</option>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+              <option value="2027">2027</option>
+            </select>
         </fieldset>
         <input class="btn" type="submit" id="UpdateSaveStudent" value="Save Update Student">
         <input class="btn" type="button" value="Cancel" onClick="browseStudents()">
@@ -180,12 +203,12 @@
     <p>&nbsp;</p>
     <div id="delete" style="display: block">
       <form method="POST" id="deletePerson">
-        <legend><strong>Delete Person</strong></legend>
+        <legend><strong>Delete Student</strong></legend>
         <fieldset class="fields">
           <p>Are you sure you wish to delete the following?</p>
           <input type="hidden" name="personID" id="deletepersonID" value="1">
           <label><strong>ID:</strong></label> 1700000001
-          <label> <strong>Name</strong> </label> Kevin Kim
+          <label> <strong>Name:</strong> </label> Kevin Kim
 
         </fieldset>
         <input class="btn" type="submit" id="DeletePerson" value="Delete Person">
