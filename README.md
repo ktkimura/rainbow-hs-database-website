@@ -14,3 +14,8 @@ This website's purpose is to benefit our hardworking yearbook team and assist th
 - Date: 07/24/2024
 - Adapted from CS340 2024 Summer Term Canvas Assignment "Exploration - Web Application Technology"
 - Source URL: https://canvas.oregonstate.edu/courses/1967354/pages/exploration-web-application-technology?module_item_id=24460839
+
+**Citation for Node.js setup**
+- Date: 08/01/2024
+- Adapted from CS340 2024 Summer Term Node.js starter code
+- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
