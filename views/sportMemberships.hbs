@@ -1,4 +1,4 @@
-<h2>Students</h2>
+<h2>Sport Memberships</h2>
 <table>
     <thead>
         <tr>
@@ -14,9 +14,11 @@
         {{!-- NOTE: attributes of 'this' need to match however they are aliased in the SELECT statement in app.js. Have to put them in [] since there are spaces --}}
         <tr>
             <td>{{this.[Student ID]}}</td>
-            <td>{{this.[First Name]}}</td>
-            <td>{{this.[Last Name]}}</td>
-            <td>{{this.[Graduating Class]}}</td>
+            <td>{{this.[Student Name]}}</td>
+            <td>{{this.[Sport ID]}}</td>
+            <td>{{this.[Sport Team]}}</td>
+            <td>{{this.[Sport Role]}}</td>
+            <td>{{this.[Page Num.]}}</td>
         </tr>
         {{/each}}
     </tbody>

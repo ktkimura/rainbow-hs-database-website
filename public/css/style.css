@@ -1,5 +1,23 @@
 /* CSS Document */
 
+:root {
+    --lightGray: #d3d3d3;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: var(--lightGray);
+}
+
+th, td {
+    padding: 0.5em;
+    text-align: left;
+}
+
 
 .aboutBody{
     max-width: fit-content;
@@ -21,3 +39,4 @@
     margin-right: auto;
     padding: 20px;
 }
+

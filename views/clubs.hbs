@@ -1,4 +1,4 @@
-<h2>Students</h2>
+<h2>Clubs</h2>
 <table>
     <thead>
         <tr>
@@ -13,10 +13,8 @@
         {{#each data}}
         {{!-- NOTE: attributes of 'this' need to match however they are aliased in the SELECT statement in app.js. Have to put them in [] since there are spaces --}}
         <tr>
-            <td>{{this.[Student ID]}}</td>
-            <td>{{this.[First Name]}}</td>
-            <td>{{this.[Last Name]}}</td>
-            <td>{{this.[Graduating Class]}}</td>
+            <td>{{this.[Club ID]}}</td>
+            <td>{{this.[Club Name]}}</td>
         </tr>
         {{/each}}
     </tbody>

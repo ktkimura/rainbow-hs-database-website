@@ -125,7 +125,7 @@ SELECT eventID, eventName FROM Events;
 -- =============================================
 
 -- StudentHasClubs page table
-SELECT StudentHasClubs.studentID AS "StudentID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", StudentHasClubs.clubID AS "Club ID", 
+SELECT StudentHasClubs.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", StudentHasClubs.clubID AS "Club ID", 
     Clubs.clubName AS "Club Name", StudentHasClubs.clubRole AS "Club Role", StudentHasClubs.pageNum AS "Page Num." 
         FROM StudentHasClubs
             INNER JOIN Students ON Students.studentID = StudentHasClubs.studentID
@@ -148,7 +148,7 @@ DELETE FROM StudentHasClubs WHERE studentHasClubID = :studentHasClubID_from_tabl
 -- =============================================
 
 -- StudentHasSports page table
-SELECT StudentHasSports.studentID AS "StudentID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", StudentHasSports.sportID AS "Sport ID", 
+SELECT StudentHasSports.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", StudentHasSports.sportID AS "Sport ID", 
     CONCAT(Sports.varsityLevel, " ", Sports.sportType) AS "Sport Team", StudentHasSports.sportRole AS "Sport Role", StudentHasSports.pageNum AS "Page Num." 
         FROM StudentHasSports
             INNER JOIN Students ON Students.studentID = StudentHasSports.studentID
@@ -171,7 +171,7 @@ DELETE FROM StudentHasSports WHERE studentHasSportID = :studentHasSportID_from_t
 -- =============================================
 
 -- StudentInEvents page table
-SELECT StudentInEvents.studentID AS "StudentID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", StudentInEvents.eventID AS "Event ID", 
+SELECT StudentInEvents.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", StudentInEvents.eventID AS "Event ID", 
     Events.eventName AS "Event Name", StudentInEvents.eventRole AS "Event Role", StudentInEvents.pageNum AS "Page Num." 
         FROM StudentInEvents
             INNER JOIN Students ON Students.studentID = StudentInEvents.studentID
