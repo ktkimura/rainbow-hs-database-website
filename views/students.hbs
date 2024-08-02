@@ -1,0 +1,31 @@
+{{!-- Create a table --}}
+<table>
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{#each data}}
+        {{!-- NOTE: attributes of 'this' need to match however they are aliased in the SELECT statement in app.js. Have to put them in [] since there are spaces --}}
+        <tr>
+            <td>{{this.[Student ID]}}</td>
+            <td>{{this.[First Name]}}</td>
+            <td>{{this.[Last Name]}}</td>
+            <td>{{this.[Graduating Class]}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
