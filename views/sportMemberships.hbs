@@ -26,11 +26,25 @@
 
 <p> To add a new record, please enter information below and click 'Submit!' </p>
 <form id = "add-sports-membership-form-ajax">
-    <label for="input-studentID"> Student ID: </label>
-    <input type="text" name="input-studentID" id="input-studentID">
+    {{!-- <label for="input-studentID"> Student ID: </label>
+    <input type="text" name="input-studentID" id="input-studentID"> --}}
 
-    <label for="input-sportID"> Sport ID: </label>
-    <input type="text" name="input-sportID" id="input-sportID">
+    <select name="input-studentID" id="input-studentID">
+        <option value="">Select a Student</option>
+        {{#each students}}
+        <option value="{{this.studentID}}">{{this.firstName}} {{this.lastName}}</option>
+        {{/each}}
+    </select>
+
+    {{!-- <label for="input-sportID"> Sport ID: </label>
+    <input type="text" name="input-sportID" id="input-sportID"> --}}
+
+    <select name="input-sportID" id="input-sportID">
+        <option value="">Select a Sport</option>
+        {{#each sports}}
+        <option value="{{this.sportID}}">{{this.sportType}}</option>
+        {{/each}}
+    </select>
 
     <label for="input-sport-role"> Sport Role: </label>
     <select name="input-sport-role" id="input-sport-role">
