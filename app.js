@@ -90,21 +90,12 @@ app.get('/clubMemberships', function(req, res) {
 
 app.get('/sportMemberships', function(req, res) {
 
-    let getSportMemberships;
-
-    if (req.query.lastname === undefined){
-        getSportMemberships = `SELECT StudentHasSports.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
+    let getSportMemberships = `SELECT StudentHasSports.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
         StudentHasSports.sportID AS "Sport ID", CONCAT(Sports.varsityLevel, " ", Sports.sportType) AS "Sport Team", StudentHasSports.sportRole AS "Sport Role", 
         StudentHasSports.pageNum AS "Page Num." 
             FROM StudentHasSports
                 INNER JOIN Students ON Students.studentID = StudentHasSports.studentID
                 INNER JOIN Sports ON Sports.sportID = StudentHasSports.sportID;`;
-    }
-    else {
-        getSportMemberships = `SELECT * FROM Students WHERE lastname LIKE "${req.query.lastname}%"`
-    }
-
-
 
     let getStudentInfo = `SELECT * FROM Students;`;
 
