@@ -1,0 +1,22 @@
+<h2>Graduating Classes</h2>
+<table>
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        {{!-- NOTE: attributes of 'this' need to match however they are aliased in the SELECT statement in app.js. Have to put them in [] since there are spaces --}}
+        <tr>
+            <td>{{this.[Graduating Class Year]}}</td>
+            <td>{{this.[Start Page]}}</td>
+            <td>{{this.[End Page]}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

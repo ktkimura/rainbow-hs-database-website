@@ -1,0 +1,23 @@
+<h2>Sports</h2>
+<table>
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        {{!-- NOTE: attributes of 'this' need to match however they are aliased in the SELECT statement in app.js. Have to put them in [] since there are spaces --}}
+        <tr>
+            <td>{{this.[Sport ID]}}</td>
+            <td>{{this.[Sport]}}</td>
+            <td>{{this.[Season]}}</td>
+            <td>{{this.[Varsity Level]}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
