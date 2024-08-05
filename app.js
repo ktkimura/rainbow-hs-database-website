@@ -101,6 +101,54 @@ app.get('/sportMemberships', function(req, res) {
     })
 })
 
+// POST request to add a sports membership
+app.post('/add-sports-membership-ajax', function (req, res) {
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Capture NULL values
+    let studentID = parseInt(data.studentID);
+    if (isNaN(studentID)) {
+        studentID = 'NULL'
+    }
+
+    let sportID = parseInt(data.sportID);
+    if (isNaN(sportID)) {
+        sportID = 'NULL'
+    }
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO StudentHasSports (studentID, sportID, sportRole, pageNum) VALUES ('${data.studentID}', '${data.sportID}', ${data.sportRole}, ${data.pageNum})`;
+    db.pool.query(query1, function (error, rows, fields) {
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            // If there was no error, perform a SELECT * on bsg_people
+            query2 = `SELECT * FROM StudentHasSports;`;
+            db.pool.query(query2, function (error, rows, fields) {
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
 app.get('/eventMemberships', function(req, res) {
     let getEventMemberships = `SELECT StudentInEvents.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
         StudentInEvents.eventID AS "Event ID", Events.eventName AS "Event Name", StudentInEvents.eventRole AS "Event Role", StudentInEvents.pageNum AS "Page Num." 
