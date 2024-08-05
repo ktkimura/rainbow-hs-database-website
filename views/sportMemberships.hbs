@@ -1,5 +1,5 @@
 <h2>Sport Memberships</h2>
-<table>
+<table id = "sports-memberships-table">
     <thead>
         <tr>
             {{#each data.[0]}}
@@ -23,3 +23,27 @@
         {{/each}}
     </tbody>
 </table>
+
+<p> To add a new record, please enter information below and click 'Submit!' </p>
+<form id = "add-sports-membership-form-ajax">
+    <label for="input-studentID"> Student ID: </label>
+    <input type="text" name="input-studentID" id="input-studentID">
+
+    <label for="input-sportID"> Sport ID: </label>
+    <input type="text" name="input-sportID" id="input-sportID">
+
+    <label for="input-sport-role"> Sport Role: </label>
+    <select name="input-sport-role" id="input-sport-role">
+        <option value="'Captain'">Captain</option>
+        <option value="'Manager'">Manager</option>
+        <option value="'Player'">Player</option>
+    </select>
+
+    <label for="input-page-number"> Page Number: </label>
+    <input type="text" name="input-page-number" id="input-page-number">
+
+    <input type = "submit">
+</form>
+
+{{!-- embed javascript to handle DOM manipulation and AJAX request --}}
+<script src="./js/add_sportMembership.js"></script>
