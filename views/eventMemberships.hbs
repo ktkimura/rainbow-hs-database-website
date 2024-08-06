@@ -3,9 +3,11 @@
     <thead>
         <tr>
             {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
+                {{#if (ne @key "studentInEventID")}}
+                    <th>
+                        {{@key}}
+                    </th>
+                {{/if}}
             {{/each}}
         </tr>
     </thead>

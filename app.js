@@ -110,7 +110,7 @@ app.get('/events', function(req, res) {
 })
 
 app.get('/clubMemberships', function(req, res) {
-    let getClubMemberships = `SELECT StudentHasClubs.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
+    let getClubMemberships = `SELECT studentHasClubID, StudentHasClubs.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
         StudentHasClubs.clubID AS "Club ID", Clubs.clubName AS "Club Name", StudentHasClubs.clubRole AS "Club Role", StudentHasClubs.pageNum AS "Page Num." 
             FROM StudentHasClubs
                 LEFT JOIN Students ON Students.studentID = StudentHasClubs.studentID
@@ -232,7 +232,7 @@ app.delete('/delete-sport-membership-ajax/', function(req,res,next){
 })});
 
 app.get('/eventMemberships', function(req, res) {
-    let getEventMemberships = `SELECT StudentInEvents.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
+    let getEventMemberships = `SELECT studentInEventID, StudentInEvents.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
         StudentInEvents.eventID AS "Event ID", Events.eventName AS "Event Name", StudentInEvents.eventRole AS "Event Role", StudentInEvents.pageNum AS "Page Num." 
             FROM StudentInEvents
                 LEFT JOIN Students ON Students.studentID = StudentInEvents.studentID
