@@ -59,12 +59,16 @@ addSportMembershipForm.addEventListener("submit", function (e) {
     xhttp.send(JSON.stringify(data));
 })
 
+// Citation for adding delete button to new rows:
+// Date: 08/04/2024
+// Copied from CS340 2024 Summer Term Node.js starter code Step 7 (lines 90, 101-105, 114, 117)
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
 // Creates a single row from an Object representing a single record from StudentHasSports
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
-    let currentTable = document.getElementById("sports-memberships-table");
+    let currentTable = document.getElementById("sport-memberships-table");
 
     // Get the location where we should insert the new row (end of table)
     let newRowIndex = currentTable.rows.length;
@@ -82,6 +86,9 @@ addRowToTable = (data) => {
     let sportRoleCell = document.createElement("TD");
     let pageNumCell = document.createElement("TD");
 
+    // Create a cell for housing the delete button
+    let deleteCell = document.createElement("TD")
+
     // Fill the cells with correct data
     idCell.innerText = newRow.id;
     studentIDCell.innerText = newRow.studentID;
@@ -90,6 +97,13 @@ addRowToTable = (data) => {
     sportRoleCell.innerText = newRow.sportRole;
     pageNumCell.innerText = newRow.pageNum;
 
+    // Fill in the delete cell and make it function like a typical delete button
+    deleteCell = document.createElement("button");
+    deleteCell.innerHTML = "Delete";
+    deleteCell.onclick = function(){
+        deleteSportMembership(newRow.id);
+    };
+
     // Add the cells to the row 
     row.appendChild(idCell);
     row.appendChild(studentIDCell);
@@ -97,6 +111,10 @@ addRowToTable = (data) => {
     row.appendChild(sportIDCell);
     row.appendChild(sportRoleCell);
     row.appendChild(pageNumCell);
+    row.appendChild(deleteCell);
+
+    // Add row attribute so deleteRow function can find newly added row
+    row.setAttribute('data-value', newRow.id);
 
     // Add the row to the table
     currentTable.appendChild(row);

@@ -1,34 +1,43 @@
 <h2>Sport Memberships</h2>
-<table id = "sports-memberships-table">
+<table id = "sport-memberships-table">
     <thead>
         <tr>
             {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
+                {{#if (ne @key "studentHasSportID")}}
+                    <th>
+                        {{@key}}
+                    </th>
+                {{/if}}
             {{/each}}
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
         {{#each data}}
         {{!-- NOTE: attributes of 'this' need to match however they are aliased in the SELECT statement in app.js. Have to put them in [] since there are spaces --}}
-        <tr>
+        <tr data-value={{this.studentHasSportID}}>
             <td>{{convertNull this.[Student ID]}}</td>
             <td>{{convertNull this.[Student Name]}}</td>
             <td>{{this.[Sport ID]}}</td>
             <td>{{this.[Sport Team]}}</td>
             <td>{{this.[Sport Role]}}</td>
             <td>{{this.[Page Num.]}}</td>
+            <td><button onclick="deleteSportMembership({{this.studentHasSportID}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+
+{{!-- 
+-- Citation for student and sport foreign key dropdowns:
+-- Date: 08/04/2024
+-- Adapted from CS340 2024 Summer Term Node.js starter code Step 6
+-- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app 
+--}}
+
 <h3>Add a new sport membership</h3>
 <p> To add a new record, please enter information below and click 'Submit!' </p>
 <form id = "add-sports-membership-form-ajax">
-    {{!-- <label for="input-studentID"> Student ID: </label>
-    <input type="text" name="input-studentID" id="input-studentID"> --}}
-
     <select name="input-studentID" id="input-studentID">
         <option value="" selected disabled>Select a Student</option>
         {{#each students}}
@@ -36,9 +45,6 @@
         {{/each}}
         <option value=NULL>NULL</option>
     </select>
-
-    {{!-- <label for="input-sportID"> Sport ID: </label>
-    <input type="text" name="input-sportID" id="input-sportID"> --}}
 
     <select name="input-sportID" id="input-sportID">
         <option value="" selected disabled>Select a Sport</option>
@@ -63,3 +69,4 @@
 
 {{!-- embed javascript to handle DOM manipulation and AJAX request --}}
 <script src="./js/add_sportMembership.js"></script>
+<script src="./js/delete_sportMembership.js"></script>
