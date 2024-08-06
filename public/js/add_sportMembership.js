@@ -60,7 +60,7 @@ addSportMembershipForm.addEventListener("submit", function (e) {
 })
 
 // Citation for adding delete button to new rows:
-// Date: 08/04/2024
+// Date: 08/05/2024
 // Copied from CS340 2024 Summer Term Node.js starter code Step 7 (lines 90, 101-105, 114, 117)
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 

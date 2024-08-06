@@ -1,8 +1,8 @@
 <h2>Students</h2>
-<table>
+<table id = "student-table">
     <thead>
         <tr>
-            {{#each data.[0]}}
+            {{#each students.[0]}}
             <th>
                 {{@key}}
             </th>
@@ -10,9 +10,9 @@
         </tr>
     </thead>
     <tbody>
-        {{#each data}}
+        {{#each students}}
         {{!-- NOTE: attributes of 'this' need to match however they are aliased in the SELECT statement in app.js. Have to put them in [] since there are spaces --}}
-        <tr>
+        <tr data-value={{this.[Student ID]}}>
             <td>{{this.[Student ID]}}</td>
             <td>{{this.[First Name]}}</td>
             <td>{{this.[Last Name]}}</td>
@@ -21,3 +21,33 @@
         {{/each}}
     </tbody>
 </table>
+
+{{!-- 
+-- Citation for update_student.js functionality:
+-- Date: 08/05/2024
+-- Adapted from CS340 2024 Summer Term Node.js starter code Step 7
+-- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app 
+--}}
+
+<h3>Update a Student</h3>
+<p>To update a specific student, select their combined ID and name from the drop-down on the left.</p>
+<form id="update-student-form-ajax">
+    <label for="input-student-id">Student ID: </label>
+    <select name="input-student-id" id="studentSelect">
+        <option value="" disabled selected>Select a student</option>
+        {{#each students}}
+            <option value={{this.[Student ID]}}>{{this.[Student ID]}} {{this.[First Name]}} {{this.[Last Name]}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-gradClass">Graduating Class:</label>
+    <select name="input-gradClass" id="gradClassSelect">
+        <option value="" disabled selected>Select a graduating class</option>
+        {{#each gradClasses}}
+            <option value={{this.gradClassID}}>{{this.gradClassID}}</option>
+        {{/each}}
+    </select>
+    <input type="submit">
+</form>
+
+<script src="./js/update_student.js"></script>

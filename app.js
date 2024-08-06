@@ -69,13 +69,40 @@ app.get('/', function(req, res){
 
 app.get('/students', function(req, res){  
     let getStudents = `SELECT studentID AS "Student ID", firstName AS "First Name", lastName AS "Last Name", gradClassID AS "Graduating Class" FROM Students ORDER BY studentID;`;
-             
-    db.pool.query(getStudents, function(error, rows, fields){    // Execute the query
+    
+    let getGradClasses = `SELECT gradClassID FROM GradClasses ORDER BY gradClassID;`;
 
-        res.render('students', {data: rows});               // Render the students.hbs file, and also send the renderer
-    })                                                      // an object where 'data' is equal to the 'rows' we
-});                                                         // received back from the query
+    db.pool.query(getStudents, function(error, rows, fields){
 
+        let students = rows;
+
+        db.pool.query(getGradClasses, (error, rows, fields) => {
+
+            let gradClasses = rows;
+
+            return res.render('students', { students: students, gradClasses: gradClasses});
+        });
+    });
+});                                                         
+
+
+app.put('/put-student-ajax', function(req,res,next){
+    let data = req.body;
+  
+    let studentID = parseInt(data.studentID);
+    let gradClassID = parseInt(data.gradClassID);
+  
+    let queryUpdateStudent = `UPDATE Students SET gradClassID = ? WHERE studentID = ?;`;
+  
+    db.pool.query(queryUpdateStudent, [gradClassID, studentID], function(error, rows, fields){
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            res.send(rows);
+        }
+  })});
 
 app.get('/gradClasses', function(req, res) {
     let getGradClasses = `SELECT gradClassID AS "Graduating Class Year", pageStart AS "Start Page", pageEnd AS "End Page" FROM GradClasses ORDER BY gradClassID;`;
