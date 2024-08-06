@@ -16,7 +16,7 @@
 -- =============================================
 
 -- Students page table
-SELECT studentID AS "Student ID", firstName AS "First Name", lastName AS "Last Name", gradClassID AS "Graduating Class" FROM Students;
+SELECT studentID AS "Student ID", firstName AS "First Name", lastName AS "Last Name", gradClassID AS "Graduating Class" FROM Students ORDER BY studentID;
 
 -- Add a new student 
 INSERT INTO Students (studentID, firstName, lastName, gradClassID) VALUES 
@@ -38,7 +38,7 @@ SELECT studentID, CONCAT(firstName, " ", lastName) FROM Students;
 -- =============================================
 
 -- GradClasses page table
-SELECT gradClassID AS "Graduating Class Year", pageStart AS "Start Page", pageEnd AS "End Page" FROM GradClasses;
+SELECT gradClassID AS "Graduating Class Year", pageStart AS "Start Page", pageEnd AS "End Page" FROM GradClasses ORDER BY gradClassID;
 
 -- Add a new graduating class 
 INSERT INTO GradClasses (gradClassID, pageStart, pageEnd) VALUES
@@ -60,7 +60,7 @@ SELECT gradClassID FROM GradClasses;
 -- =============================================
 
 -- Clubs page table
-SELECT clubID AS "Club ID", clubName AS "Club Name" FROM Clubs;
+SELECT clubID AS "Club ID", clubName AS "Club Name" FROM Clubs ORDER BY clubID;
 
 -- Add a new club
 INSERT INTO Clubs (clubName) VALUES (:clubName_input);
@@ -81,7 +81,7 @@ SELECT clubID, clubName FROM Clubs;
 -- =============================================
 
 -- Sports page table
-SELECT sportID AS "Sport ID", sportType AS "Sport", season AS "Season", varsityLevel AS "Varsity Level" FROM Sports;
+SELECT sportID AS "Sport ID", sportType AS "Sport", season AS "Season", varsityLevel AS "Varsity Level" FROM Sports ORDER BY sportID;
 
 -- Add a new sport
 INSERT INTO Sports (sportType, season, varsityLevel) VALUES
@@ -103,7 +103,7 @@ SELECT sportID, CONCAT(varsityLevel, " ", sportType) FROM Sports;
 -- =============================================
 
 -- Events page table
-SELECT eventID AS "Event ID", eventName AS "Event Name", eventDate AS "Event Date" FROM Events;
+SELECT eventID AS "Event ID", eventName AS "Event Name", eventDate AS "Event Date" FROM Events ORDER BY eventID;
 
 -- Add a new event
 INSERT INTO Events (eventName, eventDate) VALUES
@@ -129,7 +129,8 @@ SELECT StudentHasClubs.studentID AS "Student ID", CONCAT(Students.firstName, " "
     Clubs.clubName AS "Club Name", StudentHasClubs.clubRole AS "Club Role", StudentHasClubs.pageNum AS "Page Num." 
         FROM StudentHasClubs
             LEFT JOIN Students ON Students.studentID = StudentHasClubs.studentID
-            INNER JOIN Clubs ON Clubs.clubID = StudentHasClubs.clubID;
+            INNER JOIN Clubs ON Clubs.clubID = StudentHasClubs.clubID
+            ORDER BY studentHasClubID;
 
 -- Add a new student-club membership
 INSERT INTO StudentHasClubs (studentID, clubID, clubRole, pageNum) VALUES
@@ -152,7 +153,8 @@ SELECT StudentHasSports.studentID AS "Student ID", CONCAT(Students.firstName, " 
     CONCAT(Sports.varsityLevel, " ", Sports.sportType) AS "Sport Team", StudentHasSports.sportRole AS "Sport Role", StudentHasSports.pageNum AS "Page Num." 
         FROM StudentHasSports
             LEFT JOIN Students ON Students.studentID = StudentHasSports.studentID
-            INNER JOIN Sports ON Sports.sportID = StudentHasSports.sportID;
+            INNER JOIN Sports ON Sports.sportID = StudentHasSports.sportID
+            ORDER BY studentHasSportID;
 
 -- Add a new student-sport membership
 INSERT INTO StudentHasSports (studentID, sportID, sportRole, pageNum) VALUES
@@ -175,7 +177,8 @@ SELECT StudentInEvents.studentID AS "Student ID", CONCAT(Students.firstName, " "
     Events.eventName AS "Event Name", StudentInEvents.eventRole AS "Event Role", StudentInEvents.pageNum AS "Page Num." 
         FROM StudentInEvents
             LEFT JOIN Students ON Students.studentID = StudentInEvents.studentID
-            INNER JOIN Events ON Events.eventID = StudentInEvents.eventID;
+            INNER JOIN Events ON Events.eventID = StudentInEvents.eventID
+            ORDER BY studentInEventID;
 
 -- Add a new student-event membership
 INSERT INTO StudentInEvents (studentID, eventID, eventRole, pageNum) VALUES
