@@ -53,7 +53,7 @@ CREATE OR REPLACE TABLE Events (
 -- StudentHasClubs intersection table structure
 CREATE OR REPLACE TABLE StudentHasClubs(
     studentHasClubID int AUTO_INCREMENT UNIQUE NOT NULL,
-    studentID int,
+    studentID int NULL,
     clubID int NOT NULL,
     clubRole ENUM('President', 'Vice-president', 'Secretary', 'Treasurer', 'Historian', 'Member') NOT NULL DEFAULT 'Member',
     pageNum int NOT NULL,
@@ -65,7 +65,7 @@ CREATE OR REPLACE TABLE StudentHasClubs(
 -- StudentHasSports intersection table structure
 CREATE OR REPLACE TABLE StudentHasSports(
     studentHasSportID int AUTO_INCREMENT UNIQUE NOT NULL,
-    studentID int,
+    studentID int NULL,
     sportID int NOT NULL,
     sportRole ENUM('Captain', 'Co-captain', 'Manager', 'Player') NOT NULL DEFAULT 'Player',
     pageNum int NOT NULL,
@@ -77,7 +77,7 @@ CREATE OR REPLACE TABLE StudentHasSports(
 -- StudentHasEvents intersection table structure
 CREATE OR REPLACE TABLE StudentInEvents(
     studentInEventID int AUTO_INCREMENT UNIQUE NOT NULL,
-    studentID int,
+    studentID int NULL,
     eventID int NOT NULL,
     eventRole ENUM('Chairperson', 'Board Member', 'Attendee') NOT NULL DEFAULT 'Attendee',
     pageNum int NOT NULL,

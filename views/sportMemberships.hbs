@@ -23,31 +23,33 @@
         {{/each}}
     </tbody>
 </table>
-
+<h3>Add a new sport membership</h3>
 <p> To add a new record, please enter information below and click 'Submit!' </p>
 <form id = "add-sports-membership-form-ajax">
     {{!-- <label for="input-studentID"> Student ID: </label>
     <input type="text" name="input-studentID" id="input-studentID"> --}}
 
     <select name="input-studentID" id="input-studentID">
-        <option value="">Select a Student</option>
+        <option value="" selected disabled>Select a Student</option>
         {{#each students}}
-        <option value="{{this.studentID}}">{{this.firstName}} {{this.lastName}}</option>
+        <option value="{{this.studentID}}">{{this.studentID}} {{this.firstName}} {{this.lastName}}</option>
         {{/each}}
+        <option value=NULL>NULL</option>
     </select>
 
     {{!-- <label for="input-sportID"> Sport ID: </label>
     <input type="text" name="input-sportID" id="input-sportID"> --}}
 
     <select name="input-sportID" id="input-sportID">
-        <option value="">Select a Sport</option>
+        <option value="" selected disabled>Select a Sport</option>
         {{#each sports}}
-        <option value="{{this.sportID}}">{{this.sportType}}</option>
+        <option value="{{this.sportID}}">{{this.varsityLevel}} {{this.sportType}}</option>
         {{/each}}
     </select>
 
     <label for="input-sport-role"> Sport Role: </label>
     <select name="input-sport-role" id="input-sport-role">
+        <option value="" selected disabled>Select a role</option>
         <option value="'Captain'">Captain</option>
         <option value="'Manager'">Manager</option>
         <option value="'Player'">Player</option>

@@ -1,3 +1,8 @@
+// Citation for add_sportMembership.js functionality:
+// Date: 08/04/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 5
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 // Get the objects we need to modify
 let addSportMembershipForm = document.getElementById('add-sports-membership-form-ajax');
 
@@ -12,6 +17,10 @@ addSportMembershipForm.addEventListener("submit", function (e) {
     let sportIDValue = document.getElementById("input-sportID").value;
     let sportRoleValue = document.getElementById("input-sport-role").value;
     let pageNumValue = document.getElementById("input-page-number").value;
+
+    if (studentIDValue === 'NULL'){
+        studentIDValue = null;
+    }
 
     // Put our data we want to send in a javascript object
     let data = {
@@ -38,6 +47,8 @@ addSportMembershipForm.addEventListener("submit", function (e) {
             sportIDValue = '';
             sportRoleValue = '';
             pageNumValue = '';
+
+            location.reload();
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
@@ -46,12 +57,10 @@ addSportMembershipForm.addEventListener("submit", function (e) {
 
     // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
-
 })
 
 
-// Creates a single row from an Object representing a single record from 
-// bsg_people
+// Creates a single row from an Object representing a single record from StudentHasSports
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
@@ -64,7 +73,7 @@ addRowToTable = (data) => {
     let parsedData = JSON.parse(data);
     let newRow = parsedData[parsedData.length - 1]
 
-    // Create a row and 5 cells
+    // Create a row and 6 cells
     let row = document.createElement("TR");
     let idCell = document.createElement("TD");
     let studentIDCell = document.createElement("TD");
