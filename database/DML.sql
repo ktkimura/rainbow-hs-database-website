@@ -128,7 +128,7 @@ SELECT eventID, eventName FROM Events;
 SELECT StudentHasClubs.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", StudentHasClubs.clubID AS "Club ID", 
     Clubs.clubName AS "Club Name", StudentHasClubs.clubRole AS "Club Role", StudentHasClubs.pageNum AS "Page Num." 
         FROM StudentHasClubs
-            INNER JOIN Students ON Students.studentID = StudentHasClubs.studentID
+            LEFT JOIN Students ON Students.studentID = StudentHasClubs.studentID
             INNER JOIN Clubs ON Clubs.clubID = StudentHasClubs.clubID;
 
 -- Add a new student-club membership
@@ -151,7 +151,7 @@ DELETE FROM StudentHasClubs WHERE studentHasClubID = :studentHasClubID_from_tabl
 SELECT StudentHasSports.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", StudentHasSports.sportID AS "Sport ID", 
     CONCAT(Sports.varsityLevel, " ", Sports.sportType) AS "Sport Team", StudentHasSports.sportRole AS "Sport Role", StudentHasSports.pageNum AS "Page Num." 
         FROM StudentHasSports
-            INNER JOIN Students ON Students.studentID = StudentHasSports.studentID
+            LEFT JOIN Students ON Students.studentID = StudentHasSports.studentID
             INNER JOIN Sports ON Sports.sportID = StudentHasSports.sportID;
 
 -- Add a new student-sport membership
@@ -174,7 +174,7 @@ DELETE FROM StudentHasSports WHERE studentHasSportID = :studentHasSportID_from_t
 SELECT StudentInEvents.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", StudentInEvents.eventID AS "Event ID", 
     Events.eventName AS "Event Name", StudentInEvents.eventRole AS "Event Role", StudentInEvents.pageNum AS "Page Num." 
         FROM StudentInEvents
-            INNER JOIN Students ON Students.studentID = StudentInEvents.studentID
+            LEFT JOIN Students ON Students.studentID = StudentInEvents.studentID
             INNER JOIN Events ON Events.eventID = StudentInEvents.eventID;
 
 -- Add a new student-event membership

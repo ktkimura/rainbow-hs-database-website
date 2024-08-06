@@ -80,7 +80,7 @@ app.get('/clubMemberships', function(req, res) {
     let getClubMemberships = `SELECT StudentHasClubs.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
         StudentHasClubs.clubID AS "Club ID", Clubs.clubName AS "Club Name", StudentHasClubs.clubRole AS "Club Role", StudentHasClubs.pageNum AS "Page Num." 
             FROM StudentHasClubs
-                INNER JOIN Students ON Students.studentID = StudentHasClubs.studentID
+                LEFT JOIN Students ON Students.studentID = StudentHasClubs.studentID
                 INNER JOIN Clubs ON Clubs.clubID = StudentHasClubs.clubID;`;
 
     db.pool.query(getClubMemberships, function(error, rows, fields){
@@ -94,7 +94,7 @@ app.get('/sportMemberships', function(req, res) {
         StudentHasSports.sportID AS "Sport ID", CONCAT(Sports.varsityLevel, " ", Sports.sportType) AS "Sport Team", StudentHasSports.sportRole AS "Sport Role", 
         StudentHasSports.pageNum AS "Page Num." 
             FROM StudentHasSports
-                INNER JOIN Students ON Students.studentID = StudentHasSports.studentID
+                LEFT JOIN Students ON Students.studentID = StudentHasSports.studentID
                 INNER JOIN Sports ON Sports.sportID = StudentHasSports.sportID;`;
 
     let getStudentInfo = `SELECT * FROM Students;`;
@@ -125,19 +125,16 @@ app.post('/add-sports-membership-ajax', function (req, res) {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
-    // Capture NULL values
+    // checking if user selected NULL from student dropdown
+    let query1;
     let studentID = parseInt(data.studentID);
-    if (isNaN(studentID)) {
-        studentID = 'NULL'
+    if (isNaN(studentID)){
+        query1 = `INSERT INTO StudentHasSports (studentID, sportID, sportRole, pageNum) VALUES (NULL, '${data.sportID}', ${data.sportRole}, ${data.pageNum})`;
+    } else {
+        query1 = `INSERT INTO StudentHasSports (studentID, sportID, sportRole, pageNum) VALUES ('${studentID}', '${data.sportID}', ${data.sportRole}, ${data.pageNum})`;
     }
 
-    let sportID = parseInt(data.sportID);
-    if (isNaN(sportID)) {
-        sportID = 'NULL'
-    }
 
-    // Create the query and run it on the database
-    query1 = `INSERT INTO StudentHasSports (studentID, sportID, sportRole, pageNum) VALUES ('${data.studentID}', '${data.sportID}', ${data.sportRole}, ${data.pageNum})`;
     db.pool.query(query1, function (error, rows, fields) {
 
         // Check to see if there was an error
@@ -149,7 +146,12 @@ app.post('/add-sports-membership-ajax', function (req, res) {
         }
         else {
             // If there was no error, perform a SELECT * on bsg_people
-            query2 = `SELECT * FROM StudentHasSports;`;
+            query2 = `SELECT StudentHasSports.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
+            StudentHasSports.sportID AS "Sport ID", CONCAT(Sports.varsityLevel, " ", Sports.sportType) AS "Sport Team", StudentHasSports.sportRole AS "Sport Role", 
+            StudentHasSports.pageNum AS "Page Num." 
+                FROM StudentHasSports
+                    LEFT JOIN Students ON Students.studentID = StudentHasSports.studentID
+                    INNER JOIN Sports ON Sports.sportID = StudentHasSports.sportID;`;
             db.pool.query(query2, function (error, rows, fields) {
 
                 // If there was an error on the second query, send a 400
@@ -172,7 +174,7 @@ app.get('/eventMemberships', function(req, res) {
     let getEventMemberships = `SELECT StudentInEvents.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
         StudentInEvents.eventID AS "Event ID", Events.eventName AS "Event Name", StudentInEvents.eventRole AS "Event Role", StudentInEvents.pageNum AS "Page Num." 
             FROM StudentInEvents
-                INNER JOIN Students ON Students.studentID = StudentInEvents.studentID
+                LEFT JOIN Students ON Students.studentID = StudentInEvents.studentID
                 INNER JOIN Events ON Events.eventID = StudentInEvents.eventID;`;
 
     db.pool.query(getEventMemberships, function(error, rows, fields){
