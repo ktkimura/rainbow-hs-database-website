@@ -1,16 +1,18 @@
 <h2>Edit a Sport Membership</h2>
 <p>All fields are initally populated with the selected sport membership's data. Use the dropdowns and text box below to make any changes you want to the membership.</p>
+<p>Click 'Update Sport Membership' when you are done!</p>
 <form id="update-sportMembership-form-ajax">
     <input type="hidden" id="studentHasSportID" value={{sportMembership.studentHasSportID}}>
     <label for="input-student-id">Student ID: </label>
     <select name="input-student-id" id="studentSelect">
+        <option value=NULL 
+        {{#if (ne sportMembership.studentID 'NULL')}}{{else}}selected{{/if}}>NULL</option> {{!-- Only have the NULL option selected if that was the original value --}}
         {{#each students}}
             <option value={{this.studentID}}
                 {{#if (eq this.studentID ../sportMembership.studentID)}}selected{{/if}} {{!-- Logic to handle the original value being selected--}}
             >
             {{this.studentID}} {{this.firstName}} {{this.lastName}}</option>
         {{/each}}
-        <option value=NULL>NULL</option>
     </select>
     <label for="input-sport-team">Sport Team: </label>
     <select name="input-sport-team" id="sportSelect">
@@ -30,7 +32,7 @@
     <label for="input-page-num">Page Num: </label>
     <input type="text" name="input-page-num" id="pageNumInput" value={{sportMembership.pageNum}}>
 
-    <input type = "submit">
+    <input type = "submit" value="Update Sport Membership">
 </form>
 
 <script src="./js/update_sportMembership.js"></script>
