@@ -8,7 +8,7 @@
 */
 var express = require('express');   // We are using the express library for the web server
 var app     = express();            // We need to instantiate an express object to interact with the server in our code
-PORT        = 4021;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 4020;                 // Set a port number at the top so it's easy to change in the future
 
 // Helpers
 const dateFormat = require('handlebars-dateformat');            // for formatting eventDate in MM/DD/YYYY
@@ -102,7 +102,8 @@ app.put('/put-student-ajax', function(req,res,next){
         } else {
             res.send(rows);
         }
-  })});
+    })
+});
 
 app.get('/gradClasses', function(req, res) {
     let getGradClasses = `SELECT gradClassID AS "Graduating Class Year", pageStart AS "Start Page", pageEnd AS "End Page" FROM GradClasses ORDER BY gradClassID;`;
@@ -196,9 +197,9 @@ app.post('/add-sports-membership-ajax', function (req, res) {
     let query1;
     let studentID = parseInt(data.studentID);
     if (isNaN(studentID)){  // NULL wasn't being passed in correctly unless I typed it raw into the SQL query, so this is my workaround - Katie
-        query1 = `INSERT INTO StudentHasSports (studentID, sportID, sportRole, pageNum) VALUES (NULL, '${data.sportID}', ${data.sportRole}, ${data.pageNum})`;
+        query1 = `INSERT INTO StudentHasSports (studentID, sportID, sportRole, pageNum) VALUES (NULL, ${data.sportID}, '${data.sportRole}', ${data.pageNum})`;
     } else {
-        query1 = `INSERT INTO StudentHasSports (studentID, sportID, sportRole, pageNum) VALUES ('${studentID}', '${data.sportID}', ${data.sportRole}, ${data.pageNum})`;
+        query1 = `INSERT INTO StudentHasSports (studentID, sportID, sportRole, pageNum) VALUES (${studentID}, ${data.sportID}, '${data.sportRole}', ${data.pageNum})`;
     }
 
 
@@ -257,6 +258,68 @@ app.delete('/delete-sport-membership-ajax/', function(req,res,next){
                 res.sendStatus(204);
               }
 })});
+
+app.get('/edit-sport-membership-view', function(req,res) {
+    let sportMembershipID = parseInt(req.query.id);
+
+    let getSportMembership = `SELECT StudentHasSports.studentHasSportID, StudentHasSports.studentID, CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
+            StudentHasSports.sportID, CONCAT(Sports.varsityLevel, " ", Sports.sportType) AS "Sport Team", StudentHasSports.sportRole, StudentHasSports.pageNum 
+                FROM StudentHasSports
+                    LEFT JOIN Students ON Students.studentID = StudentHasSports.studentID
+                    INNER JOIN Sports ON Sports.sportID = StudentHasSports.sportID
+                    WHERE studentHasSportID = ?`;
+
+    let getStudents = `SELECT studentID, firstName, lastName, gradClassID FROM Students ORDER BY studentID;`;
+    let getSports = `SELECT sportID, CONCAT(Sports.varsityLevel, " ", Sports.sportType) AS "Sport Team" FROM Sports ORDER BY sportID;`;
+
+    db.pool.query(getSportMembership, [sportMembershipID], function(error, rows, fields){
+        let sportMembershipData = rows;
+        
+        db.pool.query(getStudents, function(error, rows, fields){
+            let students = rows;
+
+            db.pool.query(getSports, function(error, rows, fields){
+                let sports = rows;
+
+                res.render('editSportMembership', {sportMembership: sportMembershipData[0], students: students, sports: sports});
+            });
+        });
+    });
+});
+
+
+app.put('/put-sport-membership-ajax', function(req,res) {
+    let data = req.body;
+    let studentHasSportID = parseInt(data.studentHasSportID)
+    let studentID = parseInt(data.studentID);
+    let sportID = parseInt(data.sportID);
+    let sportRole = data.sportRole;
+    let pageNum = parseInt(data.pageNum);
+    
+    let queryUpdateSportMembership;
+
+    if (isNaN(studentID)) {
+        queryUpdateSportMembership = `UPDATE StudentHasSports 
+        SET studentID = NULL, sportID = ${sportID}, sportRole = '${sportRole}', pageNum = ${pageNum}
+        WHERE studentHasSportID = ${studentHasSportID};`;
+    } else {
+        queryUpdateSportMembership = `UPDATE StudentHasSports 
+        SET studentID = ${studentID}, sportID = ${sportID}, sportRole = '${sportRole}', pageNum = ${pageNum}
+        WHERE studentHasSportID = ${studentHasSportID};`;
+    }
+
+    db.pool.query(queryUpdateSportMembership, function(error, rows, fields){
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            res.json({ success: true, redirectUrl: '/sportMemberships' });
+        }
+    });
+});
+
+
 
 app.get('/eventMemberships', function(req, res) {
     let getEventMemberships = `SELECT studentInEventID, StudentInEvents.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
