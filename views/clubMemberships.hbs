@@ -1,5 +1,5 @@
 <h2>Club Memberships</h2>
-<table>
+<table id="club-memberships-table">
     <thead>
         <tr>
             {{#each data.[0]}}
@@ -9,19 +9,66 @@
                     </th>
                 {{/if}}
             {{/each}}
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
         {{#each data}}
         {{!-- NOTE: attributes of 'this' need to match however they are aliased in the SELECT statement in app.js. Have to put them in [] since there are spaces --}}
-        <tr>
-            <td>{{this.[Student ID]}}</td>
-            <td>{{this.[Student Name]}}</td>
+        <tr data-value={{this.studentHasClubID}}>
+            <td>{{convertNull this.[Student ID]}}</td>
+            <td>{{convertNull this.[Student Name]}}</td>
             <td>{{this.[Club ID]}}</td>
             <td>{{this.[Club Name]}}</td>
             <td>{{this.[Club Role]}}</td>
             <td>{{this.[Page Num.]}}</td>
+            <td><button onclick="deleteClubMembership({{this.studentHasClubID}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+
+{{!-- 
+-- Citation for add sport membership form AND student and sport foreign key dropdowns:
+-- Date: 08/04/2024
+-- Adapted from CS340 2024 Summer Term Node.js starter code Step 6
+-- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app 
+--}}
+
+<h3>Add a new club membership</h3>
+<p> To add a new record, please enter information below and click 'Submit!' </p>
+<form id = "add-club-membership-form-ajax">
+    <select name="input-studentID" id="input-studentID">
+        <option value="" selected disabled>Select a Student</option>
+        {{#each students}}
+        <option value="{{this.studentID}}">{{this.studentID}} {{this.firstName}} {{this.lastName}}</option>
+        {{/each}}
+        <option value=NULL>NULL</option>
+    </select>
+
+    <select name="input-clubID" id="input-clubID">
+        <option value="" selected disabled>Select an event</option>
+        {{#each clubs}}
+        <option value="{{this.clubID}}">{{this.clubName}} </option>
+        {{/each}}
+    </select>
+
+    <label for="input-club-role"> Club Role: </label>
+    <select name="input-club-role" id="input-club-role">
+        <option value="" selected disabled>Select a role</option>
+        <option value="'President'">Presient</option>
+        <option value="'Vice-President'">Vice-President</option>
+        <option value="'Secretary'">Secretary</option>
+        <option value="'Treasurer'">Treasurer</option>
+        <option value="'Historian'">Historian</option>
+        <option value="'Member'">Member</option>
+    </select>
+
+    <label for="input-page-number"> Page Number: </label>
+    <input type="text" name="input-page-number" id="input-page-number">
+
+    <input type = "submit">
+</form>
+
+<script src="./js/add_clubMembership.js"></script>
+<script src="./js/delete_clubMembership.js"></script>

@@ -1,5 +1,5 @@
 <h2>Event Memberships</h2>
-<table>
+<table id="event-memberships-table">
     <thead>
         <tr>
             {{#each data.[0]}}
@@ -9,19 +9,63 @@
                     </th>
                 {{/if}}
             {{/each}}
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
         {{#each data}}
         {{!-- NOTE: attributes of 'this' need to match however they are aliased in the SELECT statement in app.js. Have to put them in [] since there are spaces --}}
-        <tr>
-            <td>{{this.[Student ID]}}</td>
-            <td>{{this.[Student Name]}}</td>
+        <tr data-value={{this.studentInEventID}}>
+            <td>{{convertNull this.[Student ID]}}</td>
+            <td>{{convertNull this.[Student Name]}}</td>
             <td>{{this.[Event ID]}}</td>
             <td>{{this.[Event Name]}}</td>
             <td>{{this.[Event Role]}}</td>
             <td>{{this.[Page Num.]}}</td>
+            <td><button onclick="deleteEventMembership({{this.studentInEventID}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+
+{{!-- 
+-- Citation for add sport membership form AND student and sport foreign key dropdowns:
+-- Date: 08/04/2024
+-- Adapted from CS340 2024 Summer Term Node.js starter code Step 6
+-- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app 
+--}}
+
+<h3>Add a new event membership</h3>
+<p> To add a new record, please enter information below and click 'Submit!' </p>
+<form id = "add-event-membership-form-ajax">
+    <select name="input-studentID" id="input-studentID">
+        <option value="" selected disabled>Select a Student</option>
+        {{#each students}}
+        <option value="{{this.studentID}}">{{this.studentID}} {{this.firstName}} {{this.lastName}}</option>
+        {{/each}}
+        <option value=NULL>NULL</option>
+    </select>
+
+    <select name="input-eventID" id="input-eventID">
+        <option value="" selected disabled>Select an event</option>
+        {{#each events}}
+        <option value="{{this.eventID}}">{{this.eventName}} </option>
+        {{/each}}
+    </select>
+
+    <label for="input-event-role"> Event Role: </label>
+    <select name="input-event-role" id="input-event-role">
+        <option value="" selected disabled>Select a role</option>
+        <option value="'Attendee'">Attendee</option>
+        <option value="'Chairperson'">Chairperson</option>
+        <option value="'Board Member'">Board Member</option>
+    </select>
+
+    <label for="input-page-number"> Page Number: </label>
+    <input type="text" name="input-page-number" id="input-page-number">
+
+    <input type = "submit">
+</form>
+
+<script src="./js/add_eventMembership.js"></script>
+<script src="./js/delete_eventMembership.js"></script>
