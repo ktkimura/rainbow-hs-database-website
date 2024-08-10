@@ -9,6 +9,7 @@
                     </th>
                 {{/if}}
             {{/each}}
+            <th>Edit</th>
             <th>Delete</th>
         </tr>
     </thead>
@@ -22,6 +23,7 @@
             <td>{{this.[Sport Team]}}</td>
             <td>{{this.[Sport Role]}}</td>
             <td>{{this.[Page Num.]}}</td>
+            <td><button onclick="getSportMembership({{this.studentHasSportID}})">Edit</button></td>
             <td><button onclick="deleteSportMembership({{this.studentHasSportID}})">Delete</button></td>
         </tr>
         {{/each}}
@@ -56,16 +58,17 @@
     <label for="input-sport-role"> Sport Role: </label>
     <select name="input-sport-role" id="input-sport-role">
         <option value="" selected disabled>Select a role</option>
-        <option value="'Captain'">Captain</option>
-        <option value="'Manager'">Manager</option>
-        <option value="'Player'">Player</option>
+        <option value="Captain">Captain</option>
+        <option value="Manager">Manager</option>
+        <option value="Player">Player</option>
     </select>
 
     <label for="input-page-number"> Page Number: </label>
     <input type="text" name="input-page-number" id="input-page-number">
 
-    <input type = "submit">
+    <input type = "submit" value="Submit">
 </form>
 
 <script src="./js/add_sportMembership.js"></script>
 <script src="./js/delete_sportMembership.js"></script>
+<script src="./js/get_sportMembership.js"></script>
