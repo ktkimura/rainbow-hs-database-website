@@ -8,7 +8,7 @@
 */
 var express = require('express');   // We are using the express library for the web server
 var app     = express();            // We need to instantiate an express object to interact with the server in our code
-PORT        = 4020;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 4021;                 // Set a port number at the top so it's easy to change in the future
 
 // Helpers
 const dateFormat = require('handlebars-dateformat');            // for formatting eventDate in MM/DD/YYYY
