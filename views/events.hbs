@@ -1,5 +1,5 @@
 <h2>Events</h2>
-<table>
+<table id = "events-table">
     <thead>
         <tr>
             {{#each data.[0]}}
@@ -7,16 +7,41 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
         {{#each data}}
         {{!-- NOTE: attributes of 'this' need to match however they are aliased in the SELECT statement in app.js. Have to put them in [] since there are spaces --}}
-        <tr>
+        <tr data-value={{this.[Event ID]}}>
             <td>{{this.[Event ID]}}</td>
             <td>{{this.[Event Name]}}</td>
             <td>{{dateFormat this.[Event Date] "MM/DD/YYYY"}}</td>
+            <td><button onclick="deleteEvent({{this.[Event ID]}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+
+{{!-- 
+-- Citation for add event form
+-- Date: 08/09/2024
+-- Adapted from CS340 2024 Summer Term Node.js starter code Step 6
+-- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app 
+--}}
+
+
+<h3>Add a new event</h3>
+<p>To add a new event, please enter their information below and click 'Submit'!</p>
+<form id="add-event-form-ajax">
+    <label for="input-eventName">Event Name: </label>
+    <input type="text" name="input-eventName" id="input-eventName">
+    
+    <label for="input-eventDate">Date: </label>
+    <input type="date" name="input-eventDate" id="input-eventDate">
+
+    <input type="submit">
+</form>
+
+<script src="./js/add_event.js"></script>
+<script src="./js/delete_event.js"></script>
