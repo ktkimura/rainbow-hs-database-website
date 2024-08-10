@@ -8,7 +8,7 @@
 */
 var express = require('express');   // We are using the express library for the web server
 var app     = express();            // We need to instantiate an express object to interact with the server in our code
-PORT        = 4021;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 4022;                 // Set a port number at the top so it's easy to change in the future
 
 // Helpers
 const dateFormat = require('handlebars-dateformat');            // for formatting eventDate in MM/DD/YYYY
@@ -83,7 +83,47 @@ app.get('/students', function(req, res){
             return res.render('students', { students: students, gradClasses: gradClasses});
         });
     });
-});                                                         
+});   
+
+// Citation for add-student-ajax route functionality:
+// Date: 08/09/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 5
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
+app.post('/add-student-ajax', function (req, res) {
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Students (studentID, firstName, lastName, gradClassID) VALUES ('${data.studentID}', '${data.firstName}', '${data.lastName}', ${data.gradClassID});`;
+    db.pool.query(query1, function (error, rows, fields) {
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            query2 = `SELECT * FROM Students;`;
+            db.pool.query(query2, function (error, rows, fields) {
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
 
 
 app.put('/put-student-ajax', function(req,res,next){
@@ -212,7 +252,6 @@ app.post('/add-sports-membership-ajax', function (req, res) {
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on bsg_people
             query2 = `SELECT studentHasSportID, StudentHasSports.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
             StudentHasSports.sportID AS "Sport ID", CONCAT(Sports.varsityLevel, " ", Sports.sportType) AS "Sport Team", StudentHasSports.sportRole AS "Sport Role", 
             StudentHasSports.pageNum AS "Page Num." 
