@@ -1,5 +1,5 @@
 <h2>Clubs</h2>
-<table>
+<table id="club-table">
     <thead>
         <tr>
             {{#each data.[0]}}
@@ -19,3 +19,17 @@
         {{/each}}
     </tbody>
 </table>
+
+{{!-- Form to add a record to the table --}}
+<h2>Add a new club</h2>
+<p>To add a new club, please enter their information below and click 'Submit'!</p>
+<form id="add-club-form-ajax">
+
+    <label for="input-club-name">Club Name: </label>
+    <input type="text" name="input-club-name" id="input-club-name">
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_club.js"></script>
