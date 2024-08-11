@@ -147,6 +147,31 @@ app.put('/put-student-ajax', function(req,res,next){
         }
   })});
 
+// Citation for delete-student-ajax route functionality:
+// Date: 08/09/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 7
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
+app.delete('/delete-student-ajax/', function (req, res, next) {
+    let data = req.body;
+    let studentID = parseInt(data.studentID);
+    let deleteStudent = `DELETE FROM Students WHERE studentID = ${studentID};`;
+
+    // Run the 1st query
+    db.pool.query(deleteStudent, [studentID], function (error, rows, fields) {
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+
+        else {
+            res.sendStatus(204);
+        }
+    })
+});
+
 app.get('/gradClasses', function(req, res) {
     let getGradClasses = `SELECT gradClassID AS "Graduating Class Year", pageStart AS "Start Page", pageEnd AS "End Page" FROM GradClasses ORDER BY gradClassID;`;
 
@@ -208,6 +233,32 @@ app.post('/add-grad-class-ajax', function (req, res) {
     }
 });
 
+// Citation for delete-gradClass-ajax route functionality:
+// Date: 08/09/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 7
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
+app.delete('/delete-gradClass-ajax/', function (req, res, next) {
+    let data = req.body;
+    let gradClassID = parseInt(data.gradClassID);
+    let deleteGradClass= `DELETE FROM GradClasses WHERE gradClassID = ${gradClassID};`;
+
+
+    // Run the 1st query
+    db.pool.query(deleteGradClass, [gradClassID], function (error, rows, fields) {
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+
+        else {
+            res.sendStatus(204);
+        }
+    })
+});
+
 app.get('/clubs', function(req, res) {
     let getClubs = `SELECT clubID AS "Club ID", clubName AS "Club Name" FROM Clubs ORDER BY clubID;`;
 
@@ -216,6 +267,10 @@ app.get('/clubs', function(req, res) {
     })
 })
 
+// Citation for add-club-ajax route functionality:
+// Date: 08/09/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 5
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
 app.post('/add-club-ajax', function (req, res) {
     // Capture the incoming data and parse it back to a JS object
@@ -252,6 +307,30 @@ app.post('/add-club-ajax', function (req, res) {
             }
         })
     }
+});
+
+// Citation for delete-club-ajax route functionality:
+// Date: 08/09/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 7
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
+app.delete('/delete-club-ajax/', function (req, res, next) {
+    let data = req.body;
+    let clubID = parseInt(data.clubID);
+    let deleteClubs = `DELETE FROM Clubs WHERE clubID = ${clubID}`;
+
+    // Run the 1st query
+    db.pool.query(deleteClubs, [clubID], function (error, rows, fields) {
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+
+        else {
+            res.sendStatus(204);
+        }
+    })
 });
 
 app.get('/sports', function(req, res) {
@@ -303,6 +382,30 @@ app.post('/add-sport-ajax', function (req, res) {
             }
         })
     }
+});
+// Citation for delete-sport-ajax route functionality:
+// Date: 08/09/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 7
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
+app.delete('/delete-sport-ajax/', function (req, res, next) {
+    let data = req.body;
+    let sportID = parseInt(data.sportID);
+    let deleteSport = `DELETE FROM Sports WHERE sportID = ${sportID};`;
+
+
+    // Run the 1st query
+    db.pool.query(deleteSport, [sportID], function (error, rows, fields) {
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+
+        else {
+            res.sendStatus(204);
+        }
+    })
 });
 
 app.get('/events', function(req, res) {

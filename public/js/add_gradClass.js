@@ -77,15 +77,24 @@ addRowToTable = (data) => {
     let pageStartCell = document.createElement("TD");
     let pageEndCell = document.createElement("TD");
 
+    let deleteCell = document.createElement("TD");
+
     // Fill the cells with correct data
     idCell.innerText = newRow.id;
-    pageStartCell.innerText = newRow.fname;
-    pageEndCell.innerText = newRow.lname;
+    pageStartCell.innerText = newRow.pageStart;
+    pageEndCell.innerText = newRow.pageEnd;
+
+    deleteCell = document.createElement("button");
+    deleteCell.innerHTML = "Delete";
+    deleteCell.onclick = function () {
+        deletePerson(newRow.id);
+    };
 
     // Add the cells to the row 
     row.appendChild(idCell);
     row.appendChild(pageStartCell);
     row.appendChild(pageEndCell);
+    row.appendChild(deleteCell);
 
     // Add the row to the table
     currentTable.appendChild(row);

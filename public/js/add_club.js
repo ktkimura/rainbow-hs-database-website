@@ -1,4 +1,8 @@
-// Get the objects we need to modify
+// Citation for add_student.js functionality:
+// Date: 08/09/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 5
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 let addClubForm = document.getElementById('add-club-form-ajax');
 
 // Modify the objects we need
@@ -62,13 +66,22 @@ addRowToTable = (data) => {
     let idCell = document.createElement("TD");
     let clubNameCell = document.createElement("TD");
 
+    let deleteCell = document.createElement("TD");
+
     // Fill the cells with correct data
     idCell.innerText = newRow.id;
     clubNameCell.innerText = newRow.clubName;
 
+    deleteCell = document.createElement("button");
+    deleteCell.innerHTML = "Delete";
+    deleteCell.onclick = function () {
+        deletePerson(newRow.id);
+    };
+
     // Add the cells to the row 
     row.appendChild(idCell);
     row.appendChild(clubNameCell);
+    row.appendChild(deleteCell);
 
     // Add the row to the table
     currentTable.appendChild(row);

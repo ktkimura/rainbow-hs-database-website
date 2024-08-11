@@ -7,6 +7,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -17,10 +18,13 @@
             <td>{{this.[First Name]}}</td>
             <td>{{this.[Last Name]}}</td>
             <td>{{this.[Graduating Class]}}</td>
+            <td><button onclick="deletePerson({{this.[Student ID]}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+
+<script src="./js/delete_student.js"></script>
 
 {{!-- 
 -- Citation for update_student.js functionality:
@@ -47,6 +51,8 @@
             <option value={{this.gradClassID}}>{{this.gradClassID}}</option>
         {{/each}}
     </select>
+
+
     <input type="submit">
 </form>
 
@@ -77,8 +83,6 @@
         <option value="{{this.gradClassID}}">{{this.gradClassID}}</option>
         {{/each}}
     </select>
-
-
 
     <input type="submit">
 </form>

@@ -7,6 +7,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -15,10 +16,20 @@
         <tr>
             <td>{{this.[Club ID]}}</td>
             <td>{{this.[Club Name]}}</td>
+            <td><button onclick="deleteClub({{this.[Club ID]}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+
+<script src="./js/delete_club.js"></script>
+
+{{!--
+-- Citation for insert handlebars functionality:
+-- Date: 08/09/2024
+-- Adapted from CS340 2024 Summer Term Node.js starter code Step 5
+-- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+--}}
 
 {{!-- Form to add a record to the table --}}
 <h2>Add a new club</h2>

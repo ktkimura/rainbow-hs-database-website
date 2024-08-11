@@ -75,17 +75,26 @@ addRowToTable = (data) => {
     let seasonCell = document.createElement("TD");
     let varsityLevelCell = document.createElement("TD");
 
+    let deleteCell = document.createElement("TD");
+
     // Fill the cells with correct data
     idCell.innerText = newRow.id;
     sportTypeCell.innerText = newRow.sportType;
     seasonCell.innerText = newRow.season;
     varsityLevelCell.innerText = newRow.varsityLevel;
 
+    deleteCell = document.createElement("button");
+    deleteCell.innerHTML = "Delete";
+    deleteCell.onclick = function () {
+        deletePerson(newRow.id);
+    };
+
     // Add the cells to the row 
     row.appendChild(idCell);
     row.appendChild(sportTypeCell);
     row.appendChild(seasonCell);
     row.appendChild(varsityLevelCell);
+    row.appendChild(deleteCell);
 
     // Add the row to the table
     currentTable.appendChild(row);
