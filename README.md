@@ -4,14 +4,7 @@ At Rainbow High School (Pride of Liechtenstein) we PRIDE ourselves in our organi
 How else do you think we manage over 10,000 students on our campus everyday?
 
 This website's purpose is to benefit our hardworking yearbook team and assist them in their annual process of the highly anticipated yearbook.
-
-## Links
-Static HTML version: https://web.engr.oregonstate.edu/~kimuraka/cs340/ 
-Dynamic version: http://flip2.engr.oregonstate.edu:4021/
-
-## Important Commands
-- ```npm run forever``` --> server app.js even when terminal is closed
-- ```mysql -u cs340_kimuraka -p -h classmysql.engr.oregonstate.edu``` --> connect to Katie's database
+**Access our website here: http://classwork.engr.oregonstate.edu:4021/**
 
 ## Code Citations
 **Citation for Handlebars and Express setup**
