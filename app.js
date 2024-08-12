@@ -8,7 +8,7 @@
 */
 var express = require('express');   // We are using the express library for the web server
 var app     = express();            // We need to instantiate an express object to interact with the server in our code
-PORT        = 4022;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 4021;                 // Set a port number at the top so it's easy to change in the future
 
 // Helpers
 const dateFormat = require('handlebars-dateformat');            // for formatting eventDate in MM/DD/YYYY
@@ -128,6 +128,10 @@ app.post('/add-student-ajax', function (req, res) {
     }
 });
 
+// Citation for put-student-ajax route functionality:
+// Date: 08/05/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 8
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
 app.put('/put-student-ajax', function(req,res,next){
     let data = req.body;
@@ -411,11 +415,6 @@ app.delete('/delete-sport-ajax/', function (req, res, next) {
 });
 
 
-/* 
-*   Events Page
-*/
-
-// initial page load 
 app.get('/events', function(req, res) {
     let getEvents = `SELECT eventID AS "Event ID", eventName AS "Event Name", eventDate AS "Event Date" FROM Events ORDER BY eventID;`;
 
@@ -424,7 +423,11 @@ app.get('/events', function(req, res) {
     })
 })
 
-// POST request to add an event
+// Citation for add-event-ajax route functionality:
+// Date: 08/10/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 5
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 app.post('/add-event-ajax', function(req, res) 
 {
     // Capture the incoming data and parse it back to a JS object
@@ -465,7 +468,11 @@ app.post('/add-event-ajax', function(req, res)
     })
 });
 
-//DELETE request to remove an event
+// Citation for delete-event-ajax route functionality:
+// Date: 08/10/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 7
+
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 app.delete('/delete-event-ajax/', function(req,res,next){
     let data = req.body;
     let eventID = parseInt(data.id);
@@ -485,10 +492,6 @@ app.delete('/delete-event-ajax/', function(req,res,next){
                 res.sendStatus(204);
               }
   })});
-
-/* 
-*   StudentHasClubs Page aka Club Memberships page
-*/
 
 app.get('/clubMemberships', function(req, res) {
     let getClubMemberships = `SELECT studentHasClubID, StudentHasClubs.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
@@ -521,7 +524,11 @@ app.get('/clubMemberships', function(req, res) {
     })
 })
 
-// POST request to add a club membership
+// Citation for add-club-membership-ajax route functionality:
+// Date: 08/10/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 5
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 app.post('/add-club-membership-ajax', function (req, res) {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
@@ -570,7 +577,11 @@ app.post('/add-club-membership-ajax', function (req, res) {
     })
 });
 
-// DELETE request to remove an event membership
+// Citation for delete-club-membership-ajax route functionality:
+// Date: 08/10/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 7
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 app.delete('/delete-club-membership-ajax/', function(req,res,next){
     let data = req.body;
     let clubMembershipID = parseInt(data.id);
@@ -590,11 +601,7 @@ app.delete('/delete-club-membership-ajax/', function(req,res,next){
               }
 })});
 
-/* 
-*   StudentHasSports Page aka Sport Memberships page
-*/
 
-// initial page load 
 app.get('/sportMemberships', function(req, res) {
 
     let getSportMemberships = `SELECT studentHasSportID, StudentHasSports.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
@@ -628,8 +635,12 @@ app.get('/sportMemberships', function(req, res) {
     })
 })
 
-// POST request to add a sports membership
-app.post('/add-sports-membership-ajax', function (req, res) {
+// Citation for add-sport-membership-ajax route functionality:
+// Date: 08/05/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 5
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
+app.post('/add-sport-membership-ajax', function (req, res) {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
@@ -678,7 +689,11 @@ app.post('/add-sports-membership-ajax', function (req, res) {
     })
 });
 
-// DELETE request to remove a sport membership
+// Citation for delete-sport-membership-ajax route functionality:
+// Date: 08/05/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 7
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 app.delete('/delete-sport-membership-ajax/', function(req,res,next){
     let data = req.body;
     let sportMembershipID = parseInt(data.id);
@@ -727,6 +742,10 @@ app.get('/edit-sport-membership-view', function(req,res) {
     });
 });
 
+// Citation for put-sport-membership-ajax route functionality:
+// Date: 08/09/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 8
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
 app.put('/put-sport-membership-ajax', function(req,res) {
     let data = req.body;
@@ -758,8 +777,6 @@ app.put('/put-sport-membership-ajax', function(req,res) {
         }
     });
 });
-
-
 
 
 app.get('/eventMemberships', function(req, res) {
@@ -794,7 +811,11 @@ app.get('/eventMemberships', function(req, res) {
     })
 })
 
-// POST request to add an events membership
+// Citation for add-event-membership-ajax route functionality:
+// Date: 08/10/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 5
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 app.post('/add-event-membership-ajax', function (req, res) {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
@@ -843,7 +864,11 @@ app.post('/add-event-membership-ajax', function (req, res) {
     })
 });
 
-// DELETE request to remove an event membership
+// Citation for delete-event-membership-ajax route functionality:
+// Date: 08/10/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 7
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 app.delete('/delete-event-membership-ajax/', function(req,res,next){
     let data = req.body;
     let eventMembershipID = parseInt(data.id);

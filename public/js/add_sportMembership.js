@@ -4,7 +4,7 @@
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
 // Get the objects we need to modify
-let addSportMembershipForm = document.getElementById('add-sports-membership-form-ajax');
+let addSportMembershipForm = document.getElementById('add-sport-membership-form-ajax');
 
 // Modify the objects we need
 addSportMembershipForm.addEventListener("submit", function (e) {
@@ -32,7 +32,7 @@ addSportMembershipForm.addEventListener("submit", function (e) {
 
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/add-sports-membership-ajax", true);
+    xhttp.open("POST", "/add-sport-membership-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
