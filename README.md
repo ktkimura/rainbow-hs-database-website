@@ -14,13 +14,32 @@ Dynamic version: http://flip2.engr.oregonstate.edu:4021/
 - ```mysql -u cs340_kimuraka -p -h classmysql.engr.oregonstate.edu``` --> connect to Katie's database
 
 ## Code Citations
-**Citation for HTML layout and JavaScript functionalities:**
-- Date: 07/24/2024
-- Adapted from CS340 2024 Summer Term Canvas Assignment "Exploration - Web Application Technology"
-- Source URL: https://canvas.oregonstate.edu/courses/1967354/pages/exploration-web-application-technology?module_item_id=24460839
-
-**Citation for CRUD functionalities in .hbs files and app.js**
-- Date: 08/04/2024
-- Adapted from CS340 2024 Summer Term Node.js starter code and modified to match group's SQL queries and data presentation decisions 
+**Citation for Handlebars and Express setup**
+- Date: 08/01/2024
+- Adapted from CS340 2024 Summer Term Node.js starter code step 3
 - Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
+**Citation for dynamic data display on all pages (READ)**
+- Date: 08/01/2024
+- Adapted from CS340 2024 Summer Term Node.js starter code step 4
+- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
+**Citation for inserting new data on all pages (CREATE)**
+- Date: 08/04/2024
+- Adapted from CS340 2024 Summer Term Node.js starter code step 5
+- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
+**Citation for dynamic dropdowns on Students, Club Memberships, Sport Memberships, Event Memberships pages**
+- Date: 08/04/2024
+- Adapted from CS340 2024 Summer Term Node.js starter code step 6
+- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
+**Citation for deleting data on all pages (DELETE)**
+- Date: 08/10/2024
+- Adapted from CS340 2024 Summer Term Node.js starter code step 7
+- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
+**Citation for updating Students and Sport Memberships data (UPDATE)**
+- Date: 08/09/2024
+- Adapted from CS340 2024 Summer Term Node.js starter code step 8
+- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app

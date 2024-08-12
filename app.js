@@ -214,6 +214,7 @@ app.post('/add-grad-class-ajax', function (req, res) {
                         console.log(error);
                         res.sendStatus(400);
                     }
+                    // send back data including new gradClass entry
                     else {
                         res.send(rows);
                     }
@@ -337,7 +338,6 @@ app.post('/add-sport-ajax', function (req, res) {
                 res.sendStatus(400);
             }
             else {
-                // If there was no error, perform a SELECT * on Sports
                 query2 = `SELECT * FROM Sports;`;
                 db.pool.query(query2, function (error, rows, fields) {
                     if (error) {
@@ -353,32 +353,31 @@ app.post('/add-sport-ajax', function (req, res) {
         })
     }
 });
+
 // Citation for delete-sport-ajax route functionality:
 // Date: 08/09/2024
 // Adapted from CS340 2024 Summer Term Node.js starter code Step 7
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
-
 app.delete('/delete-sport-ajax/', function (req, res, next) {
     let data = req.body;
     let sportID = parseInt(data.sportID);
     let deleteSport = `DELETE FROM Sports WHERE sportID = ${sportID};`;
 
-
-    // Run the 1st query
     db.pool.query(deleteSport, [sportID], function (error, rows, fields) {
         if (error) {
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
         }
-
         else {
             res.sendStatus(204);
         }
     })
 });
 
-
+// Citation for events route functionality:
+// Date: 08/01/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 4
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 app.get('/events', function(req, res) {
     let getEvents = `SELECT eventID AS "Event ID", eventName AS "Event Name", eventDate AS "Event Date" FROM Events ORDER BY eventID;`;
 
@@ -391,22 +390,16 @@ app.get('/events', function(req, res) {
 // Date: 08/10/2024
 // Adapted from CS340 2024 Summer Term Node.js starter code Step 5
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
-
 app.post('/add-event-ajax', function(req, res) 
 {
-    // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
     if (data.eventName && data.eventDate) {
             
-        // Create the query and run it on the database
         query1 = `INSERT INTO Events (eventName, eventDate) VALUES ('${data.eventName}', '${data.eventDate}')`;
         db.pool.query(query1, function(error, rows, fields){
 
-            // Check to see if there was an error
             if (error) {
-
-                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                 console.log(error)
                 res.sendStatus(400);
             }
@@ -416,14 +409,11 @@ app.post('/add-event-ajax', function(req, res)
                 query2 = `SELECT * FROM Events;`;
                 db.pool.query(query2, function(error, rows, fields){
 
-                    // If there was an error on the second query, send a 400
                     if (error) {
-                        
-                        // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                         console.log(error);
                         res.sendStatus(400);
                     }
-                    // If all went well, send the results of the query back.
+                    // send back data including new event entry
                     else
                     {
                         res.send(rows);
@@ -437,7 +427,6 @@ app.post('/add-event-ajax', function(req, res)
 // Citation for delete-event-ajax route functionality:
 // Date: 08/10/2024
 // Adapted from CS340 2024 Summer Term Node.js starter code Step 7
-
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 app.delete('/delete-event-ajax/', function(req,res,next){
     let data = req.body;
@@ -445,21 +434,24 @@ app.delete('/delete-event-ajax/', function(req,res,next){
 
     let deleteEvent = `DELETE FROM Events WHERE eventID = ?`;
   
-          // Run the 1st query
           db.pool.query(deleteEvent, [eventID], function(error, rows, fields){
               if (error) {
-  
-              // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-              console.log(error);
-              res.sendStatus(400);
+                console.log(error);
+                res.sendStatus(400);
               }
               else
               {
                 res.sendStatus(204);
               }
-  })});
+})});
 
+// Citation for club memberships route functionality:
+// Date: 08/01/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 4
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 app.get('/clubMemberships', function(req, res) {
+
+    // grab club memberships with enhanced readability by grabbing student names and club names
     let getClubMemberships = `SELECT studentHasClubID, StudentHasClubs.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
         StudentHasClubs.clubID AS "Club ID", Clubs.clubName AS "Club Name", StudentHasClubs.clubRole AS "Club Role", StudentHasClubs.pageNum AS "Page Num." 
             FROM StudentHasClubs
@@ -467,12 +459,11 @@ app.get('/clubMemberships', function(req, res) {
                 INNER JOIN Clubs ON Clubs.clubID = StudentHasClubs.clubID
                 ORDER BY studentHasClubID;`;
 
-    let getStudentInfo = `SELECT * FROM Students;`;
+    let getStudentInfo = `SELECT * FROM Students;`;     // for student dropdown population
 
-    let getClubsInfo = `SELECT * FROM Clubs;`;
+    let getClubsInfo = `SELECT * FROM Clubs;`;          // for club dropdown population
 
     db.pool.query(getClubMemberships, function(error, rows, fields){
-        //res.render('eventMemberships', {data: rows});
 
         let clubMemberships = rows;
 
@@ -485,21 +476,19 @@ app.get('/clubMemberships', function(req, res) {
                 let clubs = rows;
 
                 return res.render('clubMemberships', { data: clubMemberships, students: students, clubs: clubs});
-            })
-        })
-    })
-})
+            });
+        });
+    });
+});
 
 // Citation for add-club-membership-ajax route functionality:
 // Date: 08/10/2024
 // Adapted from CS340 2024 Summer Term Node.js starter code Step 5
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
-
 app.post('/add-club-membership-ajax', function (req, res) {
-    // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
-    // checking if user selected NULL from student dropdown
+    // checking if user selected NULL from student dropdown to update SQL query to perform
     let query1;
     let studentID = parseInt(data.studentID);
     if (isNaN(studentID)){  
@@ -510,15 +499,12 @@ app.post('/add-club-membership-ajax', function (req, res) {
 
     db.pool.query(query1, function (error, rows, fields) {
 
-        // Check to see if there was an error
         if (error) {
 
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error)
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on bsg_people
             query2 = `SELECT studentHasClubID, StudentHasClubs.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", StudentHasClubs.clubID AS "Club ID", 
                       Clubs.clubName AS "Club Name", StudentHasClubs.clubRole AS "Club Role", StudentHasClubs.pageNum AS "Page Num." 
                         FROM StudentHasClubs
@@ -526,38 +512,31 @@ app.post('/add-club-membership-ajax', function (req, res) {
                             INNER JOIN Clubs ON Clubs.clubID = StudentHasClubs.clubID
                             ORDER BY studentHasClubID;`;
             db.pool.query(query2, function (error, rows, fields) {
-
-                // If there was an error on the second query, send a 400
                 if (error) {
-
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
                 }
-                // If all went well, send the results of the query back.
+                // send back data with new club membership entry
                 else {
                     res.send(rows);
                 }
             })
         }
-    })
+    });
 });
 
 // Citation for delete-club-membership-ajax route functionality:
 // Date: 08/10/2024
 // Adapted from CS340 2024 Summer Term Node.js starter code Step 7
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
-
 app.delete('/delete-club-membership-ajax/', function(req,res,next){
     let data = req.body;
     let clubMembershipID = parseInt(data.id);
     
     let deleteClubMembership = `DELETE FROM StudentHasClubs WHERE studentHasClubID = ?`;
   
-          // Run the 1st query
           db.pool.query(deleteClubMembership, [clubMembershipID], function(error, rows, fields){
               if (error) {
-                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                 console.log(error);
                 res.sendStatus(400);
               }
@@ -567,9 +546,13 @@ app.delete('/delete-club-membership-ajax/', function(req,res,next){
               }
 })});
 
-
+// Citation for sport memberships route functionality:
+// Date: 08/01/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 4
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 app.get('/sportMemberships', function(req, res) {
 
+    // grab sport memberships with enhanced readability by grabbing student names and sport teams (varsityLevel + sportType)
     let getSportMemberships = `SELECT studentHasSportID, StudentHasSports.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
         StudentHasSports.sportID AS "Sport ID", CONCAT(Sports.varsityLevel, " ", Sports.sportType) AS "Sport Team", StudentHasSports.sportRole AS "Sport Role", 
         StudentHasSports.pageNum AS "Page Num." 
@@ -578,12 +561,10 @@ app.get('/sportMemberships', function(req, res) {
                 INNER JOIN Sports ON Sports.sportID = StudentHasSports.sportID
                 ORDER BY studentHasSportID;`;
 
-    let getStudentInfo = `SELECT * FROM Students;`;
-
-    let getSportsInfo = `SELECT * FROM Sports;`;
+    let getStudentInfo = `SELECT * FROM Students;`;     // for student dropdown population
+    let getSportsInfo = `SELECT * FROM Sports;`;        // for sport team dropdown population
 
     db.pool.query(getSportMemberships, function(error, rows, fields){
-        // res.render('sportMemberships', {data: rows});
 
         let sportsMemberships = rows;
 
@@ -598,34 +579,28 @@ app.get('/sportMemberships', function(req, res) {
                 return res.render('sportMemberships', { data: sportsMemberships, students: students, sports: sports});
             })
         })
-    })
-})
+    });
+});
 
 // Citation for add-sport-membership-ajax route functionality:
 // Date: 08/05/2024
 // Adapted from CS340 2024 Summer Term Node.js starter code Step 5
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
-
 app.post('/add-sport-membership-ajax', function (req, res) {
-    // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
-    // checking if user selected NULL from student dropdown
+    // checking if user selected NULL from student dropdown to update SQL query to perform
     let query1;
     let studentID = parseInt(data.studentID);
-    if (isNaN(studentID)){  // NULL wasn't being passed in correctly unless I typed it raw into the SQL query, so this is my workaround - Katie
+    if (isNaN(studentID)){  
         query1 = `INSERT INTO StudentHasSports (studentID, sportID, sportRole, pageNum) VALUES (NULL, ${data.sportID}, '${data.sportRole}', ${data.pageNum})`;
     } else {
         query1 = `INSERT INTO StudentHasSports (studentID, sportID, sportRole, pageNum) VALUES (${studentID}, ${data.sportID}, '${data.sportRole}', ${data.pageNum})`;
-    }
-
+    };
 
     db.pool.query(query1, function (error, rows, fields) {
 
-        // Check to see if there was an error
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error)
             res.sendStatus(400);
         }
@@ -639,37 +614,31 @@ app.post('/add-sport-membership-ajax', function (req, res) {
                     ORDER BY studentHasSportID;`;
             db.pool.query(query2, function (error, rows, fields) {
 
-                // If there was an error on the second query, send a 400
                 if (error) {
-
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
                 }
-                // If all went well, send the results of the query back.
+                // send back data with new sport membership entry
                 else {
                     res.send(rows);
                 }
             })
         }
-    })
+    });
 });
 
 // Citation for delete-sport-membership-ajax route functionality:
 // Date: 08/05/2024
 // Adapted from CS340 2024 Summer Term Node.js starter code Step 7
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
-
 app.delete('/delete-sport-membership-ajax/', function(req,res,next){
     let data = req.body;
     let sportMembershipID = parseInt(data.id);
     
     let deleteSportMembership = `DELETE FROM StudentHasSports WHERE studentHasSportID = ?`;
   
-          // Run the 1st query
           db.pool.query(deleteSportMembership, [sportMembershipID], function(error, rows, fields){
               if (error) {
-                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                 console.log(error);
                 res.sendStatus(400);
               }
@@ -679,9 +648,13 @@ app.delete('/delete-sport-membership-ajax/', function(req,res,next){
               }
 })});
 
-
+// Citation for edit-sport-membership-view route functionality:
+// Date: 08/09/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Steps 4 and 6
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 app.get('/edit-sport-membership-view', function(req,res) {
-    let sportMembershipID = parseInt(req.query.id);
+    // NOTE: this route is solely to initially display the selected sport membership data; the following route has the actual editing functionality
+    let sportMembershipID = parseInt(req.query.id);     // primary key of entry to view is passed in
 
     let getSportMembership = `SELECT StudentHasSports.studentHasSportID, StudentHasSports.studentID, CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
             StudentHasSports.sportID, CONCAT(Sports.varsityLevel, " ", Sports.sportType) AS "Sport Team", StudentHasSports.sportRole, StudentHasSports.pageNum 
@@ -712,7 +685,6 @@ app.get('/edit-sport-membership-view', function(req,res) {
 // Date: 08/09/2024
 // Adapted from CS340 2024 Summer Term Node.js starter code Step 8
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
-
 app.put('/put-sport-membership-ajax', function(req,res) {
     let data = req.body;
     let studentHasSportID = parseInt(data.studentHasSportID)
@@ -723,6 +695,7 @@ app.put('/put-sport-membership-ajax', function(req,res) {
     
     let queryUpdateSportMembership;
 
+    // checking if user selected NULL from student dropdown to update SQL query to perform
     if (isNaN(studentID)) {
         queryUpdateSportMembership = `UPDATE StudentHasSports 
         SET studentID = NULL, sportID = ${sportID}, sportRole = '${sportRole}', pageNum = ${pageNum}
@@ -735,18 +708,20 @@ app.put('/put-sport-membership-ajax', function(req,res) {
 
     db.pool.query(queryUpdateSportMembership, function(error, rows, fields){
         if (error) {
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
         } else {
-            res.json({ success: true, redirectUrl: '/sportMemberships' });
+            res.json({ success: true, redirectUrl: '/sportMemberships' });  // return to the sport memberships page from the edit page
         }
     });
 });
 
-
+// Citation for event memberships route functionality:
+// Date: 08/01/2024
+// Adapted from CS340 2024 Summer Term Node.js starter code Step 4
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 app.get('/eventMemberships', function(req, res) {
-
+    // grab event memberships with enhanced readability by grabbing student names and eventnames
     let getEventMemberships = `SELECT studentInEventID, StudentInEvents.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
         StudentInEvents.eventID AS "Event ID", Events.eventName AS "Event Name", StudentInEvents.eventRole AS "Event Role", StudentInEvents.pageNum AS "Page Num." 
             FROM StudentInEvents
@@ -754,13 +729,10 @@ app.get('/eventMemberships', function(req, res) {
                 INNER JOIN Events ON Events.eventID = StudentInEvents.eventID
                 ORDER BY studentInEventID;`;
 
-    let getStudentInfo = `SELECT * FROM Students;`;
-
-    let getEventsInfo = `SELECT * FROM Events;`;
+    let getStudentInfo = `SELECT * FROM Students;`;     // for student dropdown population
+    let getEventsInfo = `SELECT * FROM Events;`;        // for event dropdown population
 
     db.pool.query(getEventMemberships, function(error, rows, fields){
-        //res.render('eventMemberships', {data: rows});
-
         let eventMemberships = rows;
 
         db.pool.query(getStudentInfo, (error, rows, fields) => {
@@ -772,21 +744,19 @@ app.get('/eventMemberships', function(req, res) {
                 let events = rows;
 
                 return res.render('eventMemberships', { data: eventMemberships, students: students, events: events});
-            })
-        })
-    })
-})
+            });
+        });
+    });
+});
 
 // Citation for add-event-membership-ajax route functionality:
 // Date: 08/10/2024
 // Adapted from CS340 2024 Summer Term Node.js starter code Step 5
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
-
 app.post('/add-event-membership-ajax', function (req, res) {
-    // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
-    // checking if user selected NULL from student dropdown
+    // checking if user selected NULL from student dropdown to update SQL query to perform
     let query1;
     let studentID = parseInt(data.studentID);
     if (isNaN(studentID)){  
@@ -797,15 +767,12 @@ app.post('/add-event-membership-ajax', function (req, res) {
 
     db.pool.query(query1, function (error, rows, fields) {
 
-        // Check to see if there was an error
         if (error) {
 
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error)
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on bsg_people
             query2 = `SELECT studentInEventID, StudentInEvents.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", StudentInEvents.eventID AS "Event ID", 
                       Events.eventName AS "Event Name", StudentInEvents.eventRole AS "Event Role", StudentInEvents.pageNum AS "Page Num." 
                         FROM StudentInEvents
@@ -814,42 +781,36 @@ app.post('/add-event-membership-ajax', function (req, res) {
                             ORDER BY studentInEventID;;`;
             db.pool.query(query2, function (error, rows, fields) {
 
-                // If there was an error on the second query, send a 400
                 if (error) {
-
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
                 }
-                // If all went well, send the results of the query back.
+                // send back data with new event membership entry
                 else {
                     res.send(rows);
                 }
             })
         }
-    })
+    });
 });
 
 // Citation for delete-event-membership-ajax route functionality:
 // Date: 08/10/2024
 // Adapted from CS340 2024 Summer Term Node.js starter code Step 7
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
-
 app.delete('/delete-event-membership-ajax/', function(req,res,next){
     let data = req.body;
     let eventMembershipID = parseInt(data.id);
     
     let deleteEventMembership = `DELETE FROM StudentInEvents WHERE studentInEventID = ?`;
   
-          // Run the 1st query
-          db.pool.query(deleteEventMembership, [eventMembershipID], function(error, rows, fields){
-              if (error) {
-                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+        db.pool.query(deleteEventMembership, [eventMembershipID], function(error, rows, fields){
+            if (error) {
                 console.log(error);
                 res.sendStatus(400);
-              }
-              else
-              {
-                res.sendStatus(204);
-              }
+            }
+            else
+            {
+            res.sendStatus(204);
+            }
 })});
