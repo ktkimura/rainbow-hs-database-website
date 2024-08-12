@@ -12,7 +12,7 @@ PORT        = 4022;                 // Set a port number at the top so it's easy
 
 // Helpers
 const dateFormat = require('handlebars-dateformat');            // for formatting eventDate in MM/DD/YYYY
-const Handlebars = require('handlebars');                       
+const Handlebars = require('handlebars');   
 Handlebars.registerHelper('convertNull', function(value) {      // for styling tables to have cells with 'NULL' instead of being blank
     if (value === null){                                        // if there is a NULL value there (studentID and studentName columns)
         return 'NULL';
@@ -145,7 +145,8 @@ app.put('/put-student-ajax', function(req,res,next){
         } else {
             res.send(rows);
         }
-  })});
+    })
+});
 
 // Citation for delete-student-ajax route functionality:
 // Date: 08/09/2024
@@ -341,6 +342,7 @@ app.get('/sports', function(req, res) {
     })
 })
 
+
 // Citation for add-sport-ajax route functionality:
 // Date: 08/09/2024
 // Adapted from CS340 2024 Summer Term Node.js starter code Step 5
@@ -408,6 +410,12 @@ app.delete('/delete-sport-ajax/', function (req, res, next) {
     })
 });
 
+
+/* 
+*   Events Page
+*/
+
+// initial page load 
 app.get('/events', function(req, res) {
     let getEvents = `SELECT eventID AS "Event ID", eventName AS "Event Name", eventDate AS "Event Date" FROM Events ORDER BY eventID;`;
 
@@ -415,6 +423,72 @@ app.get('/events', function(req, res) {
         res.render('events', {data: rows});
     })
 })
+
+// POST request to add an event
+app.post('/add-event-ajax', function(req, res) 
+{
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Events (eventName, eventDate) VALUES ('${data.eventName}', '${data.eventDate}')`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else
+        {
+            // If there was no error, perform a SELECT * on Events
+            query2 = `SELECT * FROM Events;`;
+            db.pool.query(query2, function(error, rows, fields){
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+                    
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else
+                {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+//DELETE request to remove an event
+app.delete('/delete-event-ajax/', function(req,res,next){
+    let data = req.body;
+    let eventID = parseInt(data.id);
+
+    let deleteEvent = `DELETE FROM Events WHERE eventID = ?`;
+  
+          // Run the 1st query
+          db.pool.query(deleteEvent, [eventID], function(error, rows, fields){
+              if (error) {
+  
+              // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+              console.log(error);
+              res.sendStatus(400);
+              }
+              else
+              {
+                res.sendStatus(204);
+              }
+  })});
+
+/* 
+*   StudentHasClubs Page aka Club Memberships page
+*/
 
 app.get('/clubMemberships', function(req, res) {
     let getClubMemberships = `SELECT studentHasClubID, StudentHasClubs.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
@@ -424,10 +498,97 @@ app.get('/clubMemberships', function(req, res) {
                 INNER JOIN Clubs ON Clubs.clubID = StudentHasClubs.clubID
                 ORDER BY studentHasClubID;`;
 
+    let getStudentInfo = `SELECT * FROM Students;`;
+
+    let getClubsInfo = `SELECT * FROM Clubs;`;
+
     db.pool.query(getClubMemberships, function(error, rows, fields){
-        res.render('clubMemberships', {data: rows});
+        //res.render('eventMemberships', {data: rows});
+
+        let clubMemberships = rows;
+
+        db.pool.query(getStudentInfo, (error, rows, fields) => {
+
+            let students = rows;
+
+            db.pool.query(getClubsInfo, (error, rows, fields) => {
+
+                let clubs = rows;
+
+                return res.render('clubMemberships', { data: clubMemberships, students: students, clubs: clubs});
+            })
+        })
     })
 })
+
+// POST request to add a club membership
+app.post('/add-club-membership-ajax', function (req, res) {
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // checking if user selected NULL from student dropdown
+    let query1;
+    let studentID = parseInt(data.studentID);
+    if (isNaN(studentID)){  
+        query1 = `INSERT INTO StudentHasClubs (studentID, clubID, clubRole, pageNum) VALUES (NULL, '${data.clubID}', ${data.clubRole}, ${data.pageNum})`;
+    } else {
+        query1 = `INSERT INTO StudentHasClubs (studentID, clubID, clubRole, pageNum) VALUES ('${studentID}', '${data.clubID}', ${data.clubRole}, ${data.pageNum})`;
+    }
+
+    db.pool.query(query1, function (error, rows, fields) {
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            // If there was no error, perform a SELECT * on bsg_people
+            query2 = `SELECT studentHasClubID, StudentHasClubs.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", StudentHasClubs.clubID AS "Club ID", 
+                      Clubs.clubName AS "Club Name", StudentHasClubs.clubRole AS "Club Role", StudentHasClubs.pageNum AS "Page Num." 
+                        FROM StudentHasClubs
+                            LEFT JOIN Students ON Students.studentID = StudentHasClubs.studentID
+                            INNER JOIN Clubs ON Clubs.clubID = StudentHasClubs.clubID
+                            ORDER BY studentHasClubID;`;
+            db.pool.query(query2, function (error, rows, fields) {
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+// DELETE request to remove an event membership
+app.delete('/delete-club-membership-ajax/', function(req,res,next){
+    let data = req.body;
+    let clubMembershipID = parseInt(data.id);
+    
+    let deleteClubMembership = `DELETE FROM StudentHasClubs WHERE studentHasClubID = ?`;
+  
+          // Run the 1st query
+          db.pool.query(deleteClubMembership, [clubMembershipID], function(error, rows, fields){
+              if (error) {
+                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                console.log(error);
+                res.sendStatus(400);
+              }
+              else
+              {
+                res.sendStatus(204);
+              }
+})});
 
 /* 
 *   StudentHasSports Page aka Sport Memberships page
@@ -476,9 +637,9 @@ app.post('/add-sports-membership-ajax', function (req, res) {
     let query1;
     let studentID = parseInt(data.studentID);
     if (isNaN(studentID)){  // NULL wasn't being passed in correctly unless I typed it raw into the SQL query, so this is my workaround - Katie
-        query1 = `INSERT INTO StudentHasSports (studentID, sportID, sportRole, pageNum) VALUES (NULL, '${data.sportID}', ${data.sportRole}, ${data.pageNum})`;
+        query1 = `INSERT INTO StudentHasSports (studentID, sportID, sportRole, pageNum) VALUES (NULL, ${data.sportID}, '${data.sportRole}', ${data.pageNum})`;
     } else {
-        query1 = `INSERT INTO StudentHasSports (studentID, sportID, sportRole, pageNum) VALUES ('${studentID}', '${data.sportID}', ${data.sportRole}, ${data.pageNum})`;
+        query1 = `INSERT INTO StudentHasSports (studentID, sportID, sportRole, pageNum) VALUES (${studentID}, ${data.sportID}, '${data.sportRole}', ${data.pageNum})`;
     }
 
 
@@ -537,7 +698,72 @@ app.delete('/delete-sport-membership-ajax/', function(req,res,next){
               }
 })});
 
+
+app.get('/edit-sport-membership-view', function(req,res) {
+    let sportMembershipID = parseInt(req.query.id);
+
+    let getSportMembership = `SELECT StudentHasSports.studentHasSportID, StudentHasSports.studentID, CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
+            StudentHasSports.sportID, CONCAT(Sports.varsityLevel, " ", Sports.sportType) AS "Sport Team", StudentHasSports.sportRole, StudentHasSports.pageNum 
+                FROM StudentHasSports
+                    LEFT JOIN Students ON Students.studentID = StudentHasSports.studentID
+                    INNER JOIN Sports ON Sports.sportID = StudentHasSports.sportID
+                    WHERE studentHasSportID = ?`;
+
+    let getStudents = `SELECT studentID, firstName, lastName, gradClassID FROM Students ORDER BY studentID;`;
+    let getSports = `SELECT sportID, CONCAT(Sports.varsityLevel, " ", Sports.sportType) AS "Sport Team" FROM Sports ORDER BY sportID;`;
+
+    db.pool.query(getSportMembership, [sportMembershipID], function(error, rows, fields){
+        let sportMembershipData = rows;
+        
+        db.pool.query(getStudents, function(error, rows, fields){
+            let students = rows;
+
+            db.pool.query(getSports, function(error, rows, fields){
+                let sports = rows;
+
+                res.render('editSportMembership', {sportMembership: sportMembershipData[0], students: students, sports: sports});
+            });
+        });
+    });
+});
+
+
+app.put('/put-sport-membership-ajax', function(req,res) {
+    let data = req.body;
+    let studentHasSportID = parseInt(data.studentHasSportID)
+    let studentID = parseInt(data.studentID);
+    let sportID = parseInt(data.sportID);
+    let sportRole = data.sportRole;
+    let pageNum = parseInt(data.pageNum);
+    
+    let queryUpdateSportMembership;
+
+    if (isNaN(studentID)) {
+        queryUpdateSportMembership = `UPDATE StudentHasSports 
+        SET studentID = NULL, sportID = ${sportID}, sportRole = '${sportRole}', pageNum = ${pageNum}
+        WHERE studentHasSportID = ${studentHasSportID};`;
+    } else {
+        queryUpdateSportMembership = `UPDATE StudentHasSports 
+        SET studentID = ${studentID}, sportID = ${sportID}, sportRole = '${sportRole}', pageNum = ${pageNum}
+        WHERE studentHasSportID = ${studentHasSportID};`;
+    }
+
+    db.pool.query(queryUpdateSportMembership, function(error, rows, fields){
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            res.json({ success: true, redirectUrl: '/sportMemberships' });
+        }
+    });
+});
+
+
+
+
 app.get('/eventMemberships', function(req, res) {
+
     let getEventMemberships = `SELECT studentInEventID, StudentInEvents.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", 
         StudentInEvents.eventID AS "Event ID", Events.eventName AS "Event Name", StudentInEvents.eventRole AS "Event Role", StudentInEvents.pageNum AS "Page Num." 
             FROM StudentInEvents
@@ -545,7 +771,94 @@ app.get('/eventMemberships', function(req, res) {
                 INNER JOIN Events ON Events.eventID = StudentInEvents.eventID
                 ORDER BY studentInEventID;`;
 
+    let getStudentInfo = `SELECT * FROM Students;`;
+
+    let getEventsInfo = `SELECT * FROM Events;`;
+
     db.pool.query(getEventMemberships, function(error, rows, fields){
-        res.render('eventMemberships', {data: rows});
+        //res.render('eventMemberships', {data: rows});
+
+        let eventMemberships = rows;
+
+        db.pool.query(getStudentInfo, (error, rows, fields) => {
+
+            let students = rows;
+
+            db.pool.query(getEventsInfo, (error, rows, fields) => {
+
+                let events = rows;
+
+                return res.render('eventMemberships', { data: eventMemberships, students: students, events: events});
+            })
+        })
     })
 })
+
+// POST request to add an events membership
+app.post('/add-event-membership-ajax', function (req, res) {
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // checking if user selected NULL from student dropdown
+    let query1;
+    let studentID = parseInt(data.studentID);
+    if (isNaN(studentID)){  
+        query1 = `INSERT INTO StudentInEvents (studentID, eventID, eventRole, pageNum) VALUES (NULL, '${data.eventID}', ${data.eventRole}, ${data.pageNum})`;
+    } else {
+        query1 = `INSERT INTO StudentInEvents (studentID, eventID, eventRole, pageNum) VALUES ('${studentID}', '${data.eventID}', ${data.eventRole}, ${data.pageNum})`;
+    }
+
+    db.pool.query(query1, function (error, rows, fields) {
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            // If there was no error, perform a SELECT * on bsg_people
+            query2 = `SELECT studentInEventID, StudentInEvents.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", StudentInEvents.eventID AS "Event ID", 
+                      Events.eventName AS "Event Name", StudentInEvents.eventRole AS "Event Role", StudentInEvents.pageNum AS "Page Num." 
+                        FROM StudentInEvents
+                            LEFT JOIN Students ON Students.studentID = StudentInEvents.studentID
+                            INNER JOIN Events ON Events.eventID = StudentInEvents.eventID
+                            ORDER BY studentInEventID;;`;
+            db.pool.query(query2, function (error, rows, fields) {
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+// DELETE request to remove an event membership
+app.delete('/delete-event-membership-ajax/', function(req,res,next){
+    let data = req.body;
+    let eventMembershipID = parseInt(data.id);
+    
+    let deleteEventMembership = `DELETE FROM StudentInEvents WHERE studentInEventID = ?`;
+  
+          // Run the 1st query
+          db.pool.query(deleteEventMembership, [eventMembershipID], function(error, rows, fields){
+              if (error) {
+                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                console.log(error);
+                res.sendStatus(400);
+              }
+              else
+              {
+                res.sendStatus(204);
+              }
+})});
