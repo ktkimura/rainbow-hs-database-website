@@ -64,7 +64,6 @@ addSportMembershipForm.addEventListener("submit", function (e) {
 // Copied from CS340 2024 Summer Term Node.js starter code Step 7 (lines 90, 101-105, 114, 117)
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
-// Creates a single row from an Object representing a single record from StudentHasSports
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.

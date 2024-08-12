@@ -1,4 +1,4 @@
-// Citation for add_student.js functionality:
+// Citation for add_club.js functionality:
 // Date: 08/09/2024
 // Adapted from CS340 2024 Summer Term Node.js starter code Step 5
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app

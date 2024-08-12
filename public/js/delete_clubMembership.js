@@ -1,4 +1,4 @@
-// Citation for delete_eventMembership.js functionality:
+// Citation for delete_clubMembership.js functionality:
 // Date: 08/05/2024
 // Adapted from CS340 2024 Summer Term Node.js starter code Step 7
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app

@@ -5,17 +5,21 @@
     <input type="hidden" id="studentHasSportID" value={{sportMembership.studentHasSportID}}>
     <label for="input-student-id">Student ID: </label>
     <select name="input-student-id" id="studentSelect">
+        {{!-- Only have the NULL option selected if that was the original value --}}
         <option value=NULL 
-        {{#if (ne sportMembership.studentID 'NULL')}}{{else}}selected{{/if}}>NULL</option> {{!-- Only have the NULL option selected if that was the original value --}}
+        {{#if (ne sportMembership.studentID 'NULL')}}{{else}}selected{{/if}}>NULL</option>      {{!-- utilizes handlebars helper for NOT EQUAL comparison --}}
+
+        {{!-- Logic to handle the original value being selected in the dropdown upon page load --}}
         {{#each students}}
             <option value={{this.studentID}}
-                {{#if (eq this.studentID ../sportMembership.studentID)}}selected{{/if}} {{!-- Logic to handle the original value being selected--}}
+                {{#if (eq this.studentID ../sportMembership.studentID)}}selected{{/if}}         {{!-- utilizes handlebars helper for EQUAL comparison --}}
             >
             {{this.studentID}} {{this.firstName}} {{this.lastName}}</option>
         {{/each}}
     </select>
     <label for="input-sport-team">Sport Team: </label>
     <select name="input-sport-team" id="sportSelect">
+        {{!-- Logic to handle the original value being selected in the dropdown upon page load --}}
         {{#each sports}}
             <option value={{this.sportID}}
                 {{#if (eq this.sportID ../sportMembership.sportID)}}selected{{/if}}
@@ -25,6 +29,7 @@
     </select>
     <label for="input-sport-role">Sport Role: </label>
     <select name="input-sport-role" id="roleSelect">
+        {{!-- Logic to handle the original value being selected in the dropdown upon page load --}}
         <option value="Captain"   {{#if (eq sportMembership.sportRole "Captain")}}selected{{/if}}>Captain</option>
         <option value="Manager"   {{#if (eq sportMembership.sportRole "Manager")}}selected{{/if}}>Manager</option>
         <option value="Player"    {{#if (eq sportMembership.sportRole "Player")}}selected{{/if}}>Player</option>

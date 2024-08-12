@@ -1,9 +1,16 @@
+{{!-- 
+-- Citation for display sport membership data:
+-- Date: 08/01/2024
+-- Adapted from CS340 2024 Summer Term Node.js starter code Step 4
+-- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app 
+--}}
+
 <h2>Sport Memberships</h2>
 <table id = "sport-memberships-table">
     <thead>
         <tr>
             {{#each data.[0]}}
-                {{#if (ne @key "studentHasSportID")}}
+                {{#if (ne @key "studentHasSportID")}}   {{!-- don't display intersection table's primary key being imported --}}
                     <th>
                         {{@key}}
                     </th>
@@ -17,7 +24,7 @@
         {{#each data}}
         {{!-- NOTE: attributes of 'this' need to match however they are aliased in the SELECT statement in app.js. Have to put them in [] since there are spaces --}}
         <tr data-value={{this.studentHasSportID}}>
-            <td>{{convertNull this.[Student ID]}}</td>
+            <td>{{convertNull this.[Student ID]}}</td>      {{!-- use handelbars helper, convertNull to display NULL in td instead of being blank --}}
             <td>{{convertNull this.[Student Name]}}</td>
             <td>{{this.[Sport ID]}}</td>
             <td>{{this.[Sport Team]}}</td>
@@ -33,7 +40,7 @@
 {{!-- 
 -- Citation for add sport membership form AND student and sport foreign key dropdowns:
 -- Date: 08/04/2024
--- Adapted from CS340 2024 Summer Term Node.js starter code Step 6
+-- Adapted from CS340 2024 Summer Term Node.js starter code Steps 5 and 6
 -- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app 
 --}}
 

@@ -1,9 +1,16 @@
+{{!-- 
+-- Citation for display club membership data:
+-- Date: 08/01/2024
+-- Adapted from CS340 2024 Summer Term Node.js starter code Step 4
+-- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app 
+--}}
+
 <h2>Club Memberships</h2>
 <table id="club-memberships-table">
     <thead>
         <tr>
             {{#each data.[0]}}
-                {{#if (ne @key "studentHasClubID")}}
+                {{#if (ne @key "studentHasClubID")}}    {{!-- don't display intersection table's primary key being imported --}}
                     <th>
                         {{@key}}
                     </th>
@@ -16,7 +23,7 @@
         {{#each data}}
         {{!-- NOTE: attributes of 'this' need to match however they are aliased in the SELECT statement in app.js. Have to put them in [] since there are spaces --}}
         <tr data-value={{this.studentHasClubID}}>
-            <td>{{convertNull this.[Student ID]}}</td>
+            <td>{{convertNull this.[Student ID]}}</td>      {{!-- use handelbars helper, convertNull to display NULL in td instead of being blank --}}
             <td>{{convertNull this.[Student Name]}}</td>
             <td>{{this.[Club ID]}}</td>
             <td>{{this.[Club Name]}}</td>
@@ -29,9 +36,9 @@
 </table>
 
 {{!-- 
--- Citation for add sport membership form AND student and sport foreign key dropdowns:
+-- Citation for add club membership form AND student and club foreign key dropdowns:
 -- Date: 08/04/2024
--- Adapted from CS340 2024 Summer Term Node.js starter code Step 6
+-- Adapted from CS340 2024 Summer Term Node.js starter code Steps 5 and 6
 -- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app 
 --}}
 
@@ -47,7 +54,7 @@
     </select>
 
     <select name="input-clubID" id="input-clubID">
-        <option value="" selected disabled>Select an event</option>
+        <option value="" selected disabled>Select a club</option>
         {{#each clubs}}
         <option value="{{this.clubID}}">{{this.clubName}} </option>
         {{/each}}
