@@ -1,5 +1,5 @@
 <h2>Sports</h2>
-<table>
+<table id="sport-table">
     <thead>
         <tr>
             {{#each data.[0]}}
@@ -7,6 +7,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -17,7 +18,46 @@
             <td>{{this.[Sport]}}</td>
             <td>{{this.[Season]}}</td>
             <td>{{this.[Varsity Level]}}</td>
+            <td><button onclick="deleteSport({{this.[Sport ID]}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+
+<script src="./js/delete_sport.js"></script>
+
+{{!--
+-- Citation for insert handlebars functionality:
+-- Date: 08/09/2024
+-- Adapted from CS340 2024 Summer Term Node.js starter code Step 5
+-- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+--}}
+
+{{!-- Form to add a record to the table --}}
+<h2>Add a new sport</h2>
+<p>To add a new sport, please enter the information below and click 'Submit'!</p>
+<form id="add-sport-form-ajax">
+    <label for="input-sport-type">Sport Name: </label>
+    <input type="text" name="input-sport-type" id="input-sport-type">
+
+    <label for="input-season">Season: </label>
+    <select name="input-season" id="input-season">
+        <option value="" selected disabled>Select a season</option>
+        <option value="Fall">Fall</option>
+        <option value="Winter">Winter</option>
+        <option value="Spring">Spring</option>
+    </select>
+
+    <label for="input-varsity-level">Varsity Level: </label>
+    <select name="input-varsity-level" id="input-varsity-level">
+        <option value="" selected disabled>Select a varsity level</option>
+        <option value="Varsity">Varsity</option>
+        <option value="Junior Varsity">Junior Varsity</option>
+        <option value="Intramural">Intramural</option>
+    </select>
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_sport.js"></script>

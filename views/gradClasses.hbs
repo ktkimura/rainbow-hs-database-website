@@ -1,5 +1,5 @@
 <h2>Graduating Classes</h2>
-<table>
+<table id="gradClass-table">
     <thead>
         <tr>
             {{#each data.[0]}}
@@ -7,6 +7,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -16,7 +17,36 @@
             <td>{{this.[Graduating Class Year]}}</td>
             <td>{{this.[Start Page]}}</td>
             <td>{{this.[End Page]}}</td>
+            <td><button onclick="deleteGradClass({{this.[Graduating Class Year]}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+
+<script src="./js/delete_gradClass.js"></script>
+
+{{!--
+-- Citation for insert handlebars functionality:
+-- Date: 08/09/2024
+-- Adapted from CS340 2024 Summer Term Node.js starter code Step 5
+-- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+--}}
+
+{{!-- Form to add a record to the table --}}
+<h2>Add a new Graduating Class</h2>
+<p>To add a new graduating class, please enter their information below and click 'Submit'!</p>
+<form id="add-grad-class-form-ajax">
+    <label for="input-grad-class">Graduating Year: </label>
+    <input type="text" name="input-grad-class" id="input-grad-class">
+
+    <label for="input-page-start">Starting Page: </label>
+    <input type="text" name="input-page-start" id="input-page-start">
+
+    <label for="input-page-end">Ending Page: </label>
+    <input type="number" name="input-page-end" id="input-page-end">
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_gradClass.js"></script>

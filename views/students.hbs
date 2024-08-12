@@ -7,6 +7,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -17,10 +18,13 @@
             <td>{{this.[First Name]}}</td>
             <td>{{this.[Last Name]}}</td>
             <td>{{this.[Graduating Class]}}</td>
+            <td><button onclick="deletePerson({{this.[Student ID]}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+
+<script src="./js/delete_student.js"></script>
 
 {{!-- 
 -- Citation for update_student.js functionality:
@@ -47,7 +51,41 @@
             <option value={{this.gradClassID}}>{{this.gradClassID}}</option>
         {{/each}}
     </select>
+
+
     <input type="submit">
 </form>
 
+
+{{!--
+-- Citation for insert handlebars functionality:
+-- Date: 08/09/2024
+-- Adapted from CS340 2024 Summer Term Node.js starter code Step 5+6
+-- Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+--}}
+
+<h3>Add a new student</h3>
+<p> To add a new record, please enter information below and click 'Submit!' </p>
+<form id="add-student-form-ajax">
+    <label for="input-fname">Student ID: </label>
+    <input type="text" name="input-studentID" id="input-studentID">
+
+    <label for="input-fname">First Name: </label>
+    <input type="text" name="input-fname" id="input-fname">
+    
+    <label for="input-lname">Last Name: </label>
+    <input type="text" name="input-lname" id="input-lname">
+
+    <label for="input-grad-class"> Graduating Class: </label>
+    <select name="input-grad-class" id="input-grad-class">
+        <option value="" selected disabled>Select a year</option>
+        {{#each gradClasses}}
+        <option value="{{this.gradClassID}}">{{this.gradClassID}}</option>
+        {{/each}}
+    </select>
+
+    <input type="submit">
+</form>
+
+<script src="./js/add_student.js"></script>
 <script src="./js/update_student.js"></script>
