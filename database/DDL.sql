@@ -9,7 +9,7 @@ SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
 
 -- Students table structure
-CREATETABLE Students (
+CREATE TABLE Students (
     studentID int UNIQUE NOT NULL,
     firstName varchar(255) NOT NULL,
     lastName varchar(255) NOT NULL,
