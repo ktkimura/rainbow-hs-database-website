@@ -8,7 +8,7 @@
 */
 var express = require("express");
 var app = express();
-PORT = process.env.PORT || 4021;
+PORT = process.env.PORT || 3000;
 
 /*
     HELPERS
@@ -75,6 +75,7 @@ const db = mysql.createConnection({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
+  port: 3306
 });
 
 db.connect((err) => {
