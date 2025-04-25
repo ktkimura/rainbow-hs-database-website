@@ -8,6 +8,15 @@
 SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
 
+-- GradClasses table structure
+CREATE TABLE GradClasses (
+    gradClassID year UNIQUE NOT NULL,
+    pageStart int NOT NULL,
+    pageEnd int NOT NULL,
+    PRIMARY KEY (gradClassID)
+);
+
+
 -- Students table structure
 CREATE TABLE Students (
     studentID int UNIQUE NOT NULL,
@@ -18,13 +27,6 @@ CREATE TABLE Students (
     FOREIGN KEY (gradClassID) REFERENCES GradClasses(gradClassID)
 );
 
--- GradClasses table structure
-CREATE TABLE GradClasses (
-    gradClassID year UNIQUE NOT NULL,
-    pageStart int NOT NULL,
-    pageEnd int NOT NULL,
-    PRIMARY KEY (gradClassID)
-);
 
 -- Clubs table structure
 CREATE TABLE Clubs (
@@ -34,7 +36,7 @@ CREATE TABLE Clubs (
 );
 
 -- Sports table structure
-CREATETABLE Sports (
+CREATE TABLE Sports (
     sportID int AUTO_INCREMENT UNIQUE NOT NULL,
     sportType varchar(255) NOT NULL,
     season ENUM('Fall', 'Winter', 'Spring') NOT NULL,
