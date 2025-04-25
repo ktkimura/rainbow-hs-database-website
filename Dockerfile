@@ -3,4 +3,4 @@ FROM mysql:8
 COPY ./database /docker-entrypoint-initdb.d/
 
 # Expose default MySQL port
-EXPOSE 3306
+EXPOSE 4021
