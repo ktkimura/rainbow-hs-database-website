@@ -9,32 +9,32 @@ SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
 
 -- Students table structure
-CREATE OR REPLACE TABLE Students (
+CREATETABLE Students (
     studentID int UNIQUE NOT NULL,
     firstName varchar(255) NOT NULL,
     lastName varchar(255) NOT NULL,
-    gradClassID year(4) NOT NULL,
+    gradClassID year NOT NULL,
     PRIMARY KEY (studentID),
     FOREIGN KEY (gradClassID) REFERENCES GradClasses(gradClassID)
 );
 
 -- GradClasses table structure
-CREATE OR REPLACE TABLE GradClasses (
-    gradClassID year(4) UNIQUE NOT NULL,
+CREATE TABLE GradClasses (
+    gradClassID year UNIQUE NOT NULL,
     pageStart int NOT NULL,
     pageEnd int NOT NULL,
     PRIMARY KEY (gradClassID)
 );
 
 -- Clubs table structure
-CREATE OR REPLACE TABLE Clubs (
+CREATE TABLE Clubs (
     clubID int AUTO_INCREMENT UNIQUE NOT NULL,
     clubName varchar(255) NOT NULL, 
     PRIMARY KEY (clubID)
 );
 
 -- Sports table structure
-CREATE OR REPLACE TABLE Sports (
+CREATETABLE Sports (
     sportID int AUTO_INCREMENT UNIQUE NOT NULL,
     sportType varchar(255) NOT NULL,
     season ENUM('Fall', 'Winter', 'Spring') NOT NULL,
@@ -43,7 +43,7 @@ CREATE OR REPLACE TABLE Sports (
 );
 
 -- Events table structure
-CREATE OR REPLACE TABLE Events (
+CREATE TABLE Events (
     eventID int AUTO_INCREMENT UNIQUE NOT NULL,
     eventName varchar(255) NOT NULL,
     eventDate date NOT NULL,
@@ -51,7 +51,7 @@ CREATE OR REPLACE TABLE Events (
 );
 
 -- StudentHasClubs intersection table structure
-CREATE OR REPLACE TABLE StudentHasClubs(
+CREATE TABLE StudentHasClubs(
     studentHasClubID int AUTO_INCREMENT UNIQUE NOT NULL,
     studentID int NULL,
     clubID int NOT NULL,
@@ -63,7 +63,7 @@ CREATE OR REPLACE TABLE StudentHasClubs(
 );
 
 -- StudentHasSports intersection table structure
-CREATE OR REPLACE TABLE StudentHasSports(
+CREATE TABLE StudentHasSports(
     studentHasSportID int AUTO_INCREMENT UNIQUE NOT NULL,
     studentID int NULL,
     sportID int NOT NULL,
@@ -75,7 +75,7 @@ CREATE OR REPLACE TABLE StudentHasSports(
 );
 
 -- StudentHasEvents intersection table structure
-CREATE OR REPLACE TABLE StudentInEvents(
+CREATE TABLE StudentInEvents(
     studentInEventID int AUTO_INCREMENT UNIQUE NOT NULL,
     studentID int NULL,
     eventID int NOT NULL,
