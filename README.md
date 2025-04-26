@@ -3,6 +3,8 @@
 Rainbow High School is a hypothetical high school whose yearbook team is responsible of tracking over 10,000 students as well as various clubs, sports, and events. This website helps the yearbook team interface with their database made up of 5 tables (Students, Graduating Classes, Clubs, Sports, Events) and 3 intersection tables to keep track of students' participation in clubs, sports, and events. Furthermore, the database allows the yearbook team to note which page numbers students appear on so it is easier to cite where they appear at the end end of the yearbook. 
 
 **Access the website here: https://rainbow-hs-database-website.onrender.com/**
+> [!IMPORTANT]
+> I am using a free hosting plan, so the application may take awhile to load. Thank you for your patience!
 
 ## Technologies Used
 ### Website
