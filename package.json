@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "forever": "forever start app.js"
+    "forever": "forever start app.js",
+    "build": "echo 'No build step required'"
   },
   "author": "Katie Kimura, Skylar Soon, Annabel Wang",
   "license": "ISC",
@@ -18,6 +19,7 @@
     "handlebars-helpers": "^0.10.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.14.0",
-    "serverless-http": "^3.2.0"
+    "serverless-http": "^3.2.0",
+    "vercel": "^41.6.2"
   }
 }

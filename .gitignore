@@ -3,3 +3,4 @@ database/db-connector.js
 database/DML.sql
 Dockerfile
 .dockerignore
+.vercel
