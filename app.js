@@ -104,10 +104,10 @@ app.get("/students", function (req, res) {
   let getStudents = `SELECT studentID AS "Student ID", firstName AS "First Name", lastName AS "Last Name", gradClassID AS "Graduating Class" FROM Students ORDER BY studentID;`;
   let getGradClasses = `SELECT gradClassID FROM GradClasses ORDER BY gradClassID;`;
 
-  db.pool.query(getStudents, function (error, rows, fields) {
+  db.query(getStudents, function (error, rows, fields) {
     let students = rows;
 
-    db.pool.query(getGradClasses, (error, rows, fields) => {
+    db.query(getGradClasses, (error, rows, fields) => {
       let gradClasses = rows;
 
       return res.render("students", {
@@ -134,13 +134,13 @@ app.post("/add-student-ajax", function (req, res) {
       data.gradClassID,
     ];
 
-    db.pool.query(query1, values1, function (error, rows, fields) {
+    db.query(query1, values1, function (error, rows, fields) {
       if (error) {
         console.log(error);
         res.sendStatus(400);
       } else {
         query2 = `SELECT * FROM Students;`;
-        db.pool.query(query2, function (error, rows, fields) {
+        db.query(query2, function (error, rows, fields) {
           if (error) {
             console.log(error);
             res.sendStatus(400);
@@ -167,7 +167,7 @@ app.put("/put-student-ajax", function (req, res, next) {
 
   let queryUpdateStudent = `UPDATE Students SET gradClassID = ? WHERE studentID = ?;`;
 
-  db.pool.query(
+  db.query(
     queryUpdateStudent,
     [gradClassID, studentID],
     function (error, rows, fields) {
@@ -190,7 +190,7 @@ app.delete("/delete-student-ajax/", function (req, res, next) {
   let studentID = parseInt(data.studentID);
   let deleteStudent = `DELETE FROM Students WHERE studentID = ?;`;
 
-  db.pool.query(deleteStudent, [studentID], function (error, rows, fields) {
+  db.query(deleteStudent, [studentID], function (error, rows, fields) {
     if (error) {
       console.log(error);
       res.sendStatus(400);
@@ -207,7 +207,7 @@ app.delete("/delete-student-ajax/", function (req, res, next) {
 app.get("/gradClasses", function (req, res) {
   let getGradClasses = `SELECT gradClassID AS "Graduating Class Year", pageStart AS "Start Page", pageEnd AS "End Page" FROM GradClasses ORDER BY gradClassID;`;
 
-  db.pool.query(getGradClasses, function (error, rows, fields) {
+  db.query(getGradClasses, function (error, rows, fields) {
     res.render("gradClasses", { data: rows });
   });
 });
@@ -233,13 +233,13 @@ app.post("/add-grad-class-ajax", function (req, res) {
   if (data.gradClassID && data.pageStart && data.pageEnd) {
     query1 = `INSERT INTO GradClasses (gradClassID, pageStart, pageEnd) VALUES (?, ?, ?)`;
     values1 = [data.gradClassID, data.pageStart, data.pageEnd];
-    db.pool.query(query1, values1, function (error, rows, fields) {
+    db.query(query1, values1, function (error, rows, fields) {
       if (error) {
         console.log(error);
         res.sendStatus(400);
       } else {
         query2 = `SELECT * FROM GradClasses;`;
-        db.pool.query(query2, function (error, rows, fields) {
+        db.query(query2, function (error, rows, fields) {
           if (error) {
             console.log(error);
             res.sendStatus(400);
@@ -263,7 +263,7 @@ app.delete("/delete-gradClass-ajax/", function (req, res, next) {
   let gradClassID = parseInt(data.gradClassID);
   let deleteGradClass = `DELETE FROM GradClasses WHERE gradClassID = ?;`;
 
-  db.pool.query(deleteGradClass, [gradClassID], function (error, rows, fields) {
+  db.query(deleteGradClass, [gradClassID], function (error, rows, fields) {
     if (error) {
       console.log(error);
       res.sendStatus(400);
@@ -280,7 +280,7 @@ app.delete("/delete-gradClass-ajax/", function (req, res, next) {
 app.get("/clubs", function (req, res) {
   let getClubs = `SELECT clubID AS "Club ID", clubName AS "Club Name" FROM Clubs ORDER BY clubID;`;
 
-  db.pool.query(getClubs, function (error, rows, fields) {
+  db.query(getClubs, function (error, rows, fields) {
     res.render("clubs", { data: rows });
   });
 });
@@ -294,13 +294,13 @@ app.post("/add-club-ajax", function (req, res) {
 
   if (data.clubName) {
     query1 = `INSERT INTO Clubs (clubName) VALUES (?);`;
-    db.pool.query(query1, [data.clubName], function (error, rows, fields) {
+    db.query(query1, [data.clubName], function (error, rows, fields) {
       if (error) {
         console.log(error);
         res.sendStatus(400);
       } else {
         query2 = `SELECT * FROM Clubs;`;
-        db.pool.query(query2, function (error, rows, fields) {
+        db.query(query2, function (error, rows, fields) {
           if (error) {
             console.log(error);
             res.sendStatus(400);
@@ -324,7 +324,7 @@ app.delete("/delete-club-ajax/", function (req, res, next) {
   let clubID = parseInt(data.clubID);
   let deleteClubs = `DELETE FROM Clubs WHERE clubID = ?`;
 
-  db.pool.query(deleteClubs, [clubID], function (error, rows, fields) {
+  db.query(deleteClubs, [clubID], function (error, rows, fields) {
     if (error) {
       console.log(error);
       res.sendStatus(400);
@@ -341,7 +341,7 @@ app.delete("/delete-club-ajax/", function (req, res, next) {
 app.get("/sports", function (req, res) {
   let getSports = `SELECT sportID AS "Sport ID", sportType AS "Sport", season AS "Season", varsityLevel AS "Varsity Level" FROM Sports ORDER BY sportID;`;
 
-  db.pool.query(getSports, function (error, rows, fields) {
+  db.query(getSports, function (error, rows, fields) {
     res.render("sports", { data: rows });
   });
 });
@@ -357,13 +357,13 @@ app.post("/add-sport-ajax", function (req, res) {
     query1 = `INSERT INTO Sports (sportType, season, varsityLevel) VALUES (?, ?, ?);`;
     values1 = [data.sportType, data.season, data.varsityLevel];
 
-    db.pool.query(query1, values1, function (error, rows, fields) {
+    db.query(query1, values1, function (error, rows, fields) {
       if (error) {
         console.log(error);
         res.sendStatus(400);
       } else {
         query2 = `SELECT * FROM Sports;`;
-        db.pool.query(query2, function (error, rows, fields) {
+        db.query(query2, function (error, rows, fields) {
           if (error) {
             console.log(error);
             res.sendStatus(400);
@@ -387,7 +387,7 @@ app.delete("/delete-sport-ajax/", function (req, res, next) {
   let sportID = parseInt(data.sportID);
   let deleteSport = `DELETE FROM Sports WHERE sportID = ?;`;
 
-  db.pool.query(deleteSport, [sportID], function (error, rows, fields) {
+  db.query(deleteSport, [sportID], function (error, rows, fields) {
     if (error) {
       console.log(error);
       res.sendStatus(400);
@@ -404,7 +404,7 @@ app.delete("/delete-sport-ajax/", function (req, res, next) {
 app.get("/events", function (req, res) {
   let getEvents = `SELECT eventID AS "Event ID", eventName AS "Event Name", eventDate AS "Event Date" FROM Events ORDER BY eventID;`;
 
-  db.pool.query(getEvents, function (error, rows, fields) {
+  db.query(getEvents, function (error, rows, fields) {
     res.render("events", { data: rows });
   });
 });
@@ -420,14 +420,14 @@ app.post("/add-event-ajax", function (req, res) {
     query1 = `INSERT INTO Events (eventName, eventDate) VALUES (?, ?)`;
     values1 = [data.eventName, data.eventDate];
 
-    db.pool.query(query1, values1, function (error, rows, fields) {
+    db.query(query1, values1, function (error, rows, fields) {
       if (error) {
         console.log(error);
         res.sendStatus(400);
       } else {
         // If there was no error, perform a SELECT * on Events
         query2 = `SELECT * FROM Events;`;
-        db.pool.query(query2, function (error, rows, fields) {
+        db.query(query2, function (error, rows, fields) {
           if (error) {
             console.log(error);
             res.sendStatus(400);
@@ -452,7 +452,7 @@ app.delete("/delete-event-ajax/", function (req, res, next) {
 
   let deleteEvent = `DELETE FROM Events WHERE eventID = ?`;
 
-  db.pool.query(deleteEvent, [eventID], function (error, rows, fields) {
+  db.query(deleteEvent, [eventID], function (error, rows, fields) {
     if (error) {
       console.log(error);
       res.sendStatus(400);
@@ -479,13 +479,13 @@ app.get("/clubMemberships", function (req, res) {
 
   let getClubsInfo = `SELECT * FROM Clubs;`; // for club dropdown population
 
-  db.pool.query(getClubMemberships, function (error, rows, fields) {
+  db.query(getClubMemberships, function (error, rows, fields) {
     let clubMemberships = rows;
 
-    db.pool.query(getStudentInfo, (error, rows, fields) => {
+    db.query(getStudentInfo, (error, rows, fields) => {
       let students = rows;
 
-      db.pool.query(getClubsInfo, (error, rows, fields) => {
+      db.query(getClubsInfo, (error, rows, fields) => {
         let clubs = rows;
 
         return res.render("clubMemberships", {
@@ -510,7 +510,7 @@ app.post("/add-club-membership-ajax", function (req, res) {
 
   query1 = `INSERT INTO StudentHasClubs (studentID, clubID, clubRole, pageNum) VALUES (?, ?, ?, ?)`;
 
-  db.pool.query(
+  db.query(
     query1,
     [studentID, data.clubID, data.clubRole, data.pageNum],
     function (error, rows, fields) {
@@ -524,7 +524,7 @@ app.post("/add-club-membership-ajax", function (req, res) {
                             LEFT JOIN Students ON Students.studentID = StudentHasClubs.studentID
                             INNER JOIN Clubs ON Clubs.clubID = StudentHasClubs.clubID
                             ORDER BY studentHasClubID;`;
-        db.pool.query(query2, function (error, rows, fields) {
+        db.query(query2, function (error, rows, fields) {
           if (error) {
             console.log(error);
             res.sendStatus(400);
@@ -549,7 +549,7 @@ app.delete("/delete-club-membership-ajax/", function (req, res, next) {
 
   let deleteClubMembership = `DELETE FROM StudentHasClubs WHERE studentHasClubID = ?`;
 
-  db.pool.query(
+  db.query(
     deleteClubMembership,
     [clubMembershipID],
     function (error, rows, fields) {
@@ -580,13 +580,13 @@ app.get("/sportMemberships", function (req, res) {
   let getStudentInfo = `SELECT * FROM Students;`; // for student dropdown population
   let getSportsInfo = `SELECT * FROM Sports;`; // for sport team dropdown population
 
-  db.pool.query(getSportMemberships, function (error, rows, fields) {
+  db.query(getSportMemberships, function (error, rows, fields) {
     let sportsMemberships = rows;
 
-    db.pool.query(getStudentInfo, (error, rows, fields) => {
+    db.query(getStudentInfo, (error, rows, fields) => {
       let students = rows;
 
-      db.pool.query(getSportsInfo, (error, rows, fields) => {
+      db.query(getSportsInfo, (error, rows, fields) => {
         let sports = rows;
 
         return res.render("sportMemberships", {
@@ -611,7 +611,7 @@ app.post("/add-sport-membership-ajax", function (req, res) {
 
   query1 = `INSERT INTO StudentHasClubs (studentID, clubID, clubRole, pageNum) VALUES (?, ?, ?, ?)`;
 
-  db.pool.query(
+  db.query(
     query1,
     [studentID, data.clubID, data.clubRole, data.pageNum],
     function (error, rows, fields) {
@@ -626,7 +626,7 @@ app.post("/add-sport-membership-ajax", function (req, res) {
                     LEFT JOIN Students ON Students.studentID = StudentHasSports.studentID
                     INNER JOIN Sports ON Sports.sportID = StudentHasSports.sportID
                     ORDER BY studentHasSportID;`;
-        db.pool.query(query2, function (error, rows, fields) {
+        db.query(query2, function (error, rows, fields) {
           if (error) {
             console.log(error);
             res.sendStatus(400);
@@ -651,7 +651,7 @@ app.delete("/delete-sport-membership-ajax/", function (req, res, next) {
 
   let deleteSportMembership = `DELETE FROM StudentHasSports WHERE studentHasSportID = ?`;
 
-  db.pool.query(
+  db.query(
     deleteSportMembership,
     [sportMembershipID],
     function (error, rows, fields) {
@@ -683,16 +683,16 @@ app.get("/edit-sport-membership-view", function (req, res) {
   let getStudents = `SELECT studentID, firstName, lastName, gradClassID FROM Students ORDER BY studentID;`;
   let getSports = `SELECT sportID, CONCAT(Sports.varsityLevel, " ", Sports.sportType) AS "Sport Team" FROM Sports ORDER BY sportID;`;
 
-  db.pool.query(
+  db.query(
     getSportMembership,
     [sportMembershipID],
     function (error, rows, fields) {
       let sportMembershipData = rows;
 
-      db.pool.query(getStudents, function (error, rows, fields) {
+      db.query(getStudents, function (error, rows, fields) {
         let students = rows;
 
-        db.pool.query(getSports, function (error, rows, fields) {
+        db.query(getSports, function (error, rows, fields) {
           let sports = rows;
 
           res.render("editSportMembership", {
@@ -724,7 +724,7 @@ app.put("/put-sport-membership-ajax", function (req, res) {
         WHERE studentHasSportID = ?;
     `;
 
-  db.pool.query(
+  db.query(
     queryUpdateSportMembership,
     [studentID, sportID, sportRole, pageNum, studentHasSportID],
     function (error, rows, fields) {
@@ -754,13 +754,13 @@ app.get("/eventMemberships", function (req, res) {
   let getStudentInfo = `SELECT * FROM Students;`; // for student dropdown population
   let getEventsInfo = `SELECT * FROM Events;`; // for event dropdown population
 
-  db.pool.query(getEventMemberships, function (error, rows, fields) {
+  db.query(getEventMemberships, function (error, rows, fields) {
     let eventMemberships = rows;
 
-    db.pool.query(getStudentInfo, (error, rows, fields) => {
+    db.query(getStudentInfo, (error, rows, fields) => {
       let students = rows;
 
-      db.pool.query(getEventsInfo, (error, rows, fields) => {
+      db.query(getEventsInfo, (error, rows, fields) => {
         let events = rows;
 
         return res.render("eventMemberships", {
@@ -785,7 +785,7 @@ app.post("/add-event-membership-ajax", function (req, res) {
 
   query1 = `INSERT INTO StudentInEvents (studentID, eventID, eventRole, pageNum) VALUES (?, ?, ?, ?)`;
 
-  db.pool.query(query1, [studentID, data.eventID, data.eventRole, data.pageNum], function (error, rows, fields) {
+  db.query(query1, [studentID, data.eventID, data.eventRole, data.pageNum], function (error, rows, fields) {
     if (error) {
       console.log(error);
       res.sendStatus(400);
@@ -796,7 +796,7 @@ app.post("/add-event-membership-ajax", function (req, res) {
                             LEFT JOIN Students ON Students.studentID = StudentInEvents.studentID
                             INNER JOIN Events ON Events.eventID = StudentInEvents.eventID
                             ORDER BY studentInEventID;;`;
-      db.pool.query(query2, function (error, rows, fields) {
+      db.query(query2, function (error, rows, fields) {
         if (error) {
           console.log(error);
           res.sendStatus(400);
@@ -820,7 +820,7 @@ app.delete("/delete-event-membership-ajax/", function (req, res, next) {
 
   let deleteEventMembership = `DELETE FROM StudentInEvents WHERE studentInEventID = ?`;
 
-  db.pool.query(
+  db.query(
     deleteEventMembership,
     [eventMembershipID],
     function (error, rows, fields) {
