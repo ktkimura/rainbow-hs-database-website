@@ -9,7 +9,6 @@
 var express = require("express");
 var app = express();
 PORT = process.env.PORT || 3000;
-const path = require("path");
 
 /*
     HELPERS
@@ -44,16 +43,9 @@ Handlebars.registerHelper({
 // Express and handlebars imports
 const { engine } = require("express-handlebars");
 var exphbs = require("express-handlebars");
-
-app.set('views', path.join(__dirname, 'views'));
-
 app.engine(
   ".hbs",
-  engine({ 
-    extname: ".hbs", 
-    defaultLayout: 'main',
-    helpers: { dateFormat: dateFormat } 
-  })
+  engine({ extname: ".hbs", helpers: { dateFormat: dateFormat } })
 );
 app.set("view engine", ".hbs"); // Tell express to use the handlebars engine whenever it encounters a *.hbs file.
 
@@ -87,6 +79,14 @@ const db = mysql.createPool({
   waitForConnections: true
 });
 
+// db.connect((err) => {
+//   if (err) {
+//     console.error("error connecting to the database:", err.stack);
+//     console.log("host: " + process.env.MYSQL_HOST)
+//   } else {
+//     console.log("connected to the database");
+//   }
+// });
 /*
     ROUTES
 */
