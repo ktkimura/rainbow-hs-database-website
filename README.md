@@ -1,10 +1,28 @@
-# RAINBOW HIGH SCHOOL: PRIDE OF LIECHTENSTEIN 
+# Rainbow High School Yearbook Team's Database Website
 
-At Rainbow High School (Pride of Liechtenstein) we PRIDE ourselves in our organizational skills.
-How else do you think we manage over 10,000 students on our campus everyday?
+Rainbow High School is a hypothetical high school whose yearbook team is responsible of tracking over 10,000 students as well as various clubs, sports, and events. This website helps the yearbook team interface with their database made up of 5 tables (Students, Graduating Classes, Clubs, Sports, Events) and 3 intersection tables to keep track of students' participation in clubs, sports, and events. Furthermore, the database allows the yearbook team to note which page numbers students appear on so it is easier to cite where they appear at the end end of the yearbook. 
 
-This website's purpose is to benefit our hardworking yearbook team and assist them in their annual process of the highly anticipated yearbook.
-**Access our website here: http://classwork.engr.oregonstate.edu:4021/**
+**Access the website here: https://rainbow-hs-database-website.onrender.com/**
+
+## Technologies Used
+### Website
+- MySQL
+- Node.js
+- Express.js
+- Handlebars.js
+### Hosting
+- Render
+- AWS
+
+## Database Details
+| DB Entity-Relationship Diagram | 
+| :------------------------------ |
+|<img src="https://github.com/user-attachments/assets/34b84a6a-78f7-4c41-a5ae-dbab3e3ac05e" width=70%/> |
+
+| DB Schema |
+| :------------------------------ |
+|<img src="https://github.com/user-attachments/assets/89dea488-e9e0-4af4-b6cb-464a76567741" width=70%/>|
+
 
 ## Code Citations
 **Citation for Handlebars and Express setup**
