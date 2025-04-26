@@ -1,3 +1,5 @@
 node_modules/
 database/db-connector.js
 database/DML.sql
+Dockerfile
+.dockerignore
