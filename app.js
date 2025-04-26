@@ -79,14 +79,14 @@ const db = mysql.createPool({
   waitForConnections: true
 });
 
-db.connect((err) => {
-  if (err) {
-    console.error("error connecting to the database:", err.stack);
-    console.log("host: " + process.env.MYSQL_HOST)
-  } else {
-    console.log("connected to the database");
-  }
-});
+// db.connect((err) => {
+//   if (err) {
+//     console.error("error connecting to the database:", err.stack);
+//     console.log("host: " + process.env.MYSQL_HOST)
+//   } else {
+//     console.log("connected to the database");
+//   }
+// });
 /*
     ROUTES
 */
