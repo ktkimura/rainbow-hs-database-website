@@ -71,20 +71,18 @@ app.listen(PORT, function () {
 const mysql = require("mysql2");
 
 const db = mysql.createConnection({
-  pool: mysql.createPool({
-    host: process.env.MYSQL_HOST,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE,
-    port: process.env.MYSQL_PORT,
-    waitForConnections: true
-  }),
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
+  port: process.env.MYSQL_PORT,
+  waitForConnections: true
 });
 
 db.connect((err) => {
   if (err) {
     console.error("error connecting to the database:", err.stack);
-    console.log("host: " + process.env.MYSQL_HOST);
+    console.log("host: " + process.env.MYSQL_HOST)
   } else {
     console.log("connected to the database");
   }
@@ -787,33 +785,29 @@ app.post("/add-event-membership-ajax", function (req, res) {
 
   query1 = `INSERT INTO StudentInEvents (studentID, eventID, eventRole, pageNum) VALUES (?, ?, ?, ?)`;
 
-  db.pool.query(
-    query1,
-    [studentID, data.eventID, data.eventRole, data.pageNum],
-    function (error, rows, fields) {
-      if (error) {
-        console.log(error);
-        res.sendStatus(400);
-      } else {
-        query2 = `SELECT studentInEventID, StudentInEvents.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", StudentInEvents.eventID AS "Event ID", 
+  db.pool.query(query1, [studentID, data.eventID, data.eventRole, data.pageNum], function (error, rows, fields) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      query2 = `SELECT studentInEventID, StudentInEvents.studentID AS "Student ID", CONCAT(Students.firstName, " ", Students.lastName) AS "Student Name", StudentInEvents.eventID AS "Event ID", 
                       Events.eventName AS "Event Name", StudentInEvents.eventRole AS "Event Role", StudentInEvents.pageNum AS "Page Num." 
                         FROM StudentInEvents
                             LEFT JOIN Students ON Students.studentID = StudentInEvents.studentID
                             INNER JOIN Events ON Events.eventID = StudentInEvents.eventID
                             ORDER BY studentInEventID;;`;
-        db.pool.query(query2, function (error, rows, fields) {
-          if (error) {
-            console.log(error);
-            res.sendStatus(400);
-          }
-          // send back data with new event membership entry
-          else {
-            res.send(rows);
-          }
-        });
-      }
+      db.pool.query(query2, function (error, rows, fields) {
+        if (error) {
+          console.log(error);
+          res.sendStatus(400);
+        }
+        // send back data with new event membership entry
+        else {
+          res.send(rows);
+        }
+      });
     }
-  );
+  });
 });
 
 // Citation for delete-event-membership-ajax route functionality:
