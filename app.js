@@ -93,7 +93,7 @@ const db = mysql.createPool({
 
 // Home page
 app.get("/", function (req, res) {
-  res.render("index");
+  res.render("main");
 });
 
 // Citation for students route functionality:
